@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理画面 | 株式会社明治不動産</title>
+<style>
+  :root {
+    --gold: #b8960c;
+    --gold-light: #d4af37;
+    --dark: #1a1a1a;
+    --white: #ffffff;
+    --off-white: #f8f6f2;
+    --text: #333333;
+    --muted: #777777;
+    --border: #e0d8c8;
+    --danger: #c0392b;
+    --success: #2a7a2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif; background: #f0ece4; color: var(--text); min-height: 100vh; }
+
+  /* ===== LOGIN ===== */
+  #loginScreen {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+  }
+  .login-box {
+    background: white; border-radius: 12px; padding: 48px 40px; width: 360px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .login-logo { text-align: center; margin-bottom: 32px; }
+  .login-logo-en { font-size: 10px; letter-spacing: 4px; color: var(--gold); font-weight: 300; }
+  .login-logo-ja { font-size: 18px; font-weight: 700; color: var(--dark); margin-top: 4px; }
+  .login-title { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 28px; letter-spacing: 1px; }
+  .login-box label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; letter-spacing: 1px; }
+  .login-box input[type="password"] {
+    width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
+    border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.2s;
+  }
+  .login-box input[type="password"]:focus { border-color: var(--gold); }
+  .login-btn {
+    width: 100%; padding: 13px; background: var(--dark); color: white; border: none;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    margin-top: 20px; letter-spacing: 1px; transition: background 0.2s;
+  }
+  .login-btn:hover { background: #333; }
+  .login-error { color: var(--danger); font-size: 12px; text-align: center; margin-top: 12px; display: none; }
+
+  /* ===== ADMIN SHELL ===== */
+  #adminShell { display: none; }
+  .admin-header {
+    background: var(--dark); color: white; padding: 0 24px;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .admin-header-left { display: flex; align-items: center; gap: 16px; }
+  .admin-header h1 { font-size: 14px; letter-spacing: 2px; color: var(--gold-light); font-weight: 600; }
+  .admin-header-sub { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .admin-header-right { display: flex; align-items: center; gap: 12px; }
+  .btn-logout { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);
+    padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+  .btn-logout:hover { border-color: var(--gold); color: var(--gold); }
+
+  .admin-content { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* ===== SECTION CARD ===== */
+  .admin-card {
+    background: white; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .admin-card-title {
+    font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 20px;
+    padding-bottom: 14px; border-bottom: 2px solid var(--border); display: flex;
+    align-items: center; gap: 8px;
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px;
+    border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none;
+    transition: all 0.2s; text-decoration: none; }
+  .btn-primary { background: var(--dark); color: white; }
+  .btn-primary:hover { background: #333; }
+  .btn-gold { background: var(--gold); color: white; }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-danger { background: #fff0f0; color: var(--danger); border: 1px solid #f5c6c6; }
+  .btn-danger:hover { background: #fde8e8; }
+  .btn-success { background: #e6f4e6; color: var(--success); border: 1px solid #b6d9b6; }
+  .btn-success:hover { background: #d0ebd0; }
+  .btn-sm { padding: 6px 12px; font-size: 12px; }
+
+  /* ===== PROPERTY LIST ===== */
+  .prop-list { display: flex; flex-direction: column; gap: 16px; }
+  .prop-item {
+    border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .prop-item.inactive { opacity: 0.55; }
+  .prop-item-header {
+    background: var(--off-white); padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    cursor: pointer; user-select: none;
+  }
+  .prop-item-header:hover { background: #f0ece4; }
+  .prop-item-title { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .prop-item-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .prop-item-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .prop-toggle-arrow { font-size: 12px; color: var(--muted); transition: transform 0.2s; }
+  .prop-item.open .prop-toggle-arrow { transform: rotate(180deg); }
+  .prop-item-body { display: none; padding: 20px 18px; border-top: 1px solid var(--border); }
+  .prop-item.open .prop-item-body { display: block; }
+
+  /* ===== FORM FIELDS ===== */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+  .form-group input, .form-group select, .form-group textarea {
+    padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 7px;
+    font-size: 13px; font-family: inherit; outline: none; transition: border-color 0.2s;
+    background: white; color: var(--text);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 72px; }
+  .form-section-label {
+    font-size: 12px; font-weight: 700; color: var(--dark); letter-spacing: 1px;
+    margin: 20px 0 10px; padding: 0 0 6px; border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  .specs-list { display: flex; flex-direction: column; gap: 6px; }
+  .spec-row { display: flex; gap: 8px; align-items: center; }
+  .spec-row input { flex: 1; }
+  .btn-icon { background: none; border: 1px solid var(--border); color: var(--muted);
+    border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+  .btn-icon:hover { border-color: var(--danger); color: var(--danger); }
+  .photos-list { display: flex; flex-direction: column; gap: 8px; }
+  .photo-row { display: grid; grid-template-columns: 2fr 1fr auto; gap: 8px; align-items: center; }
+  .photo-row input { font-size: 12px; }
+  .form-actions { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .save-feedback { font-size: 12px; color: var(--success); font-weight: 600; display: none; }
+
+  /* ===== STATUS TOGGLE ===== */
+  .status-toggle { display: flex; align-items: center; gap: 8px; }
+  .toggle-switch {
+    position: relative; display: inline-block; width: 42px; height: 24px;
+  }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background: #ccc; border-radius: 24px; transition: 0.3s;
+  }
+  .toggle-slider:before {
+    position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px;
+    background: white; border-radius: 50%; transition: 0.3s;
+  }
+  input:checked + .toggle-slider { background: var(--success); }
+  input:checked + .toggle-slider:before { transform: translateX(18px); }
+  .toggle-label { font-size: 12px; color: var(--muted); }
+
+  /* ===== DEPLOY GUIDE ===== */
+  .deploy-steps { display: flex; flex-direction: column; gap: 12px; }
+  .deploy-step {
+    display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px;
+    background: var(--off-white); border-radius: 8px; border-left: 3px solid var(--gold);
+  }
+  .deploy-step-num {
+    background: var(--gold); color: white; font-size: 12px; font-weight: 700;
+    width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .deploy-step-text { font-size: 13px; line-height: 1.7; }
+  .deploy-step-text strong { color: var(--dark); }
+  .download-area { text-align: center; padding: 24px; background: var(--off-white); border-radius: 10px; border: 2px dashed var(--border); }
+  .download-area p { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.7; }
+
+  /* ===== PASSWORD CHANGE ===== */
+  .pw-form { display: flex; flex-direction: column; gap: 14px; max-width: 400px; }
+  .pw-form label { font-size: 12px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 5px; }
+  .pw-form input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; }
+  .pw-form input:focus { border-color: var(--gold); }
+  .pw-msg { font-size: 13px; margin-top: 8px; font-weight: 600; display: none; }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position: fixed; bottom: 32px; right: 32px; background: var(--dark); color: white;
+    padding: 13px 22px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25); opacity: 0; transform: translateY(10px);
+    transition: all 0.3s; pointer-events: none; z-index: 9999;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 700px) {
+    .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
+    .admin-content { padding: 20px 14px; }
+    .admin-card { padding: 20px 16px; }
+    .photo-row { grid-template-columns: 1fr auto; }
+    .photo-row input:nth-child(2) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-en">MEIJI REAL ESTATE</div>
+      <div class="login-logo-ja">株式会社明治不動産</div>
+    </div>
+    <p class="login-title">管理画面ログイン</p>
+    <label for="pwInput">パスワード</label>
+    <input type="password" id="pwInput" placeholder="パスワードを入力" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">ログイン</button>
+    <div class="login-error" id="loginError">パスワードが正しくありません。</div>
+  </div>
+</div>
+
+<!-- ===== ADMIN SHELL ===== -->
+<div id="adminShell">
+  <div class="admin-header">
+    <div class="admin-header-left">
+      <h1>ADMIN</h1>
+      <span class="admin-header-sub">株式会社明治不動産 管理画面</span>
+    </div>
+    <div class="admin-header-right">
+      <a href="index.html" target="_blank" class="btn btn-sm" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);">
+        🌐 サイトを見る
+      </a>
+      <button class="btn-logout" onclick="doLogout()">ログアウト</button>
+    </div>
+  </div>
+
+  <div class="admin-content">
+
+    <!-- 物件一覧 -->
+    <div class="admin-card">
+      <div class="admin-card-title">
+        🏠 物件管理
+        <span style="margin-left:auto">
+          <button class="btn btn-gold btn-sm" onclick="addProperty()">＋ 物件を追加</button>
+        </span>
+      </div>
+      <div class="prop-list" id="propList"></div>
+    </div>
+
+    <!-- エクスポート＆デプロイ -->
+    <div class="admin-card">
+      <div class="admin-card-title">📤 データ保存・サイト更新</div>
+      <div class="download-area">
+        <button class="btn btn-primary" onclick="downloadData()" style="font-size:15px;padding:14px 32px;">
+          ⬇️ properties-data.js をダウンロード
+        </button>
+        <p>このファイルをダウンロードし、<code>index.html</code> と一緒に <strong>Netlify にアップロード</strong>してサイトを更新します。<br>
+        ※ この管理画面（admin.html）はNetlifyにアップロード不要です。Mac上だけで使います。</p>
+      </div>
+      <div style="margin-top:24px">
+        <div class="admin-card-title" style="font-size:13px;border-bottom-width:1px;margin-bottom:16px;">📋 更新手順</div>
+        <div class="deploy-steps">
+          <div class="deploy-step">
+            <div class="deploy-step-num">1</div>
+            <div class="deploy-step-text">上の <strong>「ダウンロード」ボタン</strong>を押して <code>properties-data.js</code> を保存します。</div>
+          </div>
+          <div class="deploy-step">
+            <div class="deploy-step-num">2</div>
+            <div class="deploy-step-text"><strong>Netlify</strong>（<a href="https://app.netlify.com" target="_blank" rel="noopener">app.netlify.com</a>）にログインし、サイトのページを開きます。</div>
+          </div>
+          <div class="deploy-step">
+            <div class="deploy-step-num">3</div>
+            <div class="deploy-step-text"><strong>「Deploys」タブ</strong>を開き、ページ下部の「Drag and drop」エリアに、<code>index.html</code> と <code>properties-data.js</code> の2つのファイルをまとめてドラッグ&ドロップします。（admin.htmlはアップロード不要）</div>
+          </div>
+          <div class="deploy-step">
+            <div class="deploy-step-num">4</div>
+            <div class="deploy-step-text">デプロイが完了したら <strong>サイトを確認</strong>します。通常1〜2分で反映されます。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- パスワード変更 -->
+    <div class="admin-card">
+      <div class="admin-card-title">🔑 パスワード変更</div>
+      <div class="pw-form">
+        <div>
+          <label>現在のパスワード</label>
+          <input type="password" id="pwOld" placeholder="現在のパスワード">
+        </div>
+        <div>
+          <label>新しいパスワード</label>
+          <input type="password" id="pwNew1" placeholder="新しいパスワード（6文字以上）">
+        </div>
+        <div>
+          <label>新しいパスワード（確認）</label>
+          <input type="password" id="pwNew2" placeholder="もう一度入力">
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="changePassword()">パスワードを変更</button>
+          <div class="pw-msg" id="pwMsg"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ===== AUTH ===== */
+const DEFAULT_PW_HASH = '7db49b8c0a4e39a7fae7db2f5a3a7b2c9f1d8e6c3b0a4f5e2d1c8b7a6f3e2d1'; // placeholder replaced below
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function getStoredHash() {
+  return localStorage.getItem('meiji_pw_hash') || await sha256('meiji2024');
+}
+
+async function doLogin() {
+  const pw = document.getElementById('pwInput').value;
+  if (!pw) return;
+  const hash = await sha256(pw);
+  const stored = await getStoredHash();
+  if (hash === stored) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminShell').style.display = 'block';
+    document.getElementById('loginError').style.display = 'none';
+    initAdmin();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+
+function doLogout() {
+  document.getElementById('adminShell').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('pwInput').value = '';
+}
+
+async function changePassword() {
+  const oldVal = document.getElementById('pwOld').value;
+  const new1 = document.getElementById('pwNew1').value;
+  const new2 = document.getElementById('pwNew2').value;
+  const msg = document.getElementById('pwMsg');
+  const stored = await getStoredHash();
+  const oldHash = await sha256(oldVal);
+  if (oldHash !== stored) {
+    msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='現在のパスワードが正しくありません。'; return;
+  }
+  if (new1.length < 6) {
+    msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='新しいパスワードは6文字以上にしてください。'; return;
+  }
+  if (new1 !== new2) {
+    msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='新しいパスワードが一致しません。'; return;
+  }
+  const newHash = await sha256(new1);
+  localStorage.setItem('meiji_pw_hash', newHash);
+  msg.style.display='block'; msg.style.color='#2a7a2a'; msg.textContent='✓ パスワードを変更しました。';
+  document.getElementById('pwOld').value='';
+  document.getElementById('pwNew1').value='';
+  document.getElementById('pwNew2').value='';
+  showToast('パスワードを変更しました');
+}
+
+/* ===== PROPERTY DATA ===== */
+let props = {};
+
+function loadProps() {
+  const saved = localStorage.getItem('meiji_props');
+  if (saved) {
+    try { props = JSON.parse(saved); return; } catch(e) {}
+  }
+  // デフォルト：index.html と同じデータ
+  props = {
+    p1: {
+      id:'p1', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🌾', cardBg:'#c8d8c0',
+      name:'石岡市 山崎 工場用地', price:'12,500', unit:'万円',
+      loc:'石岡市山崎', fullLoc:'茨城県石岡市山崎',
+      athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+      specs:['土地','14,534㎡','工場用地','石岡駅 7,500m'],
+      access:{
+        train:'JR常磐線 石岡駅下車、タクシーで約15分（約7.5km）',
+        bus:'石岡駅バスターミナルより関鉄バス「柿岡」方面乗車、最寄り停留所より徒歩約5分',
+        car:'常磐自動車道 千代田石岡ICより国道6号線経由 約15分',
+      },
+      mapUrl:'https://maps.google.com/?q=茨城県石岡市山崎',
+      overview:'石岡市北部に位置する、工場・物流・製造業に最適な広大な用地です。常磐自動車道「千代田石岡IC」から約15分のアクセスで、北関東エリア・首都圏への広域展開を検討する企業に注目の立地です。',
+      environment:'石岡市北部の山崎エリアは、恋瀬川流域の豊かな自然環境に囲まれた地域です。石岡工業団地への近接性も高く、製造業・物流業の事業拠点として高いポテンシャルを持ちます。',
+      facilities:[
+        {icon:'🚃',name:'JR石岡駅',dist:'約7.5km（タクシー約15分）'},
+        {icon:'🛣️',name:'常磐道 千代田石岡IC',dist:'約12km（約15分）'},
+        {icon:'🏪',name:'ベイシア石岡店（スーパー）',dist:'約6km'},
+        {icon:'🏥',name:'石岡市立石岡中央病院',dist:'約8km'},
+        {icon:'🏛️',name:'石岡市役所',dist:'約8km'},
+        {icon:'📮',name:'石岡郵便局',dist:'約7km'},
+      ],
+      photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+    },
+    p2: {
+      id:'p2', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🏡', cardBg:'#d0dce8',
+      name:'石岡市 石岡 住宅用地', price:'650', unit:'万円',
+      loc:'石岡市石岡', fullLoc:'茨城県石岡市石岡',
+      athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+      specs:['土地','333㎡','住宅用地','石岡駅 徒歩21分'],
+      access:{
+        train:'JR常磐線 石岡駅より徒歩約21分（約1.4km）',
+        bus:'石岡駅バスターミナルより関鉄バス乗車、最寄り停留所より徒歩約3分',
+        car:'常磐自動車道 千代田石岡ICより国道6号線経由 約10分',
+      },
+      mapUrl:'https://maps.google.com/?q=茨城県石岡市石岡',
+      overview:'石岡駅から徒歩21分（約1.4km）の利便性の高い住宅用地です。日常の生活施設が揃った閑静な住宅街の中にあり、子育て世帯にも安心の環境です。',
+      environment:'石岡市は茨城県中央部の主要都市。市街地には商店街・スーパー・医療機関が充実しており、ファミリー層に人気のエリアです。',
+      facilities:[
+        {icon:'🚃',name:'JR石岡駅',dist:'徒歩約21分（約1.4km）'},
+        {icon:'🏫',name:'石岡小学校',dist:'約800m'},
+        {icon:'🏫',name:'石岡第一中学校',dist:'約1.5km'},
+        {icon:'🏪',name:'カスミ石岡店',dist:'約1km'},
+        {icon:'🏥',name:'石岡市立石岡中央病院',dist:'約3km'},
+        {icon:'🏛️',name:'石岡市役所',dist:'約2km'},
+      ],
+      photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+    },
+    p3: {
+      id:'p3', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🌿', cardBg:'#dce8d0',
+      name:'笠間市 小原 住宅用地', price:'1,000', unit:'万円',
+      loc:'笠間市小原', fullLoc:'茨城県笠間市小原',
+      athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+      specs:['土地','1,692㎡','住宅用地','友部駅 徒歩28分'],
+      access:{
+        train:'JR常磐線 友部駅より徒歩約28分（約2.3km）',
+        bus:'友部駅前より茨城交通バス乗車、最寄り停留所より徒歩約5分',
+        car:'北関東自動車道 友部ICより県道52号線経由 約10分',
+      },
+      mapUrl:'https://maps.google.com/?q=茨城県笠間市小原',
+      overview:'緑豊かな笠間市に位置する1,692㎡の広大な住宅用地。ゆとりある住環境・農家住宅・アトリエ等、多様な活用が可能な土地です。',
+      environment:'笠間市は日本三大稲荷のひとつ「笠間稲荷神社」の門前町として栄えた歴史ある都市。陶芸や芸術文化が根付いた暮らしやすいエリアです。',
+      facilities:[
+        {icon:'🚃',name:'JR友部駅',dist:'徒歩約28分（約2.3km）'},
+        {icon:'🛣️',name:'北関東道 友部IC',dist:'約5km（約10分）'},
+        {icon:'⛩️',name:'笠間稲荷神社（日本三大稲荷）',dist:'約5km'},
+        {icon:'🏺',name:'笠間焼 陶芸の里',dist:'周辺エリア'},
+        {icon:'🌳',name:'笠間芸術の森公園',dist:'約7km'},
+        {icon:'🏛️',name:'笠間市役所',dist:'約8km'},
+      ],
+      photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+    },
+    p4: {
+      id:'p4', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🏭', cardBg:'#e8e0c8',
+      name:'小美玉市 山野 事業用地', price:'13,800', unit:'万円',
+      loc:'小美玉市山野', fullLoc:'茨城県小美玉市山野',
+      athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+      specs:['土地','5,469㎡','事業用地','石岡駅 14,500m'],
+      access:{
+        train:'JR常磐線 石岡駅下車、タクシーで約25分（約14.5km）',
+        bus:'石岡駅バスターミナルより関鉄バス「小川・玉造」方面乗車、最寄り停留所より徒歩約10分',
+        car:'常磐自動車道 千代田石岡ICより約20分、または東関東自動車道 茨城空港北ICより約10分',
+      },
+      mapUrl:'https://maps.google.com/?q=茨城県小美玉市山野',
+      overview:'茨城空港を擁する小美玉市山野エリアの事業用地。東関東自動車道「茨城空港北IC」が至近（約3km）で、物流センター・製造工場・商業施設など多目的な事業展開が可能です。',
+      environment:'小美玉市は茨城空港を擁する、産業・物流の拠点として注目される都市。空港インターチェンジ周辺には新規産業用地の整備が進んでいます。',
+      facilities:[
+        {icon:'✈️',name:'茨城空港',dist:'約5km（約10分）'},
+        {icon:'🛣️',name:'東関東道 茨城空港北IC',dist:'約3km（約5分）'},
+        {icon:'🛣️',name:'常磐道 千代田石岡IC',dist:'約20km（約20分）'},
+        {icon:'🚃',name:'JR石岡駅',dist:'約14.5km（タクシー約25分）'},
+        {icon:'🏛️',name:'小美玉市役所',dist:'約15km'},
+        {icon:'🏪',name:'周辺商業施設',dist:'小美玉市内に各種店舗'},
+      ],
+      photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+    },
+    p5: {
+      id:'p5', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🏗️', cardBg:'#e8d8c8',
+      name:'小美玉市 山野 事業用地（大）', price:'15,000', unit:'万円',
+      loc:'小美玉市山野', fullLoc:'茨城県小美玉市山野',
+      athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+      specs:['土地','11,148㎡','事業用地','石岡駅 14,500m'],
+      access:{
+        train:'JR常磐線 石岡駅下車、タクシーで約25分（約14.5km）',
+        bus:'石岡駅バスターミナルより関鉄バス「小川・玉造」方面乗車、最寄り停留所より徒歩約10分',
+        car:'常磐自動車道 千代田石岡ICより約20分、または東関東自動車道 茨城空港北ICより約10分',
+      },
+      mapUrl:'https://maps.google.com/?q=茨城県小美玉市山野',
+      overview:'茨城空港至近の大規模事業用地（11,148㎡）。工場・大型物流センター・商業施設の開発に対応できる広大な区画で、大型物流拠点の整備に最適な立地です。',
+      environment:'小美玉市山野エリアは茨城空港を中心に産業集積が進む地域。首都圏から東関東自動車道で約1時間のアクセスで、広域物流・製造業の拠点として高いポテンシャルを持ちます。',
+      facilities:[
+        {icon:'✈️',name:'茨城空港',dist:'約5km（約10分）'},
+        {icon:'🛣️',name:'東関東道 茨城空港北IC',dist:'約3km（約5分）'},
+        {icon:'🛣️',name:'常磐道 千代田石岡IC',dist:'約20km（約20分）'},
+        {icon:'🚃',name:'JR石岡駅',dist:'約14.5km（タクシー約25分）'},
+        {icon:'🏛️',name:'小美玉市役所',dist:'約15km'},
+        {icon:'🏪',name:'周辺商業施設',dist:'小美玉市内に各種店舗'},
+      ],
+      photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+    },
+  };
+  saveProps();
+}
+
+function saveProps() {
+  localStorage.setItem('meiji_props', JSON.stringify(props));
+}
+
+/* ===== RENDER PROP LIST ===== */
+function initAdmin() {
+  loadProps();
+  renderPropList();
+}
+
+function renderPropList() {
+  const list = document.getElementById('propList');
+  list.innerHTML = '';
+  Object.values(props).forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'prop-item' + (p.active === false ? ' inactive' : '');
+    div.id = 'propItem_' + p.id;
+    div.innerHTML = buildPropItemHTML(p);
+    list.appendChild(div);
+  });
+}
+
+function buildPropItemHTML(p) {
+  const specsHtml = (p.specs || []).map((s,i) => `
+    <div class="spec-row">
+      <input type="text" value="${escHtml(s)}" data-field="specs" data-idx="${i}" onchange="updateField('${p.id}','specs',this)">
+      <button class="btn-icon" onclick="removeSpec('${p.id}',${i})" title="削除">×</button>
+    </div>`).join('');
+
+  const photosHtml = (p.photos || []).map((ph,i) => `
+    <div class="photo-row">
+      <input type="text" placeholder="画像URL（例: https://...）" value="${escHtml(ph.url||'')}" data-field="photos" data-sub="url" data-idx="${i}" onchange="updatePhoto('${p.id}',${i},'url',this.value)">
+      <input type="text" placeholder="キャプション" value="${escHtml(ph.cap||'')}" data-field="photos" data-sub="cap" data-idx="${i}" onchange="updatePhoto('${p.id}',${i},'cap',this.value)">
+      <button class="btn-icon" onclick="removePhoto('${p.id}',${i})" title="削除">×</button>
+    </div>`).join('');
+
+  const facilitiesHtml = (p.facilities || []).map((f,i) => `
+    <div class="spec-row">
+      <input type="text" placeholder="アイコン" value="${escHtml(f.icon||'')}" style="width:60px;flex:none" onchange="updateFacility('${p.id}',${i},'icon',this.value)">
+      <input type="text" placeholder="施設名" value="${escHtml(f.name||'')}" onchange="updateFacility('${p.id}',${i},'name',this.value)">
+      <input type="text" placeholder="距離" value="${escHtml(f.dist||'')}" style="width:160px;flex:none" onchange="updateFacility('${p.id}',${i},'dist',this.value)">
+      <button class="btn-icon" onclick="removeFacility('${p.id}',${i})" title="削除">×</button>
+    </div>`).join('');
+
+  return `
+  <div class="prop-item-header" onclick="togglePropItem('${p.id}')">
+    <div>
+      <div class="prop-item-title">${escHtml(p.cardEmoji||'')} ${escHtml(p.name||'（名称未設定）')}</div>
+      <div class="prop-item-meta">${escHtml(p.price||'')} ${escHtml(p.unit||'')} ／ ${escHtml(p.loc||'')}</div>
+    </div>
+    <div class="prop-item-actions">
+      <div class="status-toggle">
+        <label class="toggle-switch">
+          <input type="checkbox" ${p.active !== false ? 'checked' : ''} onchange="toggleActive('${p.id}',this.checked)" onclick="event.stopPropagation()">
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-label">${p.active !== false ? '公開中' : '非公開'}</span>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteProp('${p.id}')">削除</button>
+      <span class="prop-toggle-arrow">▼</span>
+    </div>
+  </div>
+  <div class="prop-item-body">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>物件名</label>
+        <input type="text" value="${escHtml(p.name||'')}" onchange="setField('${p.id}','name',this.value)">
+      </div>
+      <div class="form-group">
+        <label>種別</label>
+        <select onchange="setField('${p.id}','cardType',this.value)">
+          <option value="buy" ${p.cardType==='buy'?'selected':''}>売買</option>
+          <option value="rent" ${p.cardType==='rent'?'selected':''}>賃貸</option>
+          <option value="other" ${p.cardType==='other'?'selected':''}>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>価格</label>
+        <input type="text" value="${escHtml(p.price||'')}" onchange="setField('${p.id}','price',this.value)">
+      </div>
+      <div class="form-group">
+        <label>単位（万円 など）</label>
+        <input type="text" value="${escHtml(p.unit||'万円')}" onchange="setField('${p.id}','unit',this.value)">
+      </div>
+      <div class="form-group">
+        <label>所在地（短縮）</label>
+        <input type="text" value="${escHtml(p.loc||'')}" onchange="setField('${p.id}','loc',this.value)">
+      </div>
+      <div class="form-group">
+        <label>所在地（正式）</label>
+        <input type="text" value="${escHtml(p.fullLoc||'')}" onchange="setField('${p.id}','fullLoc',this.value)">
+      </div>
+      <div class="form-group">
+        <label>絵文字アイコン</label>
+        <input type="text" value="${escHtml(p.cardEmoji||'')}" onchange="setField('${p.id}','cardEmoji',this.value)">
+      </div>
+      <div class="form-group">
+        <label>カード背景色</label>
+        <input type="text" value="${escHtml(p.cardBg||'#e0e0e0')}" onchange="setField('${p.id}','cardBg',this.value)">
+      </div>
+      <div class="form-group">
+        <label>バッジ表示名</label>
+        <input type="text" value="${escHtml(p.cardBadge||'')}" onchange="setField('${p.id}','cardBadge',this.value)">
+      </div>
+      <div class="form-group">
+        <label>アットホームURL</label>
+        <input type="text" value="${escHtml(p.athomeUrl||'')}" onchange="setField('${p.id}','athomeUrl',this.value)">
+      </div>
+      <div class="form-group">
+        <label>GoogleマップURL</label>
+        <input type="text" value="${escHtml(p.mapUrl||'')}" onchange="setField('${p.id}','mapUrl',this.value)">
+      </div>
+    </div>
+
+    <div class="form-section-label">アクセス情報</div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>電車</label>
+        <input type="text" value="${escHtml((p.access||{}).train||'')}" onchange="setAccessField('${p.id}','train',this.value)">
+      </div>
+      <div class="form-group full">
+        <label>バス</label>
+        <input type="text" value="${escHtml((p.access||{}).bus||'')}" onchange="setAccessField('${p.id}','bus',this.value)">
+      </div>
+      <div class="form-group full">
+        <label>車</label>
+        <input type="text" value="${escHtml((p.access||{}).car||'')}" onchange="setAccessField('${p.id}','car',this.value)">
+      </div>
+    </div>
+
+    <div class="form-section-label">概要・環境</div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>物件概要</label>
+        <textarea onchange="setField('${p.id}','overview',this.value)">${escHtml(p.overview||'')}</textarea>
+      </div>
+      <div class="form-group full">
+        <label>周辺環境</label>
+        <textarea onchange="setField('${p.id}','environment',this.value)">${escHtml(p.environment||'')}</textarea>
+      </div>
+    </div>
+
+    <div class="form-section-label">スペックタグ <button class="btn btn-sm btn-success" style="margin-left:8px" onclick="addSpec('${p.id}')">＋ 追加</button></div>
+    <div class="specs-list" id="specsList_${p.id}">${specsHtml}</div>
+
+    <div class="form-section-label">周辺施設 <button class="btn btn-sm btn-success" style="margin-left:8px" onclick="addFacility('${p.id}')">＋ 追加</button></div>
+    <div class="specs-list" id="facilitiesList_${p.id}">${facilitiesHtml}</div>
+
+    <div class="form-section-label">写真（URLを入力すると表示されます） <button class="btn btn-sm btn-success" style="margin-left:8px" onclick="addPhoto('${p.id}')">＋ 追加</button></div>
+    <div class="photos-list" id="photosList_${p.id}">${photosHtml}</div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="savePropItem('${p.id}')">💾 保存</button>
+      <span class="save-feedback" id="saveFeedback_${p.id}">✓ 保存しました</span>
+    </div>
+  </div>`;
+}
+
+function togglePropItem(id) {
+  const el = document.getElementById('propItem_' + id);
+  el.classList.toggle('open');
+}
+
+/* ===== FIELD UPDATES ===== */
+function setField(id, field, val) { props[id][field] = val; }
+function setAccessField(id, key, val) { if (!props[id].access) props[id].access = {}; props[id].access[key] = val; }
+
+function updatePhoto(id, idx, key, val) {
+  if (!props[id].photos) props[id].photos = [];
+  if (!props[id].photos[idx]) props[id].photos[idx] = {url:'',cap:''};
+  props[id].photos[idx][key] = val;
+}
+function addPhoto(id) {
+  if (!props[id].photos) props[id].photos = [];
+  props[id].photos.push({url:'',cap:''});
+  refreshPropItem(id);
+}
+function removePhoto(id, idx) {
+  props[id].photos.splice(idx, 1);
+  refreshPropItem(id);
+}
+
+function addSpec(id) {
+  if (!props[id].specs) props[id].specs = [];
+  props[id].specs.push('');
+  refreshPropItem(id);
+}
+function removeSpec(id, idx) {
+  props[id].specs.splice(idx, 1);
+  refreshPropItem(id);
+}
+function updateField(id, field, el) {
+  const idx = parseInt(el.dataset.idx);
+  if (field === 'specs') props[id].specs[idx] = el.value;
+}
+
+function updateFacility(id, idx, key, val) {
+  if (!props[id].facilities) props[id].facilities = [];
+  if (!props[id].facilities[idx]) props[id].facilities[idx] = {icon:'',name:'',dist:''};
+  props[id].facilities[idx][key] = val;
+}
+function addFacility(id) {
+  if (!props[id].facilities) props[id].facilities = [];
+  props[id].facilities.push({icon:'',name:'',dist:''});
+  refreshPropItem(id);
+}
+function removeFacility(id, idx) {
+  props[id].facilities.splice(idx, 1);
+  refreshPropItem(id);
+}
+
+function toggleActive(id, checked) {
+  props[id].active = checked;
+  const item = document.getElementById('propItem_' + id);
+  if (checked) item.classList.remove('inactive'); else item.classList.add('inactive');
+  saveProps();
+}
+
+function refreshPropItem(id) {
+  const el = document.getElementById('propItem_' + id);
+  const wasOpen = el.classList.contains('open');
+  el.innerHTML = buildPropItemHTML(props[id]);
+  if (wasOpen) el.classList.add('open');
+}
+
+function savePropItem(id) {
+  saveProps();
+  const fb = document.getElementById('saveFeedback_' + id);
+  fb.style.display = 'inline';
+  setTimeout(() => fb.style.display = 'none', 2500);
+  const header = document.querySelector('#propItem_' + id + ' .prop-item-title');
+  if (header) header.textContent = (props[id].cardEmoji||'') + ' ' + (props[id].name||'（名称未設定）');
+  showToast('「' + (props[id].name||'物件') + '」を保存しました');
+}
+
+/* ===== ADD / DELETE PROPERTY ===== */
+function addProperty() {
+  const id = 'p' + Date.now();
+  props[id] = {
+    id, active: true, cardType: 'buy', cardBadge: '売買', cardEmoji: '🏠', cardBg: '#e0e0e0',
+    name: '（新規物件）', price: '', unit: '万円', loc: '', fullLoc: '',
+    athomeUrl: 'https://www.athome.co.jp/ahch/meijihudousan.html',
+    specs: [], access: { train: '', bus: '', car: '' },
+    mapUrl: '', overview: '', environment: '', facilities: [], photos: [],
+  };
+  saveProps();
+  renderPropList();
+  const newItem = document.getElementById('propItem_' + id);
+  if (newItem) { newItem.classList.add('open'); newItem.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  showToast('新規物件を追加しました');
+}
+
+function deleteProp(id) {
+  const name = (props[id] && props[id].name) || '物件';
+  if (!confirm(`「${name}」を削除しますか？\nこの操作は元に戻せません。`)) return;
+  delete props[id];
+  saveProps();
+  renderPropList();
+  showToast('「' + name + '」を削除しました');
+}
+
+/* ===== DOWNLOAD ===== */
+function downloadData() {
+  const date = new Date().toISOString().slice(0,10);
+  const json = JSON.stringify(props, null, 2)
+    .replace(/"([^"]+)":/g, (m, k) => `${k}:`)
+    .replace(/"/g, "'");
+  const content = `/* 明治不動産 物件データ | 最終更新: ${date} */\nwindow.propConfig = ${json};\n`;
+  const blob = new Blob([content], { type: 'text/javascript; charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'properties-data.js';
+  a.click();
+  showToast('properties-data.js をダウンロードしました');
+}
+
+/* ===== TOAST ===== */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ===== UTIL ===== */
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+</script>
+</body>
+</html>

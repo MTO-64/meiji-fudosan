@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸</title>
+<meta name="description" content="茨城県石岡市を拠点とする株式会社明治不動産。石岡市・小美玉市・笠間市・水戸市・つくば市など茨城県全域の不動産売買・賃貸をサポート。20年以上の実績と非公開物件多数。無料査定受付中。TEL：0299-35-2123">
+<meta name="keywords" content="明治不動産,石岡市不動産,茨城県不動産,不動産売買,賃貸,土地,住宅用地,事業用地,工場用地,不動産売却,無料査定,石岡,小美玉,笠間,水戸,つくば,土浦,鉾田">
+<meta name="robots" content="index, follow">
+<meta name="author" content="株式会社明治不動産">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://meijifudousan.netlify.app">
+<meta property="og:title" content="株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸">
+<meta property="og:description" content="茨城県石岡市を拠点に20年以上の実績。売買・賃貸・資産管理をトータルサポート。非公開物件も多数ご用意。無料査定受付中。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="株式会社明治不動産">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸">
+<meta name="twitter:description" content="茨城県石岡市を拠点に20年以上の実績。売買・賃貸・資産管理をトータルサポート。非公開物件も多数ご用意。">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80">
+
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #b8960c;
+    --gold-light: #d4af37;
+    --gold-pale: #f5e9c0;
+    --dark: #1a1a1a;
+    --dark2: #242424;
+    --dark3: #2e2e2e;
+    --white: #ffffff;
+    --off-white: #f8f6f2;
+    --text: #333333;
+    --muted: #777777;
+    --border: #e0d8c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26,26,26,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,150,12,0.3);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .logo-en {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+  .logo-ja {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+  nav { display: flex; gap: 32px; }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+  nav a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white) !important;
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--dark) !important; }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: var(--dark);
+    padding: 24px;
+    z-index: 999;
+    border-top: 1px solid rgba(184,150,12,0.3);
+  }
+  .mobile-nav.open { display: flex; flex-direction: column; gap: 20px; }
+  .mobile-nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.5) 100%),
+      url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&q=80') center/cover no-repeat;
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold-light);
+    border: 1px solid rgba(212,175,55,0.4);
+    padding: 6px 20px;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(32px, 6vw, 60px);
+    color: var(--white);
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero p {
+    font-size: clamp(13px, 2vw, 16px);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.9;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    padding: 16px 36px;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); color: var(--dark); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    padding: 16px 36px;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 10px;
+    letter-spacing: 3px;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(212,175,55,0.6), transparent);
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 100px 24px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .section-line {
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin: 0 auto 16px;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ===== HERO SLIDER ===== */
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    transform: scale(1.05);
+    animation: none;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    animation: heroZoom 8s ease forwards;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.05); }
+    to   { transform: scale(1.0); }
+  }
+  .hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,15,0.75) 0%, rgba(10,10,15,0.4) 100%);
+  }
+  .hero-dots {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  .hero-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .hero-dot.active {
+    background: var(--gold-light);
+    width: 24px;
+    border-radius: 3px;
+  }
+
+  /* ===== STATS ===== */
+  .stats {
+    background: var(--dark);
+    padding: 64px 24px;
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(184,150,12,0.2);
+  }
+  .stat-item {
+    background: var(--dark2);
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num span { font-size: 20px; }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    font-weight: 300;
+  }
+
+  /* ===== SERVICES ===== */
+  .services { background: var(--off-white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .service-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+  .service-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ===== PROPERTIES ===== */
+  .properties { background: var(--white); }
+  .properties-tabs {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin-bottom: 48px;
+    border: 1px solid var(--border);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .tab-btn {
+    padding: 12px 32px;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--muted);
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .tab-btn.active {
+    background: var(--dark);
+    color: var(--gold-light);
+  }
+  .tab-btn:not(.active):hover { background: var(--off-white); }
+
+  .properties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .property-card {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s;
+    background: var(--white);
+  }
+  .property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    border-color: var(--gold);
+  }
+  .property-img {
+    height: 200px;
+    background: var(--dark3);
+    position: relative;
+    overflow: hidden;
+  }
+  .property-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .property-card:hover .property-img img { transform: scale(1.05); }
+  .property-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  .property-badge.rent { background: var(--dark); }
+  .property-body { padding: 20px; }
+  .property-price {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .property-price span { font-size: 13px; color: var(--muted); font-family: 'Noto Sans JP', sans-serif; font-weight: 300; }
+  .property-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .property-loc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+  .property-specs {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .spec-tag {
+    font-size: 11px;
+    background: var(--off-white);
+    color: var(--muted);
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .properties-more {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  /* ===== ABOUT ===== */
+  .about { background: var(--off-white); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    display: block;
+  }
+  .about-img-accent {
+    position: absolute;
+    bottom: -24px; right: -24px;
+    width: 160px;
+    height: 160px;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--white);
+    text-align: center;
+  }
+  .about-img-accent .num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .about-img-accent .label { font-size: 11px; letter-spacing: 2px; margin-top: 4px; font-weight: 300; }
+  .about-text .section-head { text-align: left; }
+  .about-text .section-line { margin: 0 0 16px; }
+  .about-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .about-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .about-list li::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ===== COMPANY ===== */
+  .company { background: var(--white); }
+  .company-table {
+    max-width: 760px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .company-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+  .company-table th {
+    width: 200px;
+    padding: 20px 24px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 1px;
+    background: var(--off-white);
+    font-family: 'Noto Serif JP', serif;
+    vertical-align: top;
+  }
+  .company-table td {
+    padding: 20px 24px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact { background: var(--dark); }
+  .contact .section-title { color: var(--white); }
+  .contact .section-sub { color: rgba(255,255,255,0.5); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .contact-info { color: var(--white); }
+  .contact-info h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .contact-icon {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(184,150,12,0.15);
+    border: 1px solid rgba(184,150,12,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-item-body { }
+  .contact-item-label { font-size: 11px; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; font-weight: 300; }
+  .contact-item-val { font-size: 15px; color: var(--white); font-weight: 400; }
+  .contact-item-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; font-weight: 300; }
+
+  .contact-form { }
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  .form-label span { color: var(--gold); margin-left: 4px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: border-color 0.2s;
+    outline: none;
+    font-weight: 300;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-select option { background: var(--dark2); color: var(--white); }
+  .form-textarea { min-height: 120px; resize: vertical; }
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    font-size: 14px;
+    letter-spacing: 3px;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold-light); color: var(--dark); }
+  .form-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 12px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #111;
+    padding: 48px 24px 24px;
+    border-top: 1px solid rgba(184,150,12,0.2);
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+  }
+  .footer-logo-en { font-size: 10px; letter-spacing: 4px; color: var(--gold); font-weight: 300; margin-bottom: 6px; }
+  .footer-logo-ja {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .footer-about { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.9; font-weight: 300; }
+  .footer-col h4 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; font-weight: 300; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 1px; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ===== SELL SECTION ===== */
+  .sell { background: var(--dark); }
+  .sell .section-title { color: var(--white); }
+  .sell .section-sub { color: rgba(255,255,255,0.5); }
+  .sell-problems {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 60px;
+  }
+  .sell-problem {
+    background: var(--dark2);
+    padding: 28px 24px;
+    border-left: 3px solid var(--gold);
+  }
+  .sell-problem-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .sell-problem-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; font-weight: 300; }
+  .sell-cta-box {
+    background: linear-gradient(135deg, rgba(184,150,12,0.15), rgba(184,150,12,0.05));
+    border: 1px solid rgba(184,150,12,0.4);
+    padding: 48px;
+    text-align: center;
+  }
+  .sell-cta-box h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 24px;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .sell-cta-box p { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px; line-height: 1.8; font-weight: 300; }
+
+  /* ===== FLOW SECTION ===== */
+  .flow { background: var(--off-white); }
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .flow-steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 0;
+  }
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .flow-num {
+    width: 72px;
+    height: 72px;
+    background: var(--dark);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+  .flow-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .flow-desc { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ===== SECRET PROPERTIES ===== */
+  .secret { background: var(--white); }
+  .secret-box {
+    background: var(--dark);
+    padding: 64px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .secret-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+  .secret-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .secret-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  .secret-title span { color: var(--gold-light); }
+  .secret-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.9; margin-bottom: 28px; font-weight: 300; }
+  .secret-points { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .secret-points li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+  .secret-points li::before {
+    content: '◈';
+    color: var(--gold);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .secret-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .secret-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(184,150,12,0.3);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .secret-card-icon { font-size: 28px; flex-shrink: 0; }
+  .secret-card-body { }
+  .secret-card-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 4px; letter-spacing: 1px; }
+  .secret-card-desc { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 300; }
+
+  /* ===== AREA ===== */
+  .area { background: var(--off-white); }
+  .area-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .area-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .area-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .area-card-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+  .area-card-name { font-size: 14px; font-weight: 700; color: var(--dark); letter-spacing: 1px; }
+
+  /* ===== PROPERTY DETAIL MODAL ===== */
+  .prop-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 3000;
+    overflow-y: auto;
+    padding: 24px 16px;
+  }
+  .prop-modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+  .prop-modal-box {
+    background: var(--white);
+    max-width: 860px;
+    width: 100%;
+    position: relative;
+    margin: auto;
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .prop-modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 36px; height: 36px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    border: none; border-radius: 50%;
+    font-size: 18px; cursor: pointer;
+    z-index: 10; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; line-height: 1;
+  }
+  .prop-modal-close:hover { background: var(--gold); }
+  .prop-modal-head {
+    background: var(--dark);
+    padding: 36px 40px;
+    border-top: 3px solid var(--gold);
+  }
+  .prop-modal-tag { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; font-weight: 300; }
+  .prop-modal-name { font-family: 'Noto Serif JP',serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: 2px; }
+  .prop-modal-price { font-family: 'Noto Serif JP',serif; font-size: 30px; font-weight: 700; color: var(--gold-light); }
+  .prop-modal-price small { font-size: 14px; color: rgba(255,255,255,0.45); font-family: 'Noto Sans JP',sans-serif; font-weight: 300; margin-left: 4px; }
+  .prop-modal-specs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .prop-modal-spec { font-size: 11px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.65); padding: 4px 12px; letter-spacing: 1px; }
+  .prop-modal-body { padding: 40px; }
+  .prop-modal-photos {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 140px 140px;
+    gap: 4px;
+    margin-bottom: 36px;
+  }
+  .prop-modal-photo { overflow: hidden; position: relative; }
+  .prop-modal-photo:first-child { grid-row: span 2; }
+  .prop-modal-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+  .prop-modal-photo:hover img { transform: scale(1.06); }
+  .prop-modal-photo-cap {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.62); color: #fff;
+    font-size: 11px; padding: 5px 8px; letter-spacing: 0.5px;
+  }
+  .prop-modal-sec { margin-bottom: 32px; }
+  .prop-modal-sec-title {
+    font-family: 'Noto Serif JP',serif; font-size: 17px; font-weight: 700; color: var(--dark);
+    padding-bottom: 10px; border-bottom: 2px solid var(--gold-pale);
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .prop-modal-overview { font-size: 14px; color: var(--text); line-height: 2; font-weight: 300; }
+  .prop-modal-fac-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .prop-modal-fac {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 14px; background: var(--off-white);
+    border-left: 2px solid var(--gold);
+  }
+  .prop-modal-fac-icon { font-size: 18px; flex-shrink: 0; }
+  .prop-modal-fac-name { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+  .prop-modal-fac-dist { font-size: 12px; color: var(--muted); font-weight: 300; }
+  .prop-modal-env { font-size: 14px; color: var(--text); line-height: 2; font-weight: 300; }
+  .prop-modal-actions { display: flex; gap: 12px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--border); }
+  .prop-modal-map-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; background: var(--gold); color: #fff;
+    text-decoration: none; font-size: 13px; letter-spacing: 1px; font-weight: 500; transition: background 0.2s;
+  }
+  .prop-modal-map-btn:hover { background: var(--gold-light); color: var(--dark); }
+  .prop-modal-athome-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; background: #ff6600; color: #fff;
+    text-decoration: none; font-size: 13px; letter-spacing: 1px; font-weight: 500; transition: background 0.2s;
+  }
+  .prop-modal-athome-btn:hover { background: #e05500; }
+  .prop-modal-contact-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; background: transparent; border: 1px solid var(--border);
+    color: var(--text); font-size: 13px; letter-spacing: 1px; cursor: pointer;
+    font-family: 'Noto Sans JP',sans-serif; transition: all 0.2s; text-decoration: none;
+  }
+  .prop-modal-contact-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .prop-detail-btn {
+    display: block; width: 100%; padding: 11px;
+    background: var(--dark); color: var(--gold-light);
+    border: none; font-size: 12px; letter-spacing: 2px;
+    cursor: pointer; font-family: 'Noto Sans JP',sans-serif;
+    transition: all 0.2s; text-align: center; margin-top: 12px; font-weight: 500;
+  }
+  .prop-detail-btn:hover { background: var(--gold); color: #fff; }
+  @media (max-width: 600px) {
+    .prop-modal-head { padding: 24px 20px; }
+    .prop-modal-body { padding: 24px 16px; }
+    .prop-modal-photos { grid-template-columns: 1fr; grid-template-rows: 200px 140px 140px; }
+    .prop-modal-photo:first-child { grid-row: span 1; }
+    .prop-modal-fac-grid { grid-template-columns: 1fr; }
+    .prop-modal-actions { flex-direction: column; }
+    .prop-modal-map-btn, .prop-modal-athome-btn, .prop-modal-contact-btn { justify-content: center; }
+  }
+
+  /* ===== ACCESS ===== */
+  .access { background: var(--off-white); }
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .access-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 36px;
+    border-top: 3px solid var(--gold);
+  }
+  .access-card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .access-card h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .access-steps { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .access-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--off-white);
+    border-left: 3px solid var(--gold);
+  }
+  .access-step-num {
+    width: 28px; height: 28px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .access-step-text { font-size: 14px; color: var(--text); line-height: 1.7; }
+  .access-step-arrow { text-align: center; color: var(--gold); font-size: 18px; margin: 2px 0; }
+  .access-route { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+  .route-option { padding: 16px; background: var(--off-white); border-left: 3px solid var(--gold); }
+  .route-label { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 6px; }
+  .route-desc { font-size: 14px; color: var(--text); line-height: 1.7; font-weight: 300; }
+  .access-note { font-size: 12px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-top: 8px; }
+  .access-map { width: 100%; height: 420px; border: 1px solid var(--border); overflow: hidden; }
+  .access-map iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  /* ===== ATHOME INTEGRATION ===== */
+  .athome-banner {
+    background: var(--dark);
+    border: 1px solid rgba(255,102,0,0.35);
+    border-left: 4px solid #ff6600;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .athome-banner-left { display: flex; align-items: center; gap: 16px; }
+  .athome-logo-badge {
+    background: #ff6600;
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    flex-shrink: 0;
+  }
+  .athome-banner-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; font-weight: 300; }
+  .athome-banner-text strong { color: var(--white); }
+  .athome-btn {
+    background: #ff6600;
+    color: var(--white);
+    padding: 12px 24px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: background 0.2s;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .athome-btn:hover { background: #e05500; color: var(--white); }
+  .property-athome-link {
+    display: block;
+    margin-top: 10px;
+    padding: 7px 12px;
+    background: rgba(255,102,0,0.08);
+    border: 1px solid rgba(255,102,0,0.35);
+    font-size: 12px;
+    color: #cc5200;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    text-align: center;
+    font-weight: 500;
+  }
+  .property-athome-link:hover { background: #ff6600; color: var(--white); border-color: #ff6600; }
+
+  /* ===== PROPERTY ACCESS TOGGLE ===== */
+  .property-access-toggle {
+    margin-top: 12px;
+    padding: 9px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 1px;
+  }
+  .property-access-toggle:hover { border-color: var(--gold); color: var(--gold); }
+  .toggle-arrow { transition: transform 0.2s; display: inline-block; font-size: 10px; }
+  .property-access-toggle.open .toggle-arrow { transform: rotate(180deg); }
+  .property-access-info {
+    display: none;
+    padding: 16px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+  .property-access-info.open { display: block; }
+  .prop-access-item { display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start; font-size: 12px; line-height: 1.7; }
+  .prop-access-icon { flex-shrink: 0; }
+  .prop-access-text { color: var(--text); }
+  .property-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .property-map-btn:hover { background: var(--gold-light); color: var(--dark); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: 1fr; }
+    .properties-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-img-accent { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .company-table th { width: 120px; }
+    .sell-problems { grid-template-columns: repeat(2, 1fr); }
+    .secret-box { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
+    .flow-steps { grid-template-columns: 1fr; gap: 32px; }
+    .flow-steps::before { display: none; }
+    .area-grid { grid-template-columns: repeat(2, 1fr); }
+    .access-grid { grid-template-columns: 1fr; }
+    .access-map { height: 300px; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 72px 16px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .properties-grid { grid-template-columns: 1fr; }
+    .properties-tabs { width: 100%; }
+    .tab-btn { flex: 1; padding: 12px 8px; font-size: 12px; }
+    .company-table th { display: none; }
+    .company-table td { padding: 16px; }
+    .company-table tr { display: block; border-bottom: none; }
+    .company-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-en">MEIJI REAL ESTATE</span>
+      <span class="logo-ja">株式会社明治不動産</span>
+    </div>
+    <nav>
+      <a href="#services">サービス</a>
+      <a href="#properties">物件一覧</a>
+      <a href="#secret">非公開物件</a>
+      <a href="#sell">売却相談</a>
+      <a href="#about">会社について</a>
+      <a href="#company">会社概要</a>
+      <a href="#access">アクセス</a>
+      <a href="#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="toggleMenu()">サービス</a>
+  <a href="#properties" onclick="toggleMenu()">物件一覧</a>
+  <a href="#secret" onclick="toggleMenu()">非公開物件</a>
+  <a href="#sell" onclick="toggleMenu()">売却相談</a>
+  <a href="#about" onclick="toggleMenu()">会社について</a>
+  <a href="#company" onclick="toggleMenu()">会社概要</a>
+  <a href="#access" onclick="toggleMenu()">アクセス</a>
+  <a href="#contact" onclick="toggleMenu()">お問い合わせ</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1628012209120-d9db7abf7eab?w=1600&q=80')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">ISHIOKA · IBARAKI REAL ESTATE</div>
+    <h1>石岡から、<br><span>茨城の暮らし</span>を支える。</h1>
+    <p>歴史と自然豊かな石岡市を拠点に、茨城県全域の<br>売買・賃貸をトータルサポートします。</p>
+    <div class="hero-btns">
+      <a href="#properties" class="btn-primary">物件を探す</a>
+      <a href="#sell" class="btn-outline">売却・無料相談</a>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">500<span>件以上</span></div>
+      <div class="stat-label">取扱物件数</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">20<span>年以上</span></div>
+      <div class="stat-label">地域営業実績</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">98<span>%</span></div>
+      <div class="stat-label">顧客満足度</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">44<span>市町村</span></div>
+      <div class="stat-label">茨城県全域対応</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— SERVICES —</div>
+      <h2 class="section-title">サービス内容</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">売買から賃貸まで、不動産に関するあらゆるニーズにお応えします。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <div class="service-title">売買仲介</div>
+        <p class="service-desc">マイホームの購入・売却を全力サポート。茨城県内の豊富な物件情報と長年の実績で、最適な不動産取引をご提案します。</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔑</span>
+        <div class="service-title">賃貸仲介</div>
+        <p class="service-desc">一人暮らしからファミリーまで、ライフスタイルに合った賃貸物件をご紹介。丁寧なヒアリングで理想のお部屋探しをお手伝いします。</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <div class="service-title">資産運用・管理</div>
+        <p class="service-desc">投資用不動産の取得から管理まで一貫してサポート。安定した資産運用をお考えの方はお気軽にご相談ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTIES -->
+<section class="properties" id="properties">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— PROPERTIES —</div>
+      <h2 class="section-title">物件一覧</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">茨城県内の厳選物件をご紹介します。</p>
+    </div>
+    <div class="athome-banner">
+      <div class="athome-banner-left">
+        <span class="athome-logo-badge">at home</span>
+        <p class="athome-banner-text">
+          <strong>アットホームにも掲載中</strong><br>
+          最新の物件情報・詳細はアットホームでもご確認いただけます。
+        </p>
+      </div>
+      <a href="https://www.athome.co.jp/ahch/meijihudousan.html" target="_blank" rel="noopener" class="athome-btn">
+        アットホームで全物件を見る →
+      </a>
+    </div>
+    <div class="properties-tabs">
+      <button class="tab-btn active" data-tab="all" onclick="switchTab(this,'all')">すべて（5件）</button>
+      <button class="tab-btn" data-tab="buy" onclick="switchTab(this,'buy')">売買</button>
+    </div>
+    <div class="properties-grid" id="propertiesGrid"></div>
+    </div>
+    <div class="properties-more" style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <a href="https://www.athome.co.jp/ahch/meijihudousan.html" target="_blank" rel="noopener" class="athome-btn" style="font-size:14px;padding:14px 32px;">
+        アットホームで全ての掲載物件を見る →
+      </a>
+      <a href="#contact" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:var(--muted);font-size:13px;padding:12px 28px;">物件について直接相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECRET PROPERTIES -->
+<section class="secret" id="secret">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— OFF MARKET —</div>
+      <h2 class="section-title">非公開物件のご紹介</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">ポータルサイトに掲載していない物件を多数ご用意しています。</p>
+    </div>
+    <div class="secret-box">
+      <div>
+        <div class="secret-label">◈ PRIVATE LISTINGS ◈</div>
+        <h3 class="secret-title">ネットに載っていない<br><span>優良物件</span>があります</h3>
+        <p class="secret-desc">アットホーム・スーモなどのポータルサイトには掲載していない物件を多数保有しています。売主様のご希望や条件に合わせた非公開物件を、お問い合わせいただいた方限定でご紹介します。</p>
+        <ul class="secret-points">
+          <li>競争率が低く、条件交渉がしやすい</li>
+          <li>売主様の事情に合わせた柔軟な対応が可能</li>
+          <li>石岡市・小美玉市・笠間市を中心に多数保有</li>
+          <li>土地・戸建て・事業用地など幅広く対応</li>
+        </ul>
+        <a href="#contact" class="btn-primary">非公開物件を問い合わせる</a>
+      </div>
+      <div class="secret-visual">
+        <div class="secret-card">
+          <div class="secret-card-icon">🏠</div>
+          <div class="secret-card-body">
+            <div class="secret-card-title">住宅用地・戸建て</div>
+            <div class="secret-card-desc">石岡市・小美玉市エリア中心に複数保有</div>
+          </div>
+        </div>
+        <div class="secret-card">
+          <div class="secret-card-icon">🏭</div>
+          <div class="secret-card-body">
+            <div class="secret-card-title">事業用地・工場用地</div>
+            <div class="secret-card-desc">大型区画も対応可能</div>
+          </div>
+        </div>
+        <div class="secret-card">
+          <div class="secret-card-icon">🌾</div>
+          <div class="secret-card-body">
+            <div class="secret-card-title">農地・山林・その他</div>
+            <div class="secret-card-desc">用途変更の相談も承ります</div>
+          </div>
+        </div>
+        <div class="secret-card">
+          <div class="secret-card-icon">🔑</div>
+          <div class="secret-card-body">
+            <div class="secret-card-title">賃貸物件</div>
+            <div class="secret-card-desc">掲載前の新着情報をいち早くご紹介</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELL -->
+<section class="sell" id="sell">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag" style="color:var(--gold-light)">— SELL CONSULTATION —</div>
+      <h2 class="section-title">売却をお考えの方へ</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">こんなお悩みありませんか？明治不動産が解決します。</p>
+    </div>
+    <div class="sell-problems">
+      <div class="sell-problem">
+        <span class="sell-problem-icon">😔</span>
+        <p class="sell-problem-text">相続した土地をどうすればいいかわからない</p>
+      </div>
+      <div class="sell-problem">
+        <span class="sell-problem-icon">💸</span>
+        <p class="sell-problem-text">いくらで売れるのか相場がわからない</p>
+      </div>
+      <div class="sell-problem">
+        <span class="sell-problem-icon">🏚️</span>
+        <p class="sell-problem-text">古い建物・空き家を早く手放したい</p>
+      </div>
+      <div class="sell-problem">
+        <span class="sell-problem-icon">🤝</span>
+        <p class="sell-problem-text">近所に知られずに売却したい</p>
+      </div>
+      <div class="sell-problem">
+        <span class="sell-problem-icon">📋</span>
+        <p class="sell-problem-text">手続きが複雑で何から始めればいいか</p>
+      </div>
+      <div class="sell-problem">
+        <span class="sell-problem-icon">⏱️</span>
+        <p class="sell-problem-text">なかなか買い手が見つからない</p>
+      </div>
+    </div>
+    <div class="sell-cta-box">
+      <h3>まずは無料査定からはじめましょう</h3>
+      <p>茨城県内の不動産売却は、地域を知り尽くした明治不動産にお任せください。<br>秘密厳守・査定無料・しつこい営業は一切いたしません。</p>
+      <a href="#contact" class="btn-primary">無料査定を依頼する</a>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow" id="flow">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— FLOW —</div>
+      <h2 class="section-title">売却の流れ</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">ご相談から成約まで、丁寧にサポートします。</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">無料相談・査定</div>
+        <p class="flow-desc">お電話・メール・来店にてお気軽にご相談ください</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">媒介契約</div>
+        <p class="flow-desc">売却条件を確認し、契約を締結します</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">販売活動</div>
+        <p class="flow-desc">各種ポータルサイト・独自ネットワークで買主を募集</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">売買契約</div>
+        <p class="flow-desc">条件交渉・契約書作成・重要事項説明を行います</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-title">引渡し・完了</div>
+        <p class="flow-desc">決済・登記手続きを経て売却完了です</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREA -->
+<section class="area" id="area">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— SERVICE AREA —</div>
+      <h2 class="section-title">対応エリア</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">石岡市に店舗を構え、茨城県全域の不動産をサポートします。</p>
+    </div>
+    <div style="background:var(--dark);padding:40px;margin-bottom:32px;display:flex;align-items:center;gap:32px;border-left:4px solid var(--gold);">
+      <div style="font-size:48px;">🏢</div>
+      <div>
+        <div style="font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;font-family:'Orbitron',monospace;">MAIN OFFICE</div>
+        <div style="font-size:20px;font-weight:700;color:var(--white);font-family:'Noto Serif JP',serif;margin-bottom:4px;">石岡店（本店）</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.5);">〒315-0014 茨城県石岡市国府1丁目2-2 ／ JR石岡駅より徒歩1分</div>
+      </div>
+    </div>
+    <div class="area-grid">
+      <div class="area-card">
+        <span class="area-card-icon">⭐</span>
+        <div class="area-card-name">石岡市</div>
+      </div>
+      <div class="area-card">
+        <span class="area-card-icon">📍</span>
+        <div class="area-card-name">小美玉市</div>
+      </div>
+      <div class="area-card">
+        <span class="area-card-icon">📍</span>
+        <div class="area-card-name">笠間市</div>
+      </div>
+      <div class="area-card">
+        <span class="area-card-icon">📍</span>
+        <div class="area-card-name">水戸市</div>
+      </div>
+      <div class="area-card">
+        <span class="area-card-icon">📍</span>
+        <div class="area-card-name">つくば市</div>
+      </div>
+      <div class="area-card">
+        <span class="area-card-icon">📍</span>
+        <div class="area-card-name">土浦市</div>
+      </div>
+      <div class="area-card">
+        <span class="area-card-icon">📍</span>
+        <div class="area-card-name">鉾田市</div>
+      </div>
+      <div class="area-card" style="border-color:var(--gold);background:rgba(184,150,12,0.05);">
+        <span class="area-card-icon">🗺️</span>
+        <div class="area-card-name" style="color:var(--gold);">茨城県全域</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="オフィス" class="about-img-main">
+        <div class="about-img-accent">
+          <div class="num">20</div>
+          <div class="label">YEARS<br>OF TRUST</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-head">
+          <div class="section-tag">— ABOUT US —</div>
+          <h2 class="section-title">地域とともに、<br>20年以上。</h2>
+          <div class="section-line"></div>
+        </div>
+        <p class="about-body">
+          株式会社明治不動産は、茨城県に根ざした不動産会社として、地域のお客様に寄り添ったサービスを提供してきました。売買・賃貸を問わず、お客様一人ひとりのライフプランに合わせた最適なご提案を心がけています。<br><br>
+          地域の情報を熟知した専門スタッフが、物件探しから契約・アフターフォローまでトータルにサポートします。
+        </p>
+        <ul class="about-list">
+          <li>宅地建物取引士が在籍する専門チーム</li>
+          <li>茨城県内500件以上の取引実績</li>
+          <li>売却・購入・賃貸のワンストップ対応</li>
+          <li>土日祝日も営業・相談無料</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company" id="company">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— COMPANY —</div>
+      <h2 class="section-title">会社概要</h2>
+      <div class="section-line"></div>
+    </div>
+    <table class="company-table">
+      <tr>
+        <th>会社名</th>
+        <td data-label="会社名">株式会社明治不動産</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td data-label="所在地">〒315-0014 茨城県石岡市国府1丁目2-2</td>
+      </tr>
+      <tr>
+        <th>TEL</th>
+        <td data-label="TEL">0299-35-2123</td>
+      </tr>
+      <tr>
+        <th>FAX</th>
+        <td data-label="FAX">0299-24-2102</td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td data-label="営業時間">9:00 〜 18:00（年中無休）</td>
+      </tr>
+      <tr>
+        <th>設立</th>
+        <td data-label="設立">2000年</td>
+      </tr>
+      <tr>
+        <th>代表者</th>
+        <td data-label="代表者">代表取締役 上野真仁</td>
+      </tr>
+      <tr>
+        <th>免許番号</th>
+        <td data-label="免許番号">茨城県知事免許(3) 第6811号</td>
+      </tr>
+      <tr>
+        <th>所属団体</th>
+        <td data-label="所属団体">（公社）茨城県宅地建物取引業協会会員<br>（公社）首都圏不動産公正取引協議会加盟<br>（公社）全国宅地建物取引業保証協会</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— ACCESS —</div>
+      <h2 class="section-title">当社へのアクセス</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">〒315-0014 茨城県石岡市国府1丁目2-2</p>
+    </div>
+    <div class="access-grid">
+
+      <div class="access-card">
+        <span class="access-card-icon">🚃</span>
+        <h3>電車でお越しの場合</h3>
+        <div class="access-steps">
+          <div class="access-step">
+            <div class="access-step-num">1</div>
+            <div class="access-step-text">
+              <strong>JR常磐線「石岡駅」</strong>をご利用ください<br>
+              <span style="font-size:12px;color:var(--muted)">東京（上野）から約70分 ／ 水戸から約25分</span>
+            </div>
+          </div>
+          <div class="access-step-arrow">↓</div>
+          <div class="access-step">
+            <div class="access-step-num">2</div>
+            <div class="access-step-text"><strong>西口</strong>を出て直進、<strong>徒歩約1分</strong></div>
+          </div>
+        </div>
+        <p class="access-note">※ 東京・品川・柏方面からはJR常磐線快速または特急をご利用ください。</p>
+      </div>
+
+      <div class="access-card">
+        <span class="access-card-icon">🚗</span>
+        <h3>車でお越しの場合（高速利用）</h3>
+        <div class="access-route">
+          <div class="route-option">
+            <div class="route-label">ルート①　千代田石岡ICから</div>
+            <p class="route-desc">常磐自動車道「千代田石岡IC」出口 → 国道6号線を石岡市街方面へ → 約<strong>10分</strong></p>
+          </div>
+          <div class="route-option">
+            <div class="route-label">ルート②　石岡小美玉スマートICから</div>
+            <p class="route-desc">常磐自動車道「石岡小美玉スマートIC」出口（ETC専用）→ 県道7号線を石岡市街方面へ → 約<strong>15分</strong></p>
+          </div>
+        </div>
+        <p class="access-note">※ 事務所前に駐車場をご用意しています。お気軽にご来店ください。</p>
+      </div>
+
+    </div>
+    <div class="access-map">
+      <iframe
+        src="https://maps.google.com/maps?q=茨城県石岡市国府1丁目2-2&z=16&output=embed"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag" style="color:var(--gold-light)">— CONTACT —</div>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">物件のご相談・内見のご予約など、お気軽にお問い合わせください。</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>直接お問い合わせ</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">TEL</div>
+            <div class="contact-item-val">0299-35-2123</div>
+            <div class="contact-item-note">9:00〜18:00 / 年中無休</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">MAIL</div>
+            <div class="contact-item-val">meijihudousann@yahoo.co.jp</div>
+            <div class="contact-item-note">24時間受付・翌営業日回答</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-body">
+            <div class="contact-item-label">ADDRESS</div>
+            <div class="contact-item-val">茨城県石岡市国府1丁目2-2</div>
+            <div class="contact-item-note">〒315-0014</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form onsubmit="submitForm(event)">
+          <div class="form-group">
+            <label class="form-label">お名前<span>*</span></label>
+            <input type="text" class="form-input" placeholder="山田 太郎" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">電話番号</label>
+            <input type="tel" class="form-input" placeholder="090-0000-0000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">メールアドレス<span>*</span></label>
+            <input type="email" class="form-input" placeholder="example@mail.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">お問い合わせ種別<span>*</span></label>
+            <select class="form-select" required>
+              <option value="" disabled selected>選択してください</option>
+              <option>物件購入について</option>
+              <option>物件売却について</option>
+              <option>賃貸物件について</option>
+              <option>資産運用・管理について</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">お問い合わせ内容</label>
+            <textarea class="form-textarea" placeholder="ご要望・ご質問をご記入ください"></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する →</button>
+          <p class="form-note">※ 送信いただいた個人情報は、お問い合わせへの回答にのみ使用し、第三者への提供は行いません。</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTY DETAIL MODAL -->
+<div class="prop-modal-overlay" id="propModal" onclick="closePropModalOutside(event)">
+  <div class="prop-modal-box" id="propModalBox">
+    <button class="prop-modal-close" onclick="closePropModal()">✕</button>
+    <div id="propModalContent"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-en">MEIJI REAL ESTATE</div>
+        <div class="footer-logo-ja">株式会社明治不動産</div>
+        <p class="footer-about">茨城県で20年以上、地域に根ざした不動産サービスを提供しています。売買・賃貸・資産管理まで、お気軽にご相談ください。</p>
+      </div>
+      <div class="footer-col">
+        <h4>MENU</h4>
+        <ul>
+          <li><a href="#services">サービス</a></li>
+          <li><a href="#properties">物件一覧</a></li>
+          <li><a href="#about">会社について</a></li>
+          <li><a href="#company">会社概要</a></li>
+          <li><a href="#access">アクセス</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACT</h4>
+        <ul>
+          <li><a href="tel:0299-35-2123">📞 0299-35-2123</a></li>
+          <li><a href="mailto:meijihudousann@yahoo.co.jp">✉️ メールする</a></li>
+          <li><a href="#contact">💬 相談フォーム</a></li>
+          <li><a href="https://www.athome.co.jp/ahch/meijihudousan.html" target="_blank" rel="noopener">🏠 アットホーム掲載ページ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2024 株式会社明治不動産 All Rights Reserved.</span>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="properties-data.js" onerror="void 0"></script>
+<script>
+/* ===== PROPERTY DATA (管理画面で編集・エクスポート可能) ===== */
+const propData = (typeof propConfig !== 'undefined') ? propConfig : {
+  p1: {
+    id:'p1', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🌾', cardBg:'#c8d8c0',
+    name:'石岡市 山崎 工場用地', price:'12,500', unit:'万円',
+    loc:'石岡市山崎', fullLoc:'茨城県石岡市山崎',
+    athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+    specs:['土地','14,534㎡','工場用地','石岡駅 7,500m'],
+    access:{
+      train:'JR常磐線 石岡駅下車、タクシーで約15分（約7.5km）',
+      bus:'石岡駅バスターミナルより関鉄バス「柿岡」方面乗車、最寄り停留所より徒歩約5分',
+      car:'常磐自動車道 千代田石岡ICより国道6号線経由 約15分',
+    },
+    mapUrl:'https://maps.google.com/?q=茨城県石岡市山崎',
+    overview:'石岡市北部に位置する、工場・物流・製造業に最適な広大な用地です。常磐自動車道「千代田石岡IC」から約15分のアクセスで、北関東エリア・首都圏への広域展開を検討する企業に注目の立地です。周辺は農地と里山の緑に囲まれた静かな環境で、大型車両の往来にも支障のない道路に面しています。',
+    environment:'石岡市北部の山崎エリアは、恋瀬川流域の豊かな自然環境に囲まれた地域です。石岡工業団地への近接性も高く、製造業・物流業の事業拠点として高いポテンシャルを持ちます。周辺道路は整備が進んでおり、大型トラックの搬入・搬出にも適した環境が整っています。',
+    facilities:[
+      {icon:'🚃',name:'JR石岡駅',dist:'約7.5km（タクシー約15分）'},
+      {icon:'🛣️',name:'常磐道 千代田石岡IC',dist:'約12km（約15分）'},
+      {icon:'🏪',name:'ベイシア石岡店（スーパー）',dist:'約6km'},
+      {icon:'🏥',name:'石岡市立石岡中央病院',dist:'約8km'},
+      {icon:'🏛️',name:'石岡市役所',dist:'約8km'},
+      {icon:'📮',name:'石岡郵便局',dist:'約7km'},
+    ],
+    photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+  },
+  p2: {
+    id:'p2', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🏡', cardBg:'#d0dce8',
+    name:'石岡市 石岡 住宅用地', price:'650', unit:'万円',
+    loc:'石岡市石岡', fullLoc:'茨城県石岡市石岡',
+    athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+    specs:['土地','333㎡','住宅用地','石岡駅 徒歩21分'],
+    access:{
+      train:'JR常磐線 石岡駅より徒歩約21分（約1.4km）',
+      bus:'石岡駅バスターミナルより関鉄バス乗車、最寄り停留所より徒歩約3分',
+      car:'常磐自動車道 千代田石岡ICより国道6号線経由 約10分',
+    },
+    mapUrl:'https://maps.google.com/?q=茨城県石岡市石岡',
+    overview:'石岡駅から徒歩21分（約1.4km）の利便性の高い住宅用地です。石岡市は古くから常陸国の国府が置かれた歴史ある都市で、JR常磐線・常磐自動車道を利用した都市へのアクセスも良好。日常の生活施設が揃った閑静な住宅街の中にあり、子育て世帯にも安心の環境です。',
+    environment:'石岡市は茨城県中央部の主要都市で、毎年9月に開催される「石岡のおまつり」（関東三大祭のひとつ）でも知られる歴史と文化の街です。市街地には商店街・スーパー・医療機関が充実しており、公共施設へのアクセスも良好。学校区も整っており、ファミリー層に人気のエリアです。',
+    facilities:[
+      {icon:'🚃',name:'JR石岡駅',dist:'徒歩約21分（約1.4km）'},
+      {icon:'🏫',name:'石岡小学校',dist:'約800m'},
+      {icon:'🏫',name:'石岡第一中学校',dist:'約1.5km'},
+      {icon:'🏪',name:'カスミ石岡店',dist:'約1km'},
+      {icon:'🏥',name:'石岡市立石岡中央病院',dist:'約3km'},
+      {icon:'🏛️',name:'石岡市役所',dist:'約2km'},
+    ],
+    photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+  },
+  p3: {
+    id:'p3', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🌿', cardBg:'#dce8d0',
+    name:'笠間市 小原 住宅用地', price:'1,000', unit:'万円',
+    loc:'笠間市小原', fullLoc:'茨城県笠間市小原',
+    athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+    specs:['土地','1,692㎡','住宅用地','友部駅 徒歩28分'],
+    access:{
+      train:'JR常磐線 友部駅より徒歩約28分（約2.3km）',
+      bus:'友部駅前より茨城交通バス乗車、最寄り停留所より徒歩約5分',
+      car:'北関東自動車道 友部ICより県道52号線経由 約10分',
+    },
+    mapUrl:'https://maps.google.com/?q=茨城県笠間市小原',
+    overview:'緑豊かな笠間市に位置する1,692㎡の広大な住宅用地です。笠間市は「笠間稲荷神社（日本三大稲荷のひとつ）」や「笠間焼」で知られる文化・観光都市。北関東自動車道「友部IC」も近く、水戸・つくば・宇都宮方面へのアクセスも良好です。ゆとりある住環境・農家住宅・アトリエ等、多様な活用が可能な土地です。',
+    environment:'笠間市は茨城県のほぼ中央に位置し、日本三大稲荷のひとつ「笠間稲荷神社」の門前町として栄えた歴史ある都市です。陶芸（笠間焼）や芸術文化が根付いており、笠間芸術の森公園・笠間日動美術館などの文化施設も充実。栗の産地としても有名で、自然と文化が調和した暮らしやすいエリアです。',
+    facilities:[
+      {icon:'🚃',name:'JR友部駅',dist:'徒歩約28分（約2.3km）'},
+      {icon:'🛣️',name:'北関東道 友部IC',dist:'約5km（約10分）'},
+      {icon:'⛩️',name:'笠間稲荷神社（日本三大稲荷）',dist:'約5km'},
+      {icon:'🏺',name:'笠間焼 陶芸の里',dist:'周辺エリア'},
+      {icon:'🌳',name:'笠間芸術の森公園',dist:'約7km'},
+      {icon:'🏛️',name:'笠間市役所',dist:'約8km'},
+    ],
+    photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+  },
+  p4: {
+    id:'p4', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🏭', cardBg:'#e8e0c8',
+    name:'小美玉市 山野 事業用地', price:'13,800', unit:'万円',
+    loc:'小美玉市山野', fullLoc:'茨城県小美玉市山野',
+    athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+    specs:['土地','5,469㎡','事業用地','石岡駅 14,500m'],
+    access:{
+      train:'JR常磐線 石岡駅下車、タクシーで約25分（約14.5km）',
+      bus:'石岡駅バスターミナルより関鉄バス「小川・玉造」方面乗車、最寄り停留所より徒歩約10分',
+      car:'常磐自動車道 千代田石岡ICより約20分、または東関東自動車道 茨城空港北ICより約10分',
+    },
+    mapUrl:'https://maps.google.com/?q=茨城県小美玉市山野',
+    overview:'茨城空港を擁する小美玉市山野エリアの事業用地です。東関東自動車道「茨城空港北IC」が至近（約3km）で、首都圏・北関東への広域アクセスが非常に良好。物流センター・製造工場・商業施設など多目的な事業展開が可能な5,469㎡の用地で、空港周辺の産業集積エリアとして今後の発展が期待されます。',
+    environment:'小美玉市は茨城空港（IATA: IBR）を擁する、産業・物流の拠点として注目される都市です。酪農・農業（特に採卵鶏）が盛んな農業地帯でもあり、広大な農地が広がる中に事業施設が点在しています。空港インターチェンジ周辺には新規産業用地の整備が進んでおり、企業進出の好機です。',
+    facilities:[
+      {icon:'✈️',name:'茨城空港',dist:'約5km（約10分）'},
+      {icon:'🛣️',name:'東関東道 茨城空港北IC',dist:'約3km（約5分）'},
+      {icon:'🛣️',name:'常磐道 千代田石岡IC',dist:'約20km（約20分）'},
+      {icon:'🚃',name:'JR石岡駅',dist:'約14.5km（タクシー約25分）'},
+      {icon:'🏛️',name:'小美玉市役所',dist:'約15km'},
+      {icon:'🏪',name:'周辺商業施設',dist:'小美玉市内に各種店舗'},
+    ],
+    photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+  },
+  p5: {
+    id:'p5', active:true, cardType:'buy', cardBadge:'売買', cardEmoji:'🏗️', cardBg:'#e8d8c8',
+    name:'小美玉市 山野 事業用地（大）', price:'15,000', unit:'万円',
+    loc:'小美玉市山野', fullLoc:'茨城県小美玉市山野',
+    athomeUrl:'https://www.athome.co.jp/ahch/meijihudousan.html',
+    specs:['土地','11,148㎡','事業用地','石岡駅 14,500m'],
+    access:{
+      train:'JR常磐線 石岡駅下車、タクシーで約25分（約14.5km）',
+      bus:'石岡駅バスターミナルより関鉄バス「小川・玉造」方面乗車、最寄り停留所より徒歩約10分',
+      car:'常磐自動車道 千代田石岡ICより約20分、または東関東自動車道 茨城空港北ICより約10分',
+    },
+    mapUrl:'https://maps.google.com/?q=茨城県小美玉市山野',
+    overview:'茨城空港至近の大規模事業用地（11,148㎡）です。工場・大型物流センター・商業施設の開発に対応できる広大な区画で、東関東自動車道「茨城空港北IC」が至近（約3km）。大型トラックの往来にも適した道路環境と、空港・高速道路を活かした広域物流拠点の整備に最適な立地です。',
+    environment:'小美玉市山野エリアは茨城空港を中心に産業集積が進む地域で、11,148㎡という大規模区画は工場・倉庫・物流施設・大型商業施設など多様な用途に対応可能です。首都圏から東関東自動車道で約1時間のアクセスで、広域物流・製造業の拠点として高いポテンシャルを持ちます。大型車両の搬入・搬出にも適した道路環境が整っています。',
+    facilities:[
+      {icon:'✈️',name:'茨城空港',dist:'約5km（約10分）'},
+      {icon:'🛣️',name:'東関東道 茨城空港北IC',dist:'約3km（約5分）'},
+      {icon:'🛣️',name:'常磐道 千代田石岡IC',dist:'約20km（約20分）'},
+      {icon:'🚃',name:'JR石岡駅',dist:'約14.5km（タクシー約25分）'},
+      {icon:'🏛️',name:'小美玉市役所',dist:'約15km'},
+      {icon:'🏪',name:'周辺商業施設',dist:'小美玉市内に各種店舗'},
+    ],
+    photos:[{url:'',cap:''},{url:'',cap:''},{url:'',cap:''}],
+  },
+};
+
+/* 物件グリッドを propData から動的生成 */
+function renderPropertyGrid(filterType) {
+  const grid = document.getElementById('propertiesGrid');
+  const items = Object.values(propData).filter(p => p.active !== false);
+  const count = items.length;
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.dataset.tab === 'all') b.textContent = `すべて（${count}件）`;
+  });
+  grid.innerHTML = items.map(p => {
+    const show = !filterType || filterType === 'all' || p.cardType === filterType;
+    return `
+    <div class="property-card" data-type="${p.cardType}" style="${show ? '' : 'display:none'}">
+      <div class="property-img" style="background:${p.cardBg};display:flex;align-items:center;justify-content:center;font-size:48px;">${p.cardEmoji}</div>
+      <div class="property-body">
+        <div class="property-price">${p.price}<span>${p.unit}</span></div>
+        <div class="property-name">${p.name}</div>
+        <div class="property-loc">📍 ${p.loc}</div>
+        <a href="${p.athomeUrl}" target="_blank" rel="noopener" class="property-athome-link">at home で詳細を見る →</a>
+        <button class="prop-detail-btn" onclick="openPropModal('${p.id}')">📋 周辺情報・物件詳細を見る</button>
+        <div class="property-specs">${p.specs.map(s=>`<span class="spec-tag">${s}</span>`).join('')}</div>
+        <button class="property-access-toggle" onclick="toggleAccess(this)">
+          <span>🗺️ アクセス・地図を見る</span><span class="toggle-arrow">▼</span>
+        </button>
+        <div class="property-access-info">
+          <div class="prop-access-item"><span class="prop-access-icon">🚃</span><span class="prop-access-text"><strong>電車：</strong>${p.access.train}</span></div>
+          <div class="prop-access-item"><span class="prop-access-icon">🚌</span><span class="prop-access-text"><strong>バス：</strong>${p.access.bus}</span></div>
+          <div class="prop-access-item"><span class="prop-access-icon">🚗</span><span class="prop-access-text"><strong>車：</strong>${p.access.car}</span></div>
+          <a href="${p.mapUrl}" target="_blank" rel="noopener" class="property-map-btn">📍 Googleマップで見る</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  // フェードアニメを再適用
+  grid.querySelectorAll('.property-card').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(30px)';
+    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
+    setTimeout(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)'; }, 80);
+  });
+}
+renderPropertyGrid('all');
+
+function openPropModal(id) {
+  const d = propData[id];
+  if (!d) return;
+  const specsHtml = d.specs.map(s => `<span class="prop-modal-spec">${s}</span>`).join('');
+  const facsHtml = d.facilities.map(f => `
+    <div class="prop-modal-fac">
+      <span class="prop-modal-fac-icon">${f.icon}</span>
+      <div>
+        <div class="prop-modal-fac-name">${f.name}</div>
+        <div class="prop-modal-fac-dist">${f.dist}</div>
+      </div>
+    </div>`).join('');
+  // 写真は URL が設定されている場合のみ表示（管理画面から追加可能）
+  const activePhotos = (d.photos || []).filter(p => p.url);
+  const photosHtml = activePhotos.length ? `
+    <div class="prop-modal-photos">
+      ${activePhotos.map(p=>`
+      <div class="prop-modal-photo">
+        <img src="${p.url}" alt="${p.cap}" loading="lazy">
+        <div class="prop-modal-photo-cap">${p.cap}</div>
+      </div>`).join('')}
+    </div>` : '';
+  document.getElementById('propModalContent').innerHTML = `
+    <div class="prop-modal-head">
+      <div class="prop-modal-tag">— PROPERTY DETAIL —</div>
+      <div class="prop-modal-name">${d.name}</div>
+      <div class="prop-modal-price">${d.price}<small>${d.unit}</small></div>
+      <div class="prop-modal-specs">${specsHtml}</div>
+    </div>
+    <div class="prop-modal-body">
+      ${photosHtml}
+      <div class="prop-modal-sec">
+        <div class="prop-modal-sec-title">📝 物件概要</div>
+        <p class="prop-modal-overview">${d.overview}</p>
+      </div>
+      <div class="prop-modal-sec">
+        <div class="prop-modal-sec-title">🏫 周辺施設</div>
+        <div class="prop-modal-fac-grid">${facsHtml}</div>
+      </div>
+      <div class="prop-modal-sec">
+        <div class="prop-modal-sec-title">🌿 エリア環境</div>
+        <p class="prop-modal-env">${d.environment}</p>
+      </div>
+      <div class="prop-modal-actions">
+        <a href="${d.mapUrl}" target="_blank" rel="noopener" class="prop-modal-map-btn">📍 Googleマップで見る</a>
+        <a href="https://www.athome.co.jp/ahch/meijihudousan.html" target="_blank" rel="noopener" class="prop-modal-athome-btn">at home で詳細を見る</a>
+        <a href="#contact" class="prop-modal-contact-btn" onclick="closePropModal()">💬 この物件を相談する</a>
+      </div>
+    </div>`;
+  document.getElementById('propModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePropModal() {
+  document.getElementById('propModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closePropModalOutside(e) {
+  if (e.target === document.getElementById('propModal')) closePropModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePropModal(); });
+
+function toggleAccess(btn) {
+  btn.classList.toggle('open');
+  const info = btn.nextElementSibling;
+  info.classList.toggle('open');
+}
+
+function toggleMenu() {
+  const nav = document.getElementById('mobileNav');
+  nav.classList.toggle('open');
+}
+
+function switchTab(btn, type) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPropertyGrid(type);
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = '✓ 送信完了しました';
+  btn.style.background = '#2a7a2a';
+  btn.disabled = true;
+}
+
+// ヒーロースライダー
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+setInterval(() => {
+  goSlide((currentSlide + 1) % slides.length);
+}, 5000);
+
+// ヘッダーの背景を強調（スクロール時）
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if (window.scrollY > 50) {
+    header.style.borderBottomColor = 'rgba(184,150,12,0.5)';
+  } else {
+    header.style.borderBottomColor = 'rgba(184,150,12,0.3)';
+  }
+});
+
+// スクロールアニメーション
+const fadeEls = document.querySelectorAll(
+  '.service-card, .property-card, .stat-item, .sell-problem, .flow-step, .area-card, .secret-card, .about-inner, .section-head'
+);
+fadeEls.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+// 数字カウントアップ
+function countUp(el, target, suffix) {
+  let current = 0;
+  const step = Math.ceil(target / 60);
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = current + suffix;
+  }, 24);
+}
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const nums = entry.target.querySelectorAll('.stat-num');
+      const data = [
+        { val: 500, suffix: '+' },
+        { val: 20, suffix: '+' },
+        { val: 98, suffix: '%' },
+        { val: 44, suffix: '' },
+      ];
+      nums.forEach((num, i) => {
+        const span = num.querySelector('span');
+        const spanText = span ? span.outerHTML : '';
+        countUp({ set textContent(v) { num.innerHTML = v + spanText; } }, data[i].val, data[i].suffix);
+      });
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const statsSection = document.querySelector('.stats-inner');
+if (statsSection) statObserver.observe(statsSection);
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "株式会社明治不動産",
+  "alternateName": "Meiji Real Estate",
+  "description": "茨城県石岡市を拠点に20年以上の実績を持つ不動産会社。売買・賃貸・資産管理をトータルサポート。茨城県全域対応。",
+  "url": "https://meijifudousan.netlify.app",
+  "telephone": "0299-35-2123",
+  "faxNumber": "0299-35-2123",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "国府1丁目2-2",
+    "addressLocality": "石岡市",
+    "addressRegion": "茨城県",
+    "postalCode": "315-0014",
+    "addressCountry": "JP"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 36.1919,
+    "longitude": 140.2869
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "茨城県"
+  },
+  "foundingDate": "2000",
+  "hasCredential": "茨城県知事免許(3) 第6811号",
+  "memberOf": [
+    {"@type": "Organization", "name": "公益社団法人 茨城県宅地建物取引業協会"},
+    {"@type": "Organization", "name": "公益社団法人 首都圏不動産公正取引協議会"},
+    {"@type": "Organization", "name": "公益社団法人 全国宅地建物取引業保証協会"}
+  ],
+  "sameAs": []
+}
+</script>
+</body>
+</html>
