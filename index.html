@@ -11,7 +11,7 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://meijifudousan.netlify.app">
+<meta property="og:url" content="https://meijifudosan.com">
 <meta property="og:title" content="株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸">
 <meta property="og:description" content="茨城県石岡市を拠点に20年以上の実績。売買・賃貸・資産管理をトータルサポート。非公開物件も多数ご用意。無料査定受付中。">
 <meta property="og:image" content="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80">
@@ -1764,22 +1764,26 @@
         </div>
       </div>
       <div class="contact-form">
-        <form onsubmit="submitForm(event)">
+        <form name="contact" method="POST" onsubmit="submitForm(event)">
+          <input type="hidden" name="access_key" value="ccc0937b-14df-4879-93c7-0eeedf9187e4">
+          <input type="hidden" name="subject" value="【明治不動産】お問い合わせが届きました">
+          <input type="hidden" name="from_name" value="明治不動産 お問い合わせフォーム">
+          <input type="hidden" name="botcheck" value="">
           <div class="form-group">
             <label class="form-label">お名前<span>*</span></label>
-            <input type="text" class="form-input" placeholder="山田 太郎" required>
+            <input type="text" name="name" class="form-input" placeholder="山田 太郎" required>
           </div>
           <div class="form-group">
             <label class="form-label">電話番号</label>
-            <input type="tel" class="form-input" placeholder="090-0000-0000">
+            <input type="tel" name="tel" class="form-input" placeholder="090-0000-0000">
           </div>
           <div class="form-group">
             <label class="form-label">メールアドレス<span>*</span></label>
-            <input type="email" class="form-input" placeholder="example@mail.com" required>
+            <input type="email" name="email" class="form-input" placeholder="example@mail.com" required>
           </div>
           <div class="form-group">
             <label class="form-label">お問い合わせ種別<span>*</span></label>
-            <select class="form-select" required>
+            <select name="type" class="form-select" required>
               <option value="" disabled selected>選択してください</option>
               <option>物件購入について</option>
               <option>物件売却について</option>
@@ -1790,7 +1794,7 @@
           </div>
           <div class="form-group">
             <label class="form-label">お問い合わせ内容</label>
-            <textarea class="form-textarea" placeholder="ご要望・ご質問をご記入ください"></textarea>
+            <textarea name="message" class="form-textarea" placeholder="ご要望・ご質問をご記入ください"></textarea>
           </div>
           <button type="submit" class="form-submit">送信する →</button>
           <p class="form-note">※ 送信いただいた個人情報は、お問い合わせへの回答にのみ使用し、第三者への提供は行いません。</p>
@@ -2098,10 +2102,28 @@ function switchTab(btn, type) {
 
 function submitForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = '✓ 送信完了しました';
-  btn.style.background = '#2a7a2a';
+  const form = e.target;
+  const btn = form.querySelector('.form-submit');
+  btn.textContent = '送信中...';
   btn.disabled = true;
+
+  const data = new FormData(form);
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+    .then(res => res.json())
+    .then(json => {
+      if (json.success) {
+        btn.textContent = '✓ 送信完了しました';
+        btn.style.background = '#2a7a2a';
+        form.reset();
+      } else {
+        throw new Error();
+      }
+    })
+    .catch(() => {
+      btn.textContent = '送信に失敗しました。再度お試しください';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+    });
 }
 
 // ヒーロースライダー
@@ -2194,7 +2216,7 @@ if (statsSection) statObserver.observe(statsSection);
   "name": "株式会社明治不動産",
   "alternateName": "Meiji Real Estate",
   "description": "茨城県石岡市を拠点に20年以上の実績を持つ不動産会社。売買・賃貸・資産管理をトータルサポート。茨城県全域対応。",
-  "url": "https://meijifudousan.netlify.app",
+  "url": "https://meijifudosan.com",
   "telephone": "0299-35-2123",
   "faxNumber": "0299-35-2123",
   "address": {
