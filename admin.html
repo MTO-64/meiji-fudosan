@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>管理画面 | 株式会社明治不動産</title>
 <style>
   :root {
@@ -210,9 +211,15 @@
     </div>
     <p class="login-title">管理画面ログイン</p>
     <label for="pwInput">パスワード</label>
-    <input type="password" id="pwInput" placeholder="パスワードを入力" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">ログイン</button>
-    <div class="login-error" id="loginError">パスワードが正しくありません。</div>
+    <input type="password" id="pwInput" placeholder="パスワードを入力" autocomplete="current-password">
+    <label for="tokenInput" style="margin-top:14px;">GitHub Personal Access Token</label>
+    <input type="password" id="tokenInput" placeholder="ghp_... で始まるトークン" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+    <p style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5;">
+      ※ <a href="https://github.com/settings/tokens" target="_blank" style="color:var(--gold);">GitHub の Settings → Developer settings → Personal access tokens</a> で発行（scope: <code>repo</code>）。<br>
+      トークンはこのブラウザのメモリにのみ保持され、ログアウトまたはタブを閉じると消えます。
+    </p>
+    <button class="login-btn" onclick="doLogin()" style="margin-top:14px;">ログイン</button>
+    <div class="login-error" id="loginError">パスワードまたはトークンが正しくありません。</div>
   </div>
 </div>
 
@@ -246,34 +253,13 @@
 
     <!-- エクスポート＆デプロイ -->
     <div class="admin-card">
-      <div class="admin-card-title">📤 データ保存・サイト更新</div>
+      <div class="admin-card-title">📤 サイトに反映</div>
       <div class="download-area">
-        <button class="btn btn-primary" onclick="downloadData()" style="font-size:15px;padding:14px 32px;">
-          ⬇️ properties-data.js をダウンロード
+        <button id="publishBtn" class="btn btn-gold" onclick="publishToGitHub()" style="font-size:15px;padding:14px 32px;">
+          🚀 保存してサイトに反映
         </button>
-        <p>このファイルをダウンロードし、<code>index.html</code> と一緒に <strong>Netlify にアップロード</strong>してサイトを更新します。<br>
-        ※ この管理画面（admin.html）はNetlifyにアップロード不要です。Mac上だけで使います。</p>
-      </div>
-      <div style="margin-top:24px">
-        <div class="admin-card-title" style="font-size:13px;border-bottom-width:1px;margin-bottom:16px;">📋 更新手順</div>
-        <div class="deploy-steps">
-          <div class="deploy-step">
-            <div class="deploy-step-num">1</div>
-            <div class="deploy-step-text">上の <strong>「ダウンロード」ボタン</strong>を押して <code>properties-data.js</code> を保存します。</div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-step-num">2</div>
-            <div class="deploy-step-text"><strong>Netlify</strong>（<a href="https://app.netlify.com" target="_blank" rel="noopener">app.netlify.com</a>）にログインし、サイトのページを開きます。</div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-step-num">3</div>
-            <div class="deploy-step-text"><strong>「Deploys」タブ</strong>を開き、ページ下部の「Drag and drop」エリアに、<code>index.html</code> と <code>properties-data.js</code> の2つのファイルをまとめてドラッグ&ドロップします。（admin.htmlはアップロード不要）</div>
-          </div>
-          <div class="deploy-step">
-            <div class="deploy-step-num">4</div>
-            <div class="deploy-step-text">デプロイが完了したら <strong>サイトを確認</strong>します。通常1〜2分で反映されます。</div>
-          </div>
-        </div>
+        <p>ボタンを押すだけで <strong>自動的にサイトが更新</strong>されます。<br>
+        通常 <strong>1〜2分</strong> で反映されます。</p>
       </div>
     </div>
 
@@ -307,7 +293,7 @@
 
 <script>
 /* ===== AUTH ===== */
-const DEFAULT_PW_HASH = '7db49b8c0a4e39a7fae7db2f5a3a7b2c9f1d8e6c3b0a4f5e2d1c8b7a6f3e2d1'; // placeholder replaced below
+let GH_TOKEN = ''; // セッション中のみメモリ保持。HTML/localStorage には絶対書かない
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -315,30 +301,49 @@ async function sha256(str) {
 }
 
 async function getStoredHash() {
-  return localStorage.getItem('meiji_pw_hash') || await sha256('meiji2024');
+  return localStorage.getItem('meiji_pw_hash') || '58edc899b184672b0a5f7ac3acc601eadc304663caf592e97937d215bd3e20b2';
 }
 
 async function doLogin() {
   const pw = document.getElementById('pwInput').value;
-  if (!pw) return;
+  const tok = document.getElementById('tokenInput').value.trim();
+  if (!pw || !tok) {
+    const err = document.getElementById('loginError');
+    err.textContent = 'パスワードとトークンの両方を入力してください。';
+    err.style.display = 'block';
+    return;
+  }
+  if (!/^gh[pous]_[A-Za-z0-9_]{20,}$/.test(tok)) {
+    const err = document.getElementById('loginError');
+    err.textContent = 'トークンの形式が正しくありません（ghp_... で始まる文字列）。';
+    err.style.display = 'block';
+    return;
+  }
   const hash = await sha256(pw);
   const stored = await getStoredHash();
   if (hash === stored) {
+    GH_TOKEN = tok;
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminShell').style.display = 'block';
     document.getElementById('loginError').style.display = 'none';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('tokenInput').value = '';
     initAdmin();
   } else {
-    document.getElementById('loginError').style.display = 'block';
+    const err = document.getElementById('loginError');
+    err.textContent = 'パスワードが正しくありません。';
+    err.style.display = 'block';
     document.getElementById('pwInput').value = '';
     document.getElementById('pwInput').focus();
   }
 }
 
 function doLogout() {
+  GH_TOKEN = '';
   document.getElementById('adminShell').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('pwInput').value = '';
+  document.getElementById('tokenInput').value = '';
 }
 
 async function changePassword() {
@@ -759,6 +764,56 @@ function deleteProp(id) {
   saveProps();
   renderPropList();
   showToast('「' + name + '」を削除しました');
+}
+
+/* ===== GITHUB PUBLISH ===== */
+const GH = {
+  owner: 'MTO-64',
+  repo: 'meiji-fudosan',
+  file: 'properties-data.js',
+};
+
+async function publishToGitHub() {
+  if (!GH_TOKEN) {
+    showToast('セッション切れ。再ログインしてください');
+    doLogout();
+    return;
+  }
+  const btn = document.getElementById('publishBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ 送信中...';
+  try {
+    const date = new Date().toISOString().slice(0,10);
+    const json = JSON.stringify(props, null, 2)
+      .replace(/"([^"]+)":/g, (m, k) => `${k}:`)
+      .replace(/"/g, "'");
+    const content = `/* 明治不動産 物件データ | 最終更新: ${date} */\nwindow.propConfig = ${json};\n`;
+    const encoded = btoa(unescape(encodeURIComponent(content)));
+    const apiUrl = `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.file}`;
+    const headers = {
+      'Authorization': `token ${GH_TOKEN}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    };
+    let sha = null;
+    const existing = await fetch(apiUrl, { headers });
+    if (existing.ok) { const d = await existing.json(); sha = d.sha; }
+    const body = { message: `物件データ更新 ${date}`, content: encoded };
+    if (sha) body.sha = sha;
+    const res = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
+    if (res.ok) {
+      btn.textContent = '✓ 反映完了';
+      showToast('✓ GitHubに保存しました。1〜2分でサイトに反映されます');
+      setTimeout(() => { btn.disabled = false; btn.textContent = '🚀 保存してサイトに反映'; }, 4000);
+    } else {
+      const err = await res.json();
+      throw new Error(err.message);
+    }
+  } catch(e) {
+    showToast('エラー: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = '🚀 保存してサイトに反映';
+  }
 }
 
 /* ===== DOWNLOAD ===== */
