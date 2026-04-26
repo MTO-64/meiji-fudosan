@@ -252,9 +252,8 @@
         <button id="publishBtn" class="btn btn-gold" onclick="publishToGitHub()" style="font-size:15px;padding:14px 32px;">
           🚀 サイトに反映
         </button>
-        <p>ボタンを押すと <strong>properties-data.js</strong> がダウンロードされ、<br>
-        <strong>GitHubのアップロードページ</strong>が別タブで開きます。<br>
-        ダウンロードしたファイルを <strong>白い枠にドラッグ → Commit changes</strong> で反映完了です（1〜2分）。</p>
+        <p>ボタンを押すだけで <strong>自動的にサイトが更新</strong>されます。<br>
+        通常 <strong>1〜2分</strong> で反映されます。</p>
       </div>
     </div>
 
@@ -288,6 +287,10 @@
 
 <script>
 /* ===== AUTH ===== */
+// セッション中のみメモリに保持。localStorage には絶対書かない。
+// publishToGitHub() 呼び出し時に Edge Function へ送り、サーバー側で再ハッシュ照合する。
+let CURRENT_PASSWORD = '';
+
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
@@ -308,6 +311,7 @@ async function doLogin() {
   const hash = await sha256(pw);
   const stored = await getStoredHash();
   if (hash === stored) {
+    CURRENT_PASSWORD = pw;
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminShell').style.display = 'block';
     document.getElementById('loginError').style.display = 'none';
@@ -323,11 +327,15 @@ async function doLogin() {
 }
 
 function doLogout() {
+  CURRENT_PASSWORD = '';
   document.getElementById('adminShell').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('pwInput').value = '';
 }
 
+// NOTE: ブラウザ側 localStorage のハッシュのみ更新する。
+// サーバー側 (Supabase env: MEIJI_PUBLISH_PW_HASH) は手動更新が必要。
+// 揃えないと publishToGitHub() が 401 になる。
 async function changePassword() {
   const oldVal = document.getElementById('pwOld').value;
   const new1 = document.getElementById('pwNew1').value;
@@ -748,22 +756,60 @@ function deleteProp(id) {
   showToast('「' + name + '」を削除しました');
 }
 
-/* ===== PUBLISH (download + open GitHub upload page) ===== */
-const GH_UPLOAD_URL = 'https://github.com/MTO-64/meiji-fudosan/upload/main';
+/* ===== PUBLISH (auto via Supabase Edge Function) ===== */
+const PUBLISH_ENDPOINT = 'https://xmeqgdbxbgaopolzjost.supabase.co/functions/v1/meiji-publish';
 
-function publishToGitHub() {
+function buildPropertiesDataJs() {
   const date = new Date().toISOString().slice(0,10);
   const json = JSON.stringify(props, null, 2)
     .replace(/"([^"]+)":/g, (m, k) => `${k}:`)
     .replace(/"/g, "'");
-  const content = `/* 明治不動産 物件データ | 最終更新: ${date} */\nwindow.propConfig = ${json};\n`;
-  const blob = new Blob([content], { type: 'text/javascript; charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'properties-data.js';
-  a.click();
-  setTimeout(() => window.open(GH_UPLOAD_URL, '_blank'), 400);
-  showToast('ダウンロードしたファイルを開いたページにドラッグして反映してください');
+  return `/* 明治不動産 物件データ | 最終更新: ${date} */\nwindow.propConfig = ${json};\n`;
+}
+
+async function publishToGitHub() {
+  const btn = document.getElementById('publishBtn');
+  if (!CURRENT_PASSWORD) {
+    showToast('セッション切れ。再ログインしてください');
+    doLogout();
+    return;
+  }
+  const originalLabel = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '⏳ 送信中...';
+  try {
+    const content = buildPropertiesDataJs();
+    const res = await fetch(PUBLISH_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        password: CURRENT_PASSWORD,
+        content,
+        filename: 'properties-data.js',
+      }),
+    });
+    let payload = null;
+    try { payload = await res.json(); } catch (_) { /* ignore */ }
+    if (res.ok && payload && payload.success) {
+      btn.textContent = '✓ 反映完了';
+      showToast('✓ ' + (payload.message || 'GitHubに反映しました。1〜2分でサイトに表示されます。'));
+      setTimeout(() => { btn.disabled = false; btn.textContent = originalLabel; }, 4000);
+      return;
+    }
+    if (res.status === 401) {
+      showToast('認証エラー: 一度ログアウトして再ログインしてください');
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      doLogout();
+      return;
+    }
+    const msg = (payload && payload.error) ? payload.error : `送信失敗 (status ${res.status})`;
+    showToast('エラー: ' + msg);
+  } catch (e) {
+    showToast('通信エラー: ' + (e && e.message ? e.message : e));
+  }
+  btn.disabled = false;
+  btn.textContent = originalLabel;
 }
 
 /* ===== TOAST ===== */
