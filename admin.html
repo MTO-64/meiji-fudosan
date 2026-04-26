@@ -211,15 +211,9 @@
     </div>
     <p class="login-title">管理画面ログイン</p>
     <label for="pwInput">パスワード</label>
-    <input type="password" id="pwInput" placeholder="パスワードを入力" autocomplete="current-password">
-    <label for="tokenInput" style="margin-top:14px;">GitHub Personal Access Token</label>
-    <input type="password" id="tokenInput" placeholder="ghp_... で始まるトークン" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
-    <p style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5;">
-      ※ <a href="https://github.com/settings/tokens" target="_blank" style="color:var(--gold);">GitHub の Settings → Developer settings → Personal access tokens</a> で発行（scope: <code>repo</code>）。<br>
-      トークンはこのブラウザのメモリにのみ保持され、ログアウトまたはタブを閉じると消えます。
-    </p>
+    <input type="password" id="pwInput" placeholder="パスワードを入力" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()" style="margin-top:14px;">ログイン</button>
-    <div class="login-error" id="loginError">パスワードまたはトークンが正しくありません。</div>
+    <div class="login-error" id="loginError">パスワードが正しくありません。</div>
   </div>
 </div>
 
@@ -256,10 +250,11 @@
       <div class="admin-card-title">📤 サイトに反映</div>
       <div class="download-area">
         <button id="publishBtn" class="btn btn-gold" onclick="publishToGitHub()" style="font-size:15px;padding:14px 32px;">
-          🚀 保存してサイトに反映
+          🚀 サイトに反映
         </button>
-        <p>ボタンを押すだけで <strong>自動的にサイトが更新</strong>されます。<br>
-        通常 <strong>1〜2分</strong> で反映されます。</p>
+        <p>ボタンを押すと <strong>properties-data.js</strong> がダウンロードされ、<br>
+        <strong>GitHubのアップロードページ</strong>が別タブで開きます。<br>
+        ダウンロードしたファイルを <strong>白い枠にドラッグ → Commit changes</strong> で反映完了です（1〜2分）。</p>
       </div>
     </div>
 
@@ -293,8 +288,6 @@
 
 <script>
 /* ===== AUTH ===== */
-let GH_TOKEN = ''; // セッション中のみメモリ保持。HTML/localStorage には絶対書かない
-
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
@@ -306,28 +299,19 @@ async function getStoredHash() {
 
 async function doLogin() {
   const pw = document.getElementById('pwInput').value;
-  const tok = document.getElementById('tokenInput').value.trim();
-  if (!pw || !tok) {
+  if (!pw) {
     const err = document.getElementById('loginError');
-    err.textContent = 'パスワードとトークンの両方を入力してください。';
-    err.style.display = 'block';
-    return;
-  }
-  if (!/^gh[pous]_[A-Za-z0-9_]{20,}$/.test(tok)) {
-    const err = document.getElementById('loginError');
-    err.textContent = 'トークンの形式が正しくありません（ghp_... で始まる文字列）。';
+    err.textContent = 'パスワードを入力してください。';
     err.style.display = 'block';
     return;
   }
   const hash = await sha256(pw);
   const stored = await getStoredHash();
   if (hash === stored) {
-    GH_TOKEN = tok;
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('adminShell').style.display = 'block';
     document.getElementById('loginError').style.display = 'none';
     document.getElementById('pwInput').value = '';
-    document.getElementById('tokenInput').value = '';
     initAdmin();
   } else {
     const err = document.getElementById('loginError');
@@ -339,11 +323,9 @@ async function doLogin() {
 }
 
 function doLogout() {
-  GH_TOKEN = '';
   document.getElementById('adminShell').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('pwInput').value = '';
-  document.getElementById('tokenInput').value = '';
 }
 
 async function changePassword() {
@@ -766,58 +748,10 @@ function deleteProp(id) {
   showToast('「' + name + '」を削除しました');
 }
 
-/* ===== GITHUB PUBLISH ===== */
-const GH = {
-  owner: 'MTO-64',
-  repo: 'meiji-fudosan',
-  file: 'properties-data.js',
-};
+/* ===== PUBLISH (download + open GitHub upload page) ===== */
+const GH_UPLOAD_URL = 'https://github.com/MTO-64/meiji-fudosan/upload/main';
 
-async function publishToGitHub() {
-  if (!GH_TOKEN) {
-    showToast('セッション切れ。再ログインしてください');
-    doLogout();
-    return;
-  }
-  const btn = document.getElementById('publishBtn');
-  btn.disabled = true;
-  btn.textContent = '⏳ 送信中...';
-  try {
-    const date = new Date().toISOString().slice(0,10);
-    const json = JSON.stringify(props, null, 2)
-      .replace(/"([^"]+)":/g, (m, k) => `${k}:`)
-      .replace(/"/g, "'");
-    const content = `/* 明治不動産 物件データ | 最終更新: ${date} */\nwindow.propConfig = ${json};\n`;
-    const encoded = btoa(unescape(encodeURIComponent(content)));
-    const apiUrl = `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.file}`;
-    const headers = {
-      'Authorization': `token ${GH_TOKEN}`,
-      'Accept': 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json',
-    };
-    let sha = null;
-    const existing = await fetch(apiUrl, { headers });
-    if (existing.ok) { const d = await existing.json(); sha = d.sha; }
-    const body = { message: `物件データ更新 ${date}`, content: encoded };
-    if (sha) body.sha = sha;
-    const res = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
-    if (res.ok) {
-      btn.textContent = '✓ 反映完了';
-      showToast('✓ GitHubに保存しました。1〜2分でサイトに反映されます');
-      setTimeout(() => { btn.disabled = false; btn.textContent = '🚀 保存してサイトに反映'; }, 4000);
-    } else {
-      const err = await res.json();
-      throw new Error(err.message);
-    }
-  } catch(e) {
-    showToast('エラー: ' + e.message);
-    btn.disabled = false;
-    btn.textContent = '🚀 保存してサイトに反映';
-  }
-}
-
-/* ===== DOWNLOAD ===== */
-function downloadData() {
+function publishToGitHub() {
   const date = new Date().toISOString().slice(0,10);
   const json = JSON.stringify(props, null, 2)
     .replace(/"([^"]+)":/g, (m, k) => `${k}:`)
@@ -828,7 +762,8 @@ function downloadData() {
   a.href = URL.createObjectURL(blob);
   a.download = 'properties-data.js';
   a.click();
-  showToast('properties-data.js をダウンロードしました');
+  setTimeout(() => window.open(GH_UPLOAD_URL, '_blank'), 400);
+  showToast('ダウンロードしたファイルを開いたページにドラッグして反映してください');
 }
 
 /* ===== TOAST ===== */
