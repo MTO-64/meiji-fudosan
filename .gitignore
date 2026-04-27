@@ -1,0 +1,36 @@
+# Static HTML site
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Backups
+*.bak
+*.orig
+*~
+
+# Local secrets / config
+.env
+.env.*
+
+# Build output (ある場合)
+dist/
+build/
+.cache/
+
+# Node
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Netlify (既存設定維持)
+.netlify
+
+# Claude Code project-local config (machine-dependent paths)
+.claude/
