@@ -21,35 +21,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif; background: #f0ece4; color: var(--text); min-height: 100vh; }
 
-  /* ===== LOGIN ===== */
-  #loginScreen {
-    display: flex; align-items: center; justify-content: center;
-    min-height: 100vh; background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
-  }
-  .login-box {
-    background: white; border-radius: 12px; padding: 48px 40px; width: 360px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-  .login-logo { text-align: center; margin-bottom: 32px; }
-  .login-logo-en { font-size: 10px; letter-spacing: 4px; color: var(--gold); font-weight: 300; }
-  .login-logo-ja { font-size: 18px; font-weight: 700; color: var(--dark); margin-top: 4px; }
-  .login-title { font-size: 13px; color: var(--muted); text-align: center; margin-bottom: 28px; letter-spacing: 1px; }
-  .login-box label { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; letter-spacing: 1px; }
-  .login-box input[type="password"] {
-    width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
-    border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.2s;
-  }
-  .login-box input[type="password"]:focus { border-color: var(--gold); }
-  .login-btn {
-    width: 100%; padding: 13px; background: var(--dark); color: white; border: none;
-    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
-    margin-top: 20px; letter-spacing: 1px; transition: background 0.2s;
-  }
-  .login-btn:hover { background: #333; }
-  .login-error { color: var(--danger); font-size: 12px; text-align: center; margin-top: 12px; display: none; }
-
   /* ===== ADMIN SHELL ===== */
-  #adminShell { display: none; }
   .admin-header {
     background: var(--dark); color: white; padding: 0 24px;
     height: 60px; display: flex; align-items: center; justify-content: space-between;
@@ -175,13 +147,6 @@
   .download-area { text-align: center; padding: 24px; background: var(--off-white); border-radius: 10px; border: 2px dashed var(--border); }
   .download-area p { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.7; }
 
-  /* ===== PASSWORD CHANGE ===== */
-  .pw-form { display: flex; flex-direction: column; gap: 14px; max-width: 400px; }
-  .pw-form label { font-size: 12px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 5px; }
-  .pw-form input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; outline: none; }
-  .pw-form input:focus { border-color: var(--gold); }
-  .pw-msg { font-size: 13px; margin-top: 8px; font-weight: 600; display: none; }
-
   /* ===== TOAST ===== */
   #toast {
     position: fixed; bottom: 32px; right: 32px; background: var(--dark); color: white;
@@ -202,21 +167,6 @@
 </head>
 <body>
 
-<!-- ===== LOGIN SCREEN ===== -->
-<div id="loginScreen">
-  <div class="login-box">
-    <div class="login-logo">
-      <div class="login-logo-en">MEIJI REAL ESTATE</div>
-      <div class="login-logo-ja">株式会社明治不動産</div>
-    </div>
-    <p class="login-title">管理画面ログイン</p>
-    <label for="pwInput">パスワード</label>
-    <input type="password" id="pwInput" placeholder="パスワードを入力" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()" style="margin-top:14px;">ログイン</button>
-    <div class="login-error" id="loginError">パスワードが正しくありません。</div>
-  </div>
-</div>
-
 <!-- ===== ADMIN SHELL ===== -->
 <div id="adminShell">
   <div class="admin-header">
@@ -228,7 +178,6 @@
       <a href="index.html" target="_blank" class="btn btn-sm" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);">
         🌐 サイトを見る
       </a>
-      <button class="btn-logout" onclick="doLogout()">ログアウト</button>
     </div>
   </div>
 
@@ -257,109 +206,16 @@
       </div>
     </div>
 
-    <!-- パスワード変更 -->
-    <div class="admin-card">
-      <div class="admin-card-title">🔑 パスワード変更</div>
-      <div class="pw-form">
-        <div>
-          <label>現在のパスワード</label>
-          <input type="password" id="pwOld" placeholder="現在のパスワード">
-        </div>
-        <div>
-          <label>新しいパスワード</label>
-          <input type="password" id="pwNew1" placeholder="新しいパスワード（6文字以上）">
-        </div>
-        <div>
-          <label>新しいパスワード（確認）</label>
-          <input type="password" id="pwNew2" placeholder="もう一度入力">
-        </div>
-        <div>
-          <button class="btn btn-primary" onclick="changePassword()">パスワードを変更</button>
-          <div class="pw-msg" id="pwMsg"></div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-/* ===== AUTH ===== */
-// セッション中のみメモリに保持。localStorage には絶対書かない。
-// publishToGitHub() 呼び出し時に Edge Function へ送り、サーバー側で再ハッシュ照合する。
-let CURRENT_PASSWORD = '';
-
-async function sha256(str) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-}
-
-async function getStoredHash() {
-  return localStorage.getItem('meiji_pw_hash') || '0087cf99a4636ebd9a0f66eaf98fde8bca977e2a274bc832cc903c3561735e9d';
-}
-
-async function doLogin() {
-  const pw = document.getElementById('pwInput').value;
-  if (!pw) {
-    const err = document.getElementById('loginError');
-    err.textContent = 'パスワードを入力してください。';
-    err.style.display = 'block';
-    return;
-  }
-  const hash = await sha256(pw);
-  const stored = await getStoredHash();
-  if (hash === stored) {
-    CURRENT_PASSWORD = pw;
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('adminShell').style.display = 'block';
-    document.getElementById('loginError').style.display = 'none';
-    document.getElementById('pwInput').value = '';
-    initAdmin();
-  } else {
-    const err = document.getElementById('loginError');
-    err.textContent = 'パスワードが正しくありません。';
-    err.style.display = 'block';
-    document.getElementById('pwInput').value = '';
-    document.getElementById('pwInput').focus();
-  }
-}
-
-function doLogout() {
-  CURRENT_PASSWORD = '';
-  document.getElementById('adminShell').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('pwInput').value = '';
-}
-
-// NOTE: ブラウザ側 localStorage のハッシュのみ更新する。
-// サーバー側 (Supabase env: MEIJI_PUBLISH_PW_HASH) は手動更新が必要。
-// 揃えないと publishToGitHub() が 401 になる。
-async function changePassword() {
-  const oldVal = document.getElementById('pwOld').value;
-  const new1 = document.getElementById('pwNew1').value;
-  const new2 = document.getElementById('pwNew2').value;
-  const msg = document.getElementById('pwMsg');
-  const stored = await getStoredHash();
-  const oldHash = await sha256(oldVal);
-  if (oldHash !== stored) {
-    msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='現在のパスワードが正しくありません。'; return;
-  }
-  if (new1.length < 6) {
-    msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='新しいパスワードは6文字以上にしてください。'; return;
-  }
-  if (new1 !== new2) {
-    msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='新しいパスワードが一致しません。'; return;
-  }
-  const newHash = await sha256(new1);
-  localStorage.setItem('meiji_pw_hash', newHash);
-  msg.style.display='block'; msg.style.color='#2a7a2a'; msg.textContent='✓ パスワードを変更しました。';
-  document.getElementById('pwOld').value='';
-  document.getElementById('pwNew1').value='';
-  document.getElementById('pwNew2').value='';
-  showToast('パスワードを変更しました');
-}
+/* ===== INIT ===== */
+// 認証は一旦撤去。後日改めて作り直す予定。
+// 現状: admin.html を開いた瞬間に管理 UI が表示され、誰でも編集・反映できる。
+window.addEventListener('DOMContentLoaded', () => initAdmin());
 
 /* ===== PROPERTY DATA ===== */
 let props = {};
@@ -769,11 +625,6 @@ function buildPropertiesDataJs() {
 
 async function publishToGitHub() {
   const btn = document.getElementById('publishBtn');
-  if (!CURRENT_PASSWORD) {
-    showToast('セッション切れ。再ログインしてください');
-    doLogout();
-    return;
-  }
   const originalLabel = btn.textContent;
   btn.disabled = true;
   btn.textContent = '⏳ 送信中...';
@@ -783,7 +634,6 @@ async function publishToGitHub() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        password: CURRENT_PASSWORD,
         content,
         filename: 'properties-data.js',
       }),
@@ -794,13 +644,6 @@ async function publishToGitHub() {
       btn.textContent = '✓ 反映完了';
       showToast('✓ ' + (payload.message || 'GitHubに反映しました。1〜2分でサイトに表示されます。'));
       setTimeout(() => { btn.disabled = false; btn.textContent = originalLabel; }, 4000);
-      return;
-    }
-    if (res.status === 401) {
-      showToast('認証エラー: 一度ログアウトして再ログインしてください');
-      btn.disabled = false;
-      btn.textContent = originalLabel;
-      doLogout();
       return;
     }
     const msg = (payload && payload.error) ? payload.error : `送信失敗 (status ${res.status})`;

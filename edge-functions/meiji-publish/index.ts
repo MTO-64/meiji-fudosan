@@ -5,10 +5,6 @@ const REPO_NAME = "meiji-fudosan";
 const ALLOWED_FILES = new Set(["properties-data.js"]);
 const MAX_CONTENT_BYTES = 2_000_000; // 2 MB safety cap
 
-const RATE_LIMIT_WINDOW_SEC = 600; // 10 分
-const RATE_LIMIT_MAX_FAILURES = 5;
-const RATE_LIMIT_LOCKOUT_SEC = 1800; // 失敗超過後 30 分は弾く
-
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -20,16 +16,6 @@ const JSON_HEADERS = { ...CORS, "Content-Type": "application/json" };
 const SUPABASE_URL = (Deno.env.get("SUPABASE_URL") || "").trim();
 const SERVICE_KEY = (Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "").trim();
 const LOG_TABLE = "meiji_publish_log";
-
-async function sha256Hex(input: string): Promise<string> {
-  const buf = await crypto.subtle.digest(
-    "SHA-256",
-    new TextEncoder().encode(input),
-  );
-  return Array.from(new Uint8Array(buf))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-}
 
 function bytesToBase64(bytes: Uint8Array): string {
   let binary = "";
@@ -44,20 +30,7 @@ function jsonResponse(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), { status, headers: JSON_HEADERS });
 }
 
-function constantTimeEqualHex(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  let diff = 0;
-  for (let i = 0; i < a.length; i++) {
-    diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  }
-  return diff === 0;
-}
-
 function clientIp(req: Request): string {
-  // Supabase Edge Functions は Cloudflare の背後で動作する。
-  // cf-connecting-ip は Cloudflare が必ず上書きする真のクライアントIPで、
-  // クライアントからは偽装できない。x-forwarded-for は CF が再構築するが
-  // クライアント送信値が混入するため、レート制限のキーには使わない。
   const cf = (req.headers.get("cf-connecting-ip") || "").trim();
   return cf || "unknown";
 }
@@ -96,50 +69,6 @@ async function recordAttempt(row: {
   }
 }
 
-async function recentFailureCount(ip: string): Promise<number> {
-  if (!SUPABASE_URL || !SERVICE_KEY || !ip || ip === "unknown") return 0;
-  const since = new Date(Date.now() - RATE_LIMIT_WINDOW_SEC * 1000)
-    .toISOString();
-  // rate_limited / locked_out はメタ的なログ行なので失敗カウントから除外。
-  // これを含めると、一度ロックがかかった後に毎回カウントが増殖する。
-  // 値は ASCII 固定リテラル (rate_limited, locked_out) なので URL エンコード不要 ——
-  // PostgREST の `not.in.(...)` 構文をリテラルで書く。
-  const url =
-    `${logUrl()}?select=id&ip=eq.${encodeURIComponent(ip)}` +
-    `&ok=eq.false&reason=not.in.(rate_limited,locked_out)` +
-    `&created_at=gte.${encodeURIComponent(since)}`;
-  try {
-    const r = await fetch(url, {
-      headers: logHeaders({ Prefer: "count=exact" }),
-    });
-    if (!r.ok) return 0;
-    const cr = r.headers.get("content-range") || "";
-    const m = cr.match(/\/(\d+)$/);
-    return m ? parseInt(m[1], 10) : 0;
-  } catch (e) {
-    console.error("meiji-publish: rate-limit query failed", e);
-    return 0;
-  }
-}
-
-async function isLockedOut(ip: string): Promise<boolean> {
-  if (!SUPABASE_URL || !SERVICE_KEY || !ip || ip === "unknown") return false;
-  const since = new Date(Date.now() - RATE_LIMIT_LOCKOUT_SEC * 1000)
-    .toISOString();
-  const url =
-    `${logUrl()}?select=id&ip=eq.${encodeURIComponent(ip)}` +
-    `&reason=eq.rate_limited&created_at=gte.${encodeURIComponent(since)}` +
-    `&limit=1`;
-  try {
-    const r = await fetch(url, { headers: logHeaders() });
-    if (!r.ok) return false;
-    const arr = await r.json();
-    return Array.isArray(arr) && arr.length > 0;
-  } catch {
-    return false;
-  }
-}
-
 function validateJsSyntax(src: string): { ok: true } | { ok: false; msg: string } {
   // 構文だけチェック。new Function はコンパイルのみで実行はしない。
   try {
@@ -162,41 +91,7 @@ Deno.serve(async (req: Request) => {
 
   const ip = clientIp(req);
 
-  // Cloudflare 経由なら必ず cf-connecting-ip が付与される。"unknown" は到達経路が
-  // 異常 = レート制限のキーが取れない状態なので、フェイルオープンを避けて拒否する。
-  if (ip === "unknown") {
-    await recordAttempt({
-      ip,
-      filename: "",
-      ok: false,
-      reason: "no_client_ip",
-      bytes: null,
-      sha_before: null,
-      sha_after: null,
-    });
-    return jsonResponse(400, {
-      error: "リクエスト送信元が確認できませんでした。",
-    });
-  }
-
-  // 直近30分でレート制限を踏んだIPはまずブロック
-  if (await isLockedOut(ip)) {
-    await recordAttempt({
-      ip,
-      filename: "",
-      ok: false,
-      reason: "locked_out",
-      bytes: null,
-      sha_before: null,
-      sha_after: null,
-    });
-    return jsonResponse(429, {
-      error:
-        "短時間に失敗が多すぎたため一時的にロックされました。30分後にもう一度お試しください。",
-    });
-  }
-
-  let body: { password?: string; content?: string; filename?: string };
+  let body: { content?: string; filename?: string };
   try {
     body = await req.json();
   } catch {
@@ -212,7 +107,6 @@ Deno.serve(async (req: Request) => {
     return jsonResponse(400, { error: "invalid JSON body" });
   }
 
-  const password = typeof body.password === "string" ? body.password : "";
   const content = typeof body.content === "string" ? body.content : "";
   const filename =
     typeof body.filename === "string" && body.filename.length > 0
@@ -231,7 +125,7 @@ Deno.serve(async (req: Request) => {
     });
     return jsonResponse(400, { error: `filename not allowed: ${filename}` });
   }
-  if (!password || !content) {
+  if (!content) {
     await recordAttempt({
       ip,
       filename,
@@ -241,7 +135,7 @@ Deno.serve(async (req: Request) => {
       sha_before: null,
       sha_after: null,
     });
-    return jsonResponse(400, { error: "password and content required" });
+    return jsonResponse(400, { error: "content required" });
   }
   const contentBytes = new TextEncoder().encode(content);
   if (contentBytes.byteLength > MAX_CONTENT_BYTES) {
@@ -277,11 +171,8 @@ Deno.serve(async (req: Request) => {
     });
   }
 
-  const expectedHash = (Deno.env.get("MEIJI_PUBLISH_PW_HASH") || "")
-    .trim()
-    .toLowerCase();
   const ghToken = (Deno.env.get("MEIJI_GITHUB_TOKEN") || "").trim();
-  if (!expectedHash || !ghToken) {
+  if (!ghToken) {
     await recordAttempt({
       ip,
       filename,
@@ -292,40 +183,8 @@ Deno.serve(async (req: Request) => {
       sha_after: null,
     });
     return jsonResponse(500, {
-      error:
-        "server misconfigured: MEIJI_PUBLISH_PW_HASH または MEIJI_GITHUB_TOKEN が未設定",
+      error: "server misconfigured: MEIJI_GITHUB_TOKEN が未設定",
     });
-  }
-
-  const actualHash = await sha256Hex(password);
-  if (!constantTimeEqualHex(actualHash, expectedHash)) {
-    // 失敗を記録してから、直近の失敗回数を見てレート制限発動を判定
-    await recordAttempt({
-      ip,
-      filename,
-      ok: false,
-      reason: "auth_failed",
-      bytes: contentBytes.byteLength,
-      sha_before: null,
-      sha_after: null,
-    });
-    const fails = await recentFailureCount(ip);
-    if (fails >= RATE_LIMIT_MAX_FAILURES) {
-      await recordAttempt({
-        ip,
-        filename,
-        ok: false,
-        reason: "rate_limited",
-        bytes: null,
-        sha_before: null,
-        sha_after: null,
-      });
-      return jsonResponse(429, {
-        error:
-          "失敗回数が上限を超えました。30分間ロックします。時間をおいて再試行してください。",
-      });
-    }
-    return jsonResponse(401, { error: "認証に失敗しました" });
   }
 
   const apiUrl =
