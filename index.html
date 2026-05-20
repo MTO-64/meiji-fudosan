@@ -2264,10 +2264,10 @@ const statObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const nums = entry.target.querySelectorAll('.stat-num');
       const data = [
-        { val: 500, suffix: '+' },
         { val: 20, suffix: '+' },
-        { val: 98, suffix: '%' },
-        { val: 44, suffix: '' },
+        { val: 7, suffix: '' },
+        { val: 24, suffix: '' },
+        { val: 0, suffix: '' },
       ];
       nums.forEach((num, i) => {
         const span = num.querySelector('span');
