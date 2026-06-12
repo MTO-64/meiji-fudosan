@@ -2,7 +2,7 @@
 window.propConfig = {
   p1: {
     id: 'p1',
-    active: false,
+    active: true,
     cardType: 'buy',
     cardBadge: '売買',
     cardEmoji: '🌾',
