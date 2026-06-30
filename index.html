@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸</title>
-<meta name="description" content="茨城県石岡市を拠点とする株式会社明治不動産。石岡市・小美玉市・かすみがうら市・土浦市・つくば市・笠間市・鉾田市の石岡・小美玉・土浦を中心とする周辺7市町で不動産売買・賃貸をサポート。20年以上の実績と非公開物件多数。無料査定受付中。TEL：0299-35-2123">
+<meta name="description" content="石岡市の不動産売買・賃貸・無料査定は株式会社明治不動産へ。地元20年以上の実績で、土地・中古住宅・空き家・事業用地を非公開物件も含めご提案。小美玉・かすみがうら・土浦など周辺7市町に対応します。">
 <meta name="keywords" content="明治不動産,石岡市不動産,茨城南部不動産,不動産売買,賃貸,土地,住宅用地,事業用地,工場用地,不動産売却,無料査定,石岡,小美玉,かすみがうら,土浦,つくば,笠間,鉾田">
 <meta name="robots" content="index, follow">
 <meta name="author" content="株式会社明治不動産">
@@ -1216,10 +1216,73 @@
   }
   .property-map-btn:hover { background: var(--gold-light); color: var(--dark); }
 
+  /* ===== FAQ ===== */
+  .faq { background: var(--white); }
+  .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .faq-item {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    background: var(--off-white);
+    padding: 24px 28px;
+  }
+  .faq-q {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    letter-spacing: 0.5px;
+  }
+  .faq-q::before { content: 'Q'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+  .faq-a {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.9;
+    font-weight: 300;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .faq-a::before { content: 'A'; color: var(--muted); font-weight: 700; flex-shrink: 0; }
+
+  /* ===== STICKY MOBILE CTA ===== */
+  .mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 1500;
+    background: rgba(26,26,26,0.97);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(184,150,12,0.4);
+    padding: 8px;
+    gap: 8px;
+  }
+  .mobile-cta a {
+    flex: 1;
+    text-align: center;
+    padding: 13px 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .mobile-cta-tel { background: var(--gold); color: var(--white); }
+  .mobile-cta-form { background: transparent; color: var(--gold-light); border: 1px solid var(--gold); }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     nav { display: none; }
     .hamburger { display: flex; }
+    .mobile-cta { display: flex; }
+    body { padding-bottom: 60px; }
     .stats-inner { grid-template-columns: repeat(2, 1fr); }
     .services-grid { grid-template-columns: 1fr; }
     .properties-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1257,6 +1320,12 @@
 </style>
 </head>
 <body>
+
+<!-- スマホ固定CTA（電話タップ＝最も問い合わせに直結） -->
+<div class="mobile-cta">
+  <a class="mobile-cta-tel" href="tel:0299-35-2123">📞 電話で相談</a>
+  <a class="mobile-cta-form" href="#contact">✉️ 無料相談フォーム</a>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -1302,8 +1371,8 @@
   </div>
   <div class="hero-content">
     <div class="hero-tag">ISHIOKA · IBARAKI REAL ESTATE</div>
-    <h1>石岡から、<br><span>茨城の暮らし</span>を支える。</h1>
-    <p>歴史と自然豊かな石岡市を拠点に、石岡・小美玉・土浦を中心とする周辺7市町の<br>売買・賃貸をトータルサポートします。</p>
+    <h1>石岡市の不動産売買・賃貸<br><span>地元20年・株式会社明治不動産</span></h1>
+    <p>石岡から、茨城の暮らしを支える。石岡・小美玉・土浦を中心とする周辺7市町で、<br>土地・中古住宅・空き家・事業用地の売買・賃貸をトータルサポートします。</p>
     <div class="hero-btns">
       <a href="#properties" class="btn-primary">物件を探す</a>
       <a href="#sell" class="btn-outline">売却・無料相談</a>
@@ -1798,6 +1867,40 @@
         allowfullscreen
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag">— FAQ —</div>
+      <h2 class="section-title">よくあるご質問</h2>
+      <div class="section-line"></div>
+      <p class="section-sub">石岡市の不動産売買・賃貸・売却について、よくいただくご質問にお答えします。</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">売却査定や相談は無料ですか？</div>
+        <div class="faq-a">はい。売却査定・ご相談はすべて無料です。石岡市をはじめ周辺7市町の物件が対象で、無理な営業は行いません。まずはお電話（0299-35-2123）かお問い合わせフォームからお気軽にご相談ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">対応エリアはどこまでですか？</div>
+        <div class="faq-a">石岡市を中心に、小美玉市・かすみがうら市・土浦市・つくば市・笠間市・鉾田市の周辺7市町に対応しています。地元密着20年以上で、各エリアの相場や買い手ネットワークを熟知しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">空き家や相続した不動産の相談もできますか？</div>
+        <div class="faq-a">はい。空き家・相続物件・実家じまいなどのご相談も多数承っています。「何から始めればよいかわからない」という段階からでも、売却・活用・解体まで含めて最適な進め方をご提案します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">サイトに載っていない非公開物件はありますか？</div>
+        <div class="faq-a">ございます。市場に出る前の非公開物件・未公開の売却情報も多数お取り扱いしています。ご希望の条件をお伝えいただければ、条件に合う物件を個別にご紹介します。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">来店せずに電話やメールだけでも相談できますか？</div>
+        <div class="faq-a">はい。お電話（0299-35-2123／10:00〜18:00・日曜祝日休み）、メール、お問い合わせフォームでのご相談が可能です。遠方の方や売却をご検討中の方も、まずはお気軽にお問い合わせください。</div>
+      </div>
     </div>
   </div>
 </section>
@@ -2329,7 +2432,59 @@ if (statsSection) statObserver.observe(statsSection);
     {"@type": "Organization", "name": "公益社団法人 首都圏不動産公正取引協議会"},
     {"@type": "Organization", "name": "公益社団法人 全国宅地建物取引業保証協会"}
   ],
-  "sameAs": []
+  "sameAs": [
+    "https://www.athome.co.jp/ahch/meijihudousan.html",
+    "https://info.gbiz.go.jp/hojin/ichiran?hojinBango=3050001033743"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "売却査定や相談は無料ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。売却査定・ご相談はすべて無料です。石岡市をはじめ周辺7市町の物件が対象で、無理な営業は行いません。まずはお電話（0299-35-2123）かお問い合わせフォームからお気軽にご相談ください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "対応エリアはどこまでですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "石岡市を中心に、小美玉市・かすみがうら市・土浦市・つくば市・笠間市・鉾田市の周辺7市町に対応しています。地元密着20年以上で、各エリアの相場や買い手ネットワークを熟知しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "空き家や相続した不動産の相談もできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。空き家・相続物件・実家じまいなどのご相談も多数承っています。何から始めればよいかわからないという段階からでも、売却・活用・解体まで含めて最適な進め方をご提案します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "サイトに載っていない非公開物件はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ございます。市場に出る前の非公開物件・未公開の売却情報も多数お取り扱いしています。ご希望の条件をお伝えいただければ、条件に合う物件を個別にご紹介します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "来店せずに電話やメールだけでも相談できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。お電話（0299-35-2123／10:00〜18:00・日曜祝日休み）、メール、お問い合わせフォームでのご相談が可能です。遠方の方や売却をご検討中の方も、まずはお気軽にお問い合わせください。"
+      }
+    }
+  ]
 }
 </script>
 </body>

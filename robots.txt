@@ -1,4 +1,26 @@
 User-agent: *
 Allow: /
 
+# AI検索クローラーを明示許可（AI Overviews/ChatGPT/Claude/Perplexity等への露出確保・2026方針）
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://meijifudosan.com/sitemap.xml
