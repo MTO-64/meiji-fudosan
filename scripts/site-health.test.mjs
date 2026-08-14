@@ -31,7 +31,10 @@ const t = (name, ok, detail = '') => {
 };
 
 // ── ① トップに出る物件データが壊れていない(既存の検証スクリプトをそのまま通す) ──
-// **自前で再実装しない**。本番が使う検証を呼ぶ＝検査が本番と違うものを見る事故を避ける。
+// スキーマ検証を自前で再実装しないための呼び出し。
+// **ただしこれは「本番経路を通った」ことにはならない**(2026-08-15 Codex指摘・誤解を招くので明記):
+// index.html が properties-data.js を読んでカードを描く経路も、build-bukken.js の生成も、
+// デプロイ済みサイトとローカルの一致も、この床は見ていない。見ているのはデータの形と鮮度だけ。
 try {
   const out = execFileSync('node', [join(ROOT, 'scripts/validate-properties.mjs')],
     { cwd: ROOT, encoding: 'utf8' });
@@ -50,7 +53,8 @@ if (!existsSync(listingsPath)) {
   t('athome掲載情報に取得日がある', !!scraped && !Number.isNaN(scraped.getTime()), `scraped_at=${listings.scraped_at}`);
   if (scraped && !Number.isNaN(scraped.getTime())) {
     const days = Math.floor((Date.now() - scraped.getTime()) / 86400e3);
-    t(`athome掲載情報が${STALE_DAYS}日以内`, days <= STALE_DAYS,
+    // 未来日をPASSにしない(Codex指摘)。日付を打ち間違えると負の日数になり、床が黙る。
+    t(`athome掲載情報が${STALE_DAYS}日以内`, days >= 0 && days <= STALE_DAYS,
       `${days}日前(${listings.scraped_at})の情報でサイトが動いている\n` +
       `  → 成約・取り下げになった物件が載り続けている可能性。\n` +
       `  → 直し方: bash scripts/athome-sync-check.sh を走らせて差分を確認する`);
@@ -71,7 +75,10 @@ if (!existsSync(listingsPath)) {
 }
 
 // ── ④ 物件個別ページと掲載データの件数が食い違っていないか ──
+// 検査対象が丸ごと消えたら、検査ブロックを黙って飛ばさずFAILにする(Codex指摘)。
+// 「無くなったから検査しない」は、一番壊れている時に一番静かになる。
 const bukkenDir = join(ROOT, 'bukken');
+t('物件個別ページのディレクトリがある', existsSync(bukkenDir), bukkenDir);
 if (existsSync(bukkenDir)) {
   const pages = readdirSync(bukkenDir).filter((d) => /^\d+$/.test(d));
   const listings = existsSync(listingsPath) ? JSON.parse(readFileSync(listingsPath, 'utf8')).listings || [] : [];
@@ -88,6 +95,7 @@ if (existsSync(bukkenDir)) {
 // ── ⑤ トップの物件データと個別ページで、同じ物件の価格が食い違っていないか ──
 // 別々に更新される2箇所so、片方だけ直すと「一覧50万・詳細80万」が黙って成立する。
 const propsPath = join(ROOT, 'properties-data.js');
+t('物件データファイルがある', existsSync(propsPath), propsPath);
 if (existsSync(propsPath)) {
   const sandbox = { window: {} };
   vm.createContext(sandbox);
