@@ -34,3 +34,4 @@ logs/
 
 # Claude Code project-local config (machine-dependent paths)
 .claude/
+.athome-profile

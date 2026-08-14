@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7YHR1QE05T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7YHR1QE05T');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸</title>
+<meta name="description" content="茨城県石岡市を拠点とする株式会社明治不動産。石岡・小美玉・かすみがうら・土浦・つくば・笠間・鉾田の売買・賃貸をサポート。無料査定受付中。TEL：0299-35-2123">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://meijifudosan.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://meijifudosan.com/">
+<meta property="og:title" content="株式会社明治不動産 | 石岡市・茨城県の不動産売買・賃貸">
+<meta property="og:description" content="茨城県石岡市を拠点に地域に根ざした不動産サービス。売買・賃貸をトータルサポート。無料査定受付中。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="株式会社明治不動産">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── design tokens ─── */
+:root {
+  --paper: #f3ede1;
+  --ink:   #1a1a1a;
+  --gold:  #b8960c;
+  --vermilion: #c0392b;
+  --white: #ffffff;
+  --muted: #6b6459;
+  --border: #d8d0c0;
+  --rule:  rgba(184,150,12,0.35);
+  --serif: 'Noto Serif JP', serif;
+  --sans:  'Noto Sans JP', sans-serif;
+  --ease-out-expo: cubic-bezier(.16,1,.3,1);
+}
+
+/* ─── reset ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--sans); color: var(--ink); background: var(--paper); overflow-x: hidden; line-height: 1.7; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── reveal animation base ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s var(--ease-out-expo), transform .7s var(--ease-out-expo);
+}
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── header ─── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(243,237,225,0.96);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+.hdr-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  gap: 2px;
+}
+.logo-sub {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-weight: 300;
+  font-family: var(--sans);
+}
+.logo-main {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 2px;
+}
+nav { display: flex; gap: 28px; align-items: center; }
+nav a {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  font-weight: 400;
+  transition: color .2s;
+}
+nav a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--vermilion);
+  color: var(--white) !important;
+  padding: 8px 18px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  transition: background .2s;
+  border-radius: 2px;
+}
+.nav-cta:hover { background: #a0301e !important; }
+
+/* hamburger */
+.hbg { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+.hbg span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all .3s; }
+.mob-nav {
+  display: none;
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 40px;
+  z-index: 99;
+  flex-direction: column;
+  gap: 18px;
+}
+.mob-nav.open { display: flex; }
+.mob-nav a { font-size: 14px; letter-spacing: 1px; color: var(--ink); padding: 6px 0; border-bottom: 1px solid var(--border); }
+
+/* ─── section base ─── */
+section { padding: 120px 40px; }
+.inner { max-width: 1200px; margin: 0 auto; }
+
+/* section head */
+.sec-label {
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  font-weight: 400;
+  margin-bottom: 20px;
+  display: block;
+}
+.sec-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 3px;
+  line-height: 1.4;
+  margin-bottom: 48px;
+}
+/* 縦罫線（署名要素）*/
+.sec-title-wrap {
+  padding-left: 20px;
+  border-left: 2px solid var(--gold);
+  margin-bottom: 60px;
+}
+
+/* ─────────────────────────────
+   1. HERO
+───────────────────────────── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  padding-top: 64px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&q=80') center/cover no-repeat;
+  opacity: .22;
+  will-change: transform;
+}
+.hero-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+}
+/* 縦罫線アクセント */
+.hero-rule {
+  position: absolute;
+  left: 40px;
+  top: -40px;
+  bottom: -40px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  opacity: .5;
+}
+.hero-content { padding-left: 48px; max-width: 700px; }
+.hero-tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 6px;
+  color: var(--gold);
+  border: 1px solid rgba(184,150,12,.35);
+  padding: 5px 16px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(34px, 6vw, 68px);
+  color: var(--white);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 4px;
+  margin-bottom: 28px;
+}
+.hero-sub {
+  font-size: clamp(13px, 1.5vw, 15px);
+  color: rgba(255,255,255,.55);
+  line-height: 1.9;
+  margin-bottom: 52px;
+  font-weight: 300;
+  letter-spacing: .5px;
+}
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-verm {
+  background: var(--vermilion);
+  color: var(--white);
+  padding: 15px 36px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  transition: background .2s;
+  display: inline-block;
+  border-radius: 2px;
+}
+.btn-verm:hover { background: #a0301e; }
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,.35);
+  color: rgba(255,255,255,.8);
+  padding: 15px 36px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 300;
+  transition: all .2s;
+  display: inline-block;
+  border-radius: 2px;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.hero-scroll {
+  position: absolute;
+  bottom: 40px; right: 40px;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,.3);
+  writing-mode: vertical-rl;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-scroll::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(184,150,12,.5), transparent);
+}
+
+/* ─────────────────────────────
+   2. PROPERTIES
+───────────────────────────── */
+.properties { background: var(--white); }
+.prop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 48px;
+}
+.prop-card {
+  background: var(--paper);
+  padding: 28px 24px;
+  border-top: 2px solid transparent;
+  transition: border-color .25s, box-shadow .25s;
+  cursor: default;
+}
+.prop-card:hover {
+  border-top-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(26,26,26,.07);
+}
+.prop-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  background: var(--gold);
+  color: var(--white);
+  padding: 3px 10px;
+  margin-bottom: 14px;
+}
+.prop-price {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.prop-price small {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-weight: 300;
+  margin-left: 3px;
+}
+.prop-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: .5px;
+}
+.prop-loc {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  font-weight: 300;
+}
+.prop-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.prop-spec {
+  font-size: 11px;
+  background: var(--white);
+  color: var(--muted);
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  letter-spacing: .5px;
+}
+.prop-link {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(184,150,12,.3);
+  padding-bottom: 1px;
+  font-weight: 400;
+  transition: color .2s;
+}
+.prop-link:hover { color: var(--ink); }
+.prop-more {
+  text-align: center;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.btn-ink {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--white);
+  padding: 14px 40px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  transition: background .2s;
+  border-radius: 2px;
+}
+.btn-ink:hover { background: #333; }
+
+/* ─────────────────────────────
+   3. SELL
+───────────────────────────── */
+.sell { background: var(--ink); }
+.sell .sec-label { color: var(--gold); }
+.sell .sec-title { color: var(--white); }
+.sell .sec-title-wrap { border-left-color: var(--gold); }
+.sell-body {
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.9;
+  max-width: 580px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+.sell-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ─────────────────────────────
+   4. AREA
+───────────────────────────── */
+.area { background: var(--paper); }
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.area-tile {
+  display: block;
+  background: var(--white);
+  padding: 24px 12px;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+  transition: border-color .2s, background .2s;
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 1px;
+}
+.area-tile:hover { border-bottom-color: var(--gold); background: #faf7f1; }
+.area-tile-sub {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* ─────────────────────────────
+   5. TRUST
+───────────────────────────── */
+.trust { background: var(--white); padding: 80px 40px; }
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.trust-item {
+  padding: 48px 36px;
+  background: var(--paper);
+  border-top: 2px solid var(--gold);
+}
+.trust-num {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: block;
+}
+.trust-body {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: .5px;
+  line-height: 1.6;
+}
+.trust-sub {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 6px;
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────
+   6. COMPANY + MAP
+───────────────────────────── */
+.company { background: var(--paper); }
+.co-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.co-table { width: 100%; border-collapse: collapse; }
+.co-table tr { border-bottom: 1px solid var(--border); }
+.co-table th {
+  padding: 16px 20px 16px 0;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 500;
+  font-family: var(--sans);
+  width: 130px;
+  vertical-align: top;
+}
+.co-table td {
+  padding: 16px 0;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.co-map {
+  height: 380px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.co-map iframe { width: 100%; height: 100%; border: none; display: block; }
+
+/* ─────────────────────────────
+   7. CONTACT
+───────────────────────────── */
+.contact { background: var(--ink); }
+.contact .sec-label { color: var(--gold); }
+.contact .sec-title { color: var(--white); }
+.contact .sec-title-wrap { border-left-color: var(--gold); }
+.tel-block {
+  margin-bottom: 60px;
+}
+.tel-num {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.tel-note {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+.contact-form-wrap {
+  max-width: 680px;
+}
+.form-row { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+.form-label em { color: var(--gold); font-style: normal; margin-left: 4px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--white);
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color .2s;
+  border-radius: 2px;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+.form-select option { background: var(--ink); }
+.form-textarea { min-height: 110px; resize: vertical; }
+.form-submit {
+  background: var(--vermilion);
+  color: var(--white);
+  border: none;
+  width: 100%;
+  padding: 15px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-family: var(--sans);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background .2s;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+.form-submit:hover { background: #a0301e; }
+.form-note {
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+/* ─── footer ─── */
+footer {
+  background: #111;
+  padding: 48px 40px 28px;
+  border-top: 1px solid rgba(184,150,12,.15);
+}
+.ft-inner { max-width: 1200px; margin: 0 auto; }
+.ft-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 24px;
+}
+.ft-logo-sub { font-size: 9px; letter-spacing: 4px; color: var(--gold); margin-bottom: 4px; }
+.ft-logo-main {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.ft-about { font-size: 12px; color: rgba(255,255,255,.3); line-height: 1.9; font-weight: 300; }
+.ft-col h4 { font-size: 10px; letter-spacing: 3px; color: var(--gold); margin-bottom: 16px; font-weight: 400; }
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.ft-col ul li a { font-size: 12px; color: rgba(255,255,255,.4); transition: color .2s; }
+.ft-col ul li a:hover { color: var(--gold); }
+.ft-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-copy { font-size: 11px; color: rgba(255,255,255,.2); letter-spacing: 1px; }
+
+/* ─────────────────────────────
+   RESPONSIVE
+───────────────────────────── */
+@media (max-width: 960px) {
+  nav { display: none; }
+  .hbg { display: flex; }
+  .hdr-inner { padding: 0 24px; }
+  section { padding: 88px 24px; }
+  .hero-rule { left: 24px; }
+  .hero-content { padding-left: 28px; }
+  .hero-scroll { display: none; }
+  .prop-grid { grid-template-columns: repeat(2, 1fr); }
+  .area-grid { grid-template-columns: repeat(4, 1fr); }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .co-grid { grid-template-columns: 1fr; gap: 48px; }
+  .ft-top { grid-template-columns: 1fr; gap: 32px; }
+  .mob-nav { padding: 24px; }
+}
+@media (max-width: 600px) {
+  section { padding: 72px 20px; }
+  .hdr-inner { padding: 0 20px; }
+  .hero-content { padding-left: 20px; }
+  .hero-rule { display: none; }
+  .prop-grid { grid-template-columns: 1fr; }
+  .area-grid { grid-template-columns: repeat(3, 1fr); }
+  .trust-grid { grid-template-columns: 1fr; }
+  .trust { padding: 64px 20px; }
+  footer { padding: 40px 20px 24px; }
+}
+@media (max-width: 390px) {
+  .area-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-inner">
+    <div class="logo">
+      <span class="logo-sub">MEIJI REAL ESTATE</span>
+      <span class="logo-main">株式会社明治不動産</span>
+    </div>
+    <nav>
+      <a href="#properties">物件一覧</a>
+      <a href="#sell">売却相談</a>
+      <a href="#area">対応エリア</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+    <div class="hbg" id="hbg" onclick="toggleMenu()" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mob-nav" id="mobNav">
+  <a href="#properties" onclick="toggleMenu()">物件一覧</a>
+  <a href="#sell" onclick="toggleMenu()">売却相談</a>
+  <a href="#area" onclick="toggleMenu()">対応エリア</a>
+  <a href="#company" onclick="toggleMenu()">会社概要</a>
+  <a href="#contact" onclick="toggleMenu()">お問い合わせ</a>
+</div>
+
+<!-- 1. HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-inner">
+    <div class="hero-rule"></div>
+    <div class="hero-content">
+      <div class="hero-tag reveal">ISHIOKA · IBARAKI</div>
+      <h1 class="reveal">茨城の土地を、<br>次の人へ。</h1>
+      <p class="hero-sub reveal">石岡市を拠点に、周辺7市町の不動産売買・賃貸をサポート。</p>
+      <div class="hero-btns reveal">
+        <a href="#properties" class="btn-verm">物件を見る</a>
+        <a href="/baikyaku/" class="btn-ghost">無料査定</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- 2. PROPERTIES -->
+<section class="properties" id="properties">
+  <div class="inner">
+    <div class="sec-title-wrap reveal">
+      <span class="sec-label">PROPERTIES</span>
+      <h2 class="sec-title">販売中の物件</h2>
+    </div>
+    <div class="prop-grid" id="propGrid"></div>
+    <div class="prop-more reveal">
+      <a href="/bukken/" class="btn-ink">すべての物件を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SELL -->
+<section class="sell" id="sell">
+  <div class="inner">
+    <div class="sec-title-wrap reveal">
+      <span class="sec-label">SELL</span>
+      <h2 class="sec-title">売りたい方へ</h2>
+    </div>
+    <p class="sell-body reveal">相続した土地・空き家・事業用地など、ご状況に合わせた売却をご提案します。査定・相談は無料。しつこい営業はしません。</p>
+    <div class="sell-cta reveal">
+      <a href="/baikyaku/" class="btn-verm">無料査定を依頼する</a>
+      <a href="#contact" class="btn-ghost">まず相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. AREA -->
+<section class="area" id="area">
+  <div class="inner">
+    <div class="sec-title-wrap reveal">
+      <span class="sec-label">SERVICE AREA</span>
+      <h2 class="sec-title">対応エリア</h2>
+    </div>
+    <div class="area-grid reveal">
+      <a href="/ishioka/" class="area-tile">石岡市<span class="area-tile-sub">ISHIOKA</span></a>
+      <a href="/omitama/" class="area-tile">小美玉市<span class="area-tile-sub">OMITAMA</span></a>
+      <a href="/kasumigaura/" class="area-tile">かすみがうら市<span class="area-tile-sub">KASUMIGAURA</span></a>
+      <a href="/tsuchiura/" class="area-tile">土浦市<span class="area-tile-sub">TSUCHIURA</span></a>
+      <a href="/tsukuba/" class="area-tile">つくば市<span class="area-tile-sub">TSUKUBA</span></a>
+      <a href="/kasama/" class="area-tile">笠間市<span class="area-tile-sub">KASAMA</span></a>
+      <a href="/hokota/" class="area-tile">鉾田市<span class="area-tile-sub">HOKOTA</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. TRUST -->
+<section class="trust" id="trust">
+  <div class="inner">
+    <div class="trust-grid">
+      <div class="trust-item reveal">
+        <span class="trust-num">01 — 免許</span>
+        <div class="trust-body">宅建業免許 取得</div>
+        <div class="trust-sub">茨城県知事免許(3)第6811号</div>
+      </div>
+      <div class="trust-item reveal">
+        <span class="trust-num">02 — 専任</span>
+        <div class="trust-body">専任宅建士による対応</div>
+        <div class="trust-sub">購入・売却・賃貸のワンストップ対応</div>
+      </div>
+      <div class="trust-item reveal">
+        <span class="trust-num">03 — 地場</span>
+        <div class="trust-body">石岡駅前に構える地域密着</div>
+        <div class="trust-sub">石岡市国府 ／ JR石岡駅 徒歩1分</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. COMPANY -->
+<section class="company" id="company">
+  <div class="inner">
+    <div class="sec-title-wrap reveal">
+      <span class="sec-label">COMPANY</span>
+      <h2 class="sec-title">会社概要・アクセス</h2>
+    </div>
+    <div class="co-grid">
+      <div class="reveal">
+        <table class="co-table">
+          <tr><th>会社名</th><td>株式会社明治不動産</td></tr>
+          <tr><th>所在地</th><td>〒315-0014 茨城県石岡市国府1丁目2-2</td></tr>
+          <tr><th>TEL</th><td>0299-35-2123</td></tr>
+          <tr><th>FAX</th><td>0299-24-2102</td></tr>
+          <tr><th>営業時間</th><td>10:00〜18:00（日曜・祝日休み）</td></tr>
+          <tr><th>設立</th><td>2000年</td></tr>
+          <tr><th>代表者</th><td>代表取締役 上野真仁</td></tr>
+          <tr><th>免許番号</th><td>茨城県知事免許(3) 第6811号</td></tr>
+          <tr><th>所属団体</th><td>（公社）茨城県宅地建物取引業協会会員<br>（公社）首都圏不動産公正取引協議会加盟</td></tr>
+        </table>
+      </div>
+      <div class="co-map reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=茨城県石岡市国府1丁目2-2&z=16&output=embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="株式会社明治不動産 地図"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CONTACT -->
+<section class="contact" id="contact">
+  <div class="inner">
+    <div class="sec-title-wrap reveal">
+      <span class="sec-label">CONTACT</span>
+      <h2 class="sec-title">お問い合わせ</h2>
+    </div>
+    <div class="tel-block reveal">
+      <a href="tel:0299-35-2123" class="tel-num">0299-35-2123</a>
+      <span class="tel-note">10:00〜18:00 / 日曜・祝日休み</span>
+    </div>
+    <div class="contact-form-wrap reveal">
+      <form name="contact" method="POST" onsubmit="submitForm(event)">
+        <input type="hidden" name="access_key" value="ccc0937b-14df-4879-93c7-0eeedf9187e4">
+        <input type="hidden" name="subject" value="【明治不動産】お問い合わせが届きました">
+        <input type="hidden" name="from_name" value="明治不動産 お問い合わせフォーム">
+        <input type="hidden" name="botcheck" value="">
+        <div class="form-row">
+          <label class="form-label">お名前<em>*</em></label>
+          <input type="text" name="name" class="form-input" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label">電話番号</label>
+          <input type="tel" name="tel" class="form-input" placeholder="090-0000-0000">
+        </div>
+        <div class="form-row">
+          <label class="form-label">メールアドレス<em>*</em></label>
+          <input type="email" name="email" class="form-input" placeholder="example@mail.com" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label">お問い合わせ種別<em>*</em></label>
+          <select name="type" class="form-select" required>
+            <option value="" disabled selected>選択してください</option>
+            <option>物件購入について</option>
+            <option>物件売却について</option>
+            <option>賃貸物件について</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">お問い合わせ内容</label>
+          <textarea name="message" class="form-textarea" placeholder="ご要望・ご質問をご記入ください"></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+        <p class="form-note">送信いただいた個人情報は、お問い合わせへの回答にのみ使用します。</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo-sub">MEIJI REAL ESTATE</div>
+        <div class="ft-logo-main">株式会社明治不動産</div>
+        <p class="ft-about">茨城県石岡市を拠点に地域に根ざした不動産サービス。売買・賃貸をトータルサポートします。</p>
+      </div>
+      <div class="ft-col">
+        <h4>MENU</h4>
+        <ul>
+          <li><a href="#properties">物件一覧</a></li>
+          <li><a href="#sell">売却相談</a></li>
+          <li><a href="#area">対応エリア</a></li>
+          <li><a href="#company">会社概要</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>CONTACT</h4>
+        <ul>
+          <li><a href="tel:0299-35-2123">0299-35-2123</a></li>
+          <li><a href="mailto:meijihudousann@yahoo.co.jp">メールする</a></li>
+          <li><a href="https://www.athome.co.jp/ahch/meijihudousan.html" target="_blank" rel="noopener">アットホーム掲載</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">© 2024 株式会社明治不動産 All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="properties-data.js" onerror="void 0"></script>
+<script>
+/* ─── 物件カード生成 ─── */
+(function () {
+  const cfg = (typeof propConfig !== 'undefined') ? propConfig : {};
+  const items = Object.values(cfg).filter(p => p.active !== false);
+  const grid = document.getElementById('propGrid');
+  if (!grid || !items.length) return;
+
+  grid.innerHTML = items.slice(0, 6).map((p, i) => `
+    <div class="prop-card reveal" style="transition-delay:${i * 80}ms">
+      <span class="prop-badge">${p.cardBadge || '売買'}</span>
+      <div class="prop-price">${p.price}<small>${p.unit}</small></div>
+      <div class="prop-name">${p.name}</div>
+      <div class="prop-loc">${p.loc}</div>
+      <div class="prop-specs">${(p.specs || []).map(s => `<span class="prop-spec">${s}</span>`).join('')}</div>
+      <a href="${p.athomeUrl}" target="_blank" rel="noopener" class="prop-link">at home で詳細を見る →</a>
+    </div>`).join('');
+
+  /* reveal を IO に委譲 */
+  observeReveal(grid.querySelectorAll('.prop-card'));
+})();
+
+/* ─── IntersectionObserver reveal ─── */
+function observeReveal(targets) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    targets.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, idx) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  targets.forEach(el => io.observe(el));
+}
+
+/* stagger on section-level reveals */
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  /* prop-card stagger is already set inline */
+  if (!el.closest('#propGrid')) observeReveal([el]);
+});
+
+/* ─── ヒーロー parallax ─── */
+(function () {
+  const bg = document.getElementById('heroBg');
+  if (!bg) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        /* 下に流れる量を制限：ヒーロー高さの 20% まで */
+        bg.style.transform = `translateY(${y * 0.18}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
+/* ─── hamburger ─── */
+function toggleMenu() {
+  document.getElementById('mobNav').classList.toggle('open');
+}
+
+/* ─── フォーム送信 ─── */
+function submitForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.form-submit');
+  btn.textContent = '送信中…';
+  btn.disabled = true;
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: new FormData(form)
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) {
+      btn.textContent = '送信しました。ありがとうございます。';
+      form.reset();
+    } else {
+      btn.textContent = '送信失敗。お電話でお問い合わせください。';
+      btn.disabled = false;
+    }
+  })
+  .catch(() => {
+    btn.textContent = '送信失敗。お電話でお問い合わせください。';
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
