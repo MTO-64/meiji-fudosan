@@ -22,6 +22,16 @@ jobs:
       - name: properties-data.js スキーマ検証
         run: node scripts/validate-properties.mjs
 
+      # **公開前の関門に「サイトの健全性」も通す**(2026-08-15)。
+      # site-health.test.mjs は `npm test` にはあったが、**CIからは一度も呼ばれていなかった**＝
+      # 検査は在るのに、公開を止める力を持っていなかった。
+      # 運用側の項目(athome鮮度・launchd登録)はこの環境では判定できないso repo scope で走らせる。
+      # 判定していない項目はスクリプト自身が名前を挙げて出す（黙って飛ばした=異常なし、にしない）。
+      - name: サイト健全性（リポジトリで判定できる範囲）
+        env:
+          SITE_HEALTH_SCOPE: repo
+        run: node scripts/site-health.test.mjs
+
       - name: index.html / admin.html 構文チェック (Node tokenizer 経由ではなく単純 grep でタグ閉じだけ)
         run: |
           # GitHub Pages 配信前の最低限のサニティ。詳細な lint は別ジョブに切り出す前提。
