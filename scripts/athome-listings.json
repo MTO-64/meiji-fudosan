@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-06-13",
+  "scraped_at": "2026-10-07",
   "source": "athome shop 062449",
   "listings": [
     {
@@ -47,20 +47,20 @@
       "category": "tochi",
       "deal": "sale",
       "title": "土地 土浦市 田中町（土浦駅） 住宅用地",
-      "price_man": 380,
-      "price_text": "380万円",
+      "price_man": 498,
+      "price_text": "498万円",
       "address": "土浦市田中町",
       "city": "土浦市",
       "access": "ＪＲ常磐線 「土浦」駅 徒歩30分",
       "land_area_sqm": 370.0,
       "building_area_sqm": null,
       "madori": null,
-      "tsubo_tanka": "3.40万円",
+      "tsubo_tanka": "4.45万円",
       "kenpei_yoseki": "－/－",
       "rights": "所有権",
       "use": "住宅用地",
       "athome_url": "https://www.athome.co.jp/tochi/6981787271/",
-      "raw": "土地 土浦市 田中町（土浦駅） 住宅用地 380万円 坪単価 3.40万円 権利 所有権 土地面積 370.00m² (111.92坪) 最適用途 住宅用地 私道負担面積 － 建ぺい率/容積率 －/－ 所在地 土浦市田中町 交通 ＪＲ常磐線 「土浦」駅 徒歩30分"
+      "raw": "土地 土浦市 田中町（土浦駅） 住宅用地 498万円 坪単価 4.45万円 権利 所有権 土地面積 370.00m² (111.92坪) 最適用途 住宅用地 私道負担面積 － 建ぺい率/容積率 －/－ 所在地 土浦市田中町 交通 ＪＲ常磐線 「土浦」駅 徒歩30分"
     },
     {
       "athome_id": "6984173107",
@@ -101,26 +101,6 @@
       "use": "住宅用地",
       "athome_url": "https://www.athome.co.jp/tochi/6981585775/",
       "raw": "土地 石岡市 若松３丁目（石岡駅） 住宅用地 580万円 坪単価 3.62万円 権利 所有権 土地面積 531.05m² (160.64坪) 最適用途 住宅用地 私道負担面積 － 建ぺい率/容積率 40%/80% 所在地 石岡市若松３丁目 交通 ＪＲ常磐線 「石岡」駅 徒歩26分"
-    },
-    {
-      "athome_id": "6974799707",
-      "category": "tochi",
-      "deal": "sale",
-      "title": "土地 石岡市 東石岡４丁目（石岡駅） 住宅用地",
-      "price_man": 590,
-      "price_text": "590万円",
-      "address": "石岡市東石岡４丁目",
-      "city": "石岡市",
-      "access": "ＪＲ常磐線 「石岡」駅 徒歩21分",
-      "land_area_sqm": 376.66,
-      "building_area_sqm": null,
-      "madori": null,
-      "tsubo_tanka": "5.18万円",
-      "kenpei_yoseki": "60%/200%",
-      "rights": "所有権",
-      "use": "住宅用地",
-      "athome_url": "https://www.athome.co.jp/tochi/6974799707/",
-      "raw": "土地 石岡市 東石岡４丁目（石岡駅） 住宅用地 590万円 坪単価 5.18万円 権利 所有権 土地面積 376.66m² (113.93坪) 最適用途 住宅用地 私道負担面積 － 建ぺい率/容積率 60%/200% 所在地 石岡市東石岡４丁目 交通 ＪＲ常磐線 「石岡」駅 徒歩21分"
     },
     {
       "athome_id": "6989586224",
@@ -241,26 +221,6 @@
       "use": "事業用地",
       "athome_url": "https://www.athome.co.jp/tochi/6988834346/",
       "raw": "土地 小美玉市 山野（石岡駅） 事業用地 15,000万円 坪単価 4.45万円 権利 所有権 土地面積 11,148.00m² (3372.25坪) 最適用途 事業用地 私道負担面積 － 建ぺい率/容積率 60%/200% 所在地 小美玉市山野 交通 ＪＲ常磐線 「石岡」駅 徒歩14500ｍ [バス利用可] バス 30分 空のえきそ・ら・ら 停歩2分"
-    },
-    {
-      "athome_id": "6987312566",
-      "category": "kodate",
-      "deal": "sale",
-      "title": "中古一戸建て 小美玉市 竹原（石岡駅） 2階建 ６ＤＫ",
-      "price_man": 780,
-      "price_text": "780万円",
-      "address": "小美玉市竹原",
-      "city": "小美玉市",
-      "access": "ＪＲ常磐線 「石岡」駅 徒歩6500ｍ [バス利用可] バス 10分 竹原 停歩20分",
-      "land_area_sqm": 1927.01,
-      "building_area_sqm": 182.64,
-      "madori": "６ＤＫ",
-      "tsubo_tanka": null,
-      "kenpei_yoseki": null,
-      "rights": null,
-      "use": "中古一戸建て",
-      "athome_url": "https://www.athome.co.jp/kodate/6987312566/",
-      "raw": "中古一戸建て 小美玉市 竹原（石岡駅） 2階建 ６ＤＫ 780万円 間取り ６ＤＫ 築年月 1921年1月（築105年6ヶ月） 土地面積 1,927.01m² 建物面積 182.64m² 所在地 小美玉市竹原 交通 ＪＲ常磐線 「石岡」駅 徒歩6500ｍ [バス利用可] バス 10分 竹原 停歩20分"
     },
     {
       "athome_id": "6983664674",
@@ -413,28 +373,6 @@
       "reikin": "なし",
       "athome_url": null,
       "raw": "榎台グリーンハイツ 6号棟 3DK 5.3万円 管理費 － 敷金 1ヶ月 礼金 なし 3DK 51.34m² 賃貸一戸建て 1991年9月 (築34年10ヶ月) 行方市芹沢"
-    },
-    {
-      "athome_id": "6990621732",
-      "category": "rent_store",
-      "deal": "rent",
-      "title": "貸店舗・事務所 石岡市 国府１丁目(石岡駅)",
-      "price_man": 4.4,
-      "price_text": "4.4万円",
-      "address": "石岡市国府１丁目",
-      "city": "石岡市",
-      "access": "石岡/ＪＲ常磐線 徒歩4分",
-      "land_area_sqm": null,
-      "building_area_sqm": 22.15,
-      "madori": null,
-      "tsubo_tanka": "0.6567万円",
-      "kenpei_yoseki": null,
-      "rights": null,
-      "use": "貸店舗・事務所",
-      "shikikin": "1ヶ月",
-      "reikin": "1ヶ月",
-      "athome_url": "https://www.athome.co.jp/rent_store/6990621732/",
-      "raw": "石岡/ＪＲ常磐線 徒歩4分 石岡市国府１丁目 4.4万円 － 1ヶ月 なし 1ヶ月 22.15m² 6.70坪 0.6567万円 1977年7月 （築49年） １階駅近物件"
     },
     {
       "athome_id": "6990794692",
@@ -638,6 +576,46 @@
       "athome_url": "https://www.athome.co.jp/rent_store/6972552280/",
       "raw": "石岡/ＪＲ常磐線 徒歩1分 石岡市国府１丁目 15万円 － 2ヶ月 1ヶ月 1ヶ月 61.56m² 18.62坪 0.8056万円 1968年12月 （築57年7ヶ月） 石岡駅目の前です",
       "note": "貸事務所ページにも同一物件ID 6972552280 が掲載"
+    },
+    {
+      "athome_id": "6988835117",
+      "category": "kodate",
+      "deal": "sale",
+      "title": "中古一戸建て 石岡市 根当（石岡駅） 2階建 ６ＬＤＫ",
+      "price_man": 500,
+      "price_text": "500万円",
+      "address": "石岡市根当",
+      "city": "石岡市",
+      "access": "ＪＲ常磐線 「石岡」駅 徒歩4200ｍ",
+      "land_area_sqm": 1142.98,
+      "building_area_sqm": 156.25,
+      "madori": "６ＬＤＫ",
+      "tsubo_tanka": null,
+      "kenpei_yoseki": "60%/200%",
+      "rights": "所有権",
+      "use": "中古一戸建て",
+      "athome_url": "https://www.athome.co.jp/kodate/6988835117/",
+      "raw": "中古一戸建て 石岡市 根当（石岡駅） 2階建 ６ＬＤＫ 500万円 土地面積 1,142.98m² 建物面積 156.25m² 築1974年6月"
+    },
+    {
+      "athome_id": "6991875028",
+      "category": "buy_store",
+      "deal": "sale",
+      "title": "売店舗（建物一部） 石岡市 国府１丁目(石岡駅)",
+      "price_man": 400,
+      "price_text": "400万円",
+      "address": "石岡市国府１丁目",
+      "city": "石岡市",
+      "access": "石岡/ＪＲ常磐線 徒歩1分",
+      "land_area_sqm": 115.11,
+      "building_area_sqm": 61.73,
+      "madori": null,
+      "tsubo_tanka": null,
+      "kenpei_yoseki": null,
+      "rights": "普通賃借権",
+      "use": "売店舗",
+      "athome_url": "https://www.athome.co.jp/buy_store/6991875028/",
+      "raw": "石岡/ＪＲ常磐線 徒歩1分 石岡市国府１丁目 400万円 61.73m² 115.11m² 商業地域 ＲＣ 1980年12月 居抜き"
     }
   ]
 }

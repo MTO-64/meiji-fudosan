@@ -12,7 +12,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const DATA_FILE = path.join(__dirname, 'athome-details.json');
 const SITEMAP = path.join(ROOT, 'sitemap.xml');
-const LASTMOD = '2026-06-13';
+const LASTMOD = '2026-10-07';
 
 // URLからathome_idとカテゴリを取得
 function parseUrl(url) {
@@ -24,12 +24,12 @@ function parseUrl(url) {
 // 種別→日本語表示・絵文字・カラー
 function getTypeInfo(spec) {
   const use = spec['最適用途'] || spec['物件種目'] || '';
-  if (/工場/.test(use)) return { label: '売土地（工場用地）', emoji: '🏭', bg: '#2d3748', accent: '#fc8181' };
-  if (/事業/.test(use)) return { label: '売土地（事業用地）', emoji: '🏢', bg: '#1a365d', accent: '#63b3ed' };
-  if (/住宅/.test(use)) return { label: '売土地', emoji: '🌿', bg: '#1c4532', accent: '#68d391' };
-  if (/店舗/.test(use) || /売店舗/.test(spec['物件種目'] || '')) return { label: '売店舗', emoji: '🏪', bg: '#3c2005', accent: '#f6ad55' };
-  if (/中古/.test(spec['物件種目'] || '') || /戸建/.test(spec['物件種目'] || '')) return { label: '中古戸建て', emoji: '🏠', bg: '#1a202c', accent: '#f6e05e' };
-  return { label: '売物件', emoji: '🏡', bg: '#2a2a2a', accent: '#d4af37' };
+  if (/工場/.test(use)) return { label: '売土地（工場用地）', bg: '#2d3748', accent: '#fc8181' };
+  if (/事業/.test(use)) return { label: '売土地（事業用地）', bg: '#1a365d', accent: '#63b3ed' };
+  if (/住宅/.test(use)) return { label: '売土地', bg: '#1c4532', accent: '#68d391' };
+  if (/店舗/.test(use) || /売店舗/.test(spec['物件種目'] || '')) return { label: '売店舗', bg: '#3c2005', accent: '#f6ad55' };
+  if (/中古/.test(spec['物件種目'] || '') || /戸建/.test(spec['物件種目'] || '')) return { label: '中古戸建て', bg: '#1a202c', accent: '#f6e05e' };
+  return { label: '売物件', bg: '#2a2a2a', accent: '#9cc3e8' };
 }
 
 // 市町からエリアパスを取得
@@ -96,7 +96,7 @@ function renderFooter() {
   <div class="footer-inner">
     <div>
       <h3>株式会社明治不動産</h3>
-      <p>〒315-0014<br>茨城県石岡市国府1丁目2-2<br>TEL：0299-35-2123<br>営業時間：10:00〜18:00（日曜・祝日休み）</p>
+      <p>〒315-0014<br>茨城県石岡市国府1丁目2-2<br>TEL：0299-35-2123<br>営業時間：10:00〜17:00（日曜・祝日休み）</p>
     </div>
     <div>
       <h3>エリア</h3>
@@ -127,17 +127,17 @@ function renderFooter() {
 function renderDetailCSS() {
   return `<style>
   :root {
-    --gold: #b8960c;
-    --gold-light: #d4af37;
-    --gold-pale: #f5e9c0;
-    --dark: #1a1a1a;
-    --dark2: #242424;
-    --dark3: #2e2e2e;
+    --gold: #1f4e79;
+    --gold-light: #9cc3e8;
+    --gold-pale: #e6eef7;
+    --dark: #1b2a3d;
+    --dark2: #223349;
+    --dark3: #2b3f58;
     --white: #ffffff;
-    --off-white: #f8f6f2;
+    --off-white: #f4f6f8;
     --text: #333333;
     --muted: #777777;
-    --border: #e0d8c8;
+    --border: #dce3ea;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -145,8 +145,8 @@ function renderDetailCSS() {
 
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(26,26,26,0.96); backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(184,150,12,0.3);
+    background: rgba(27,42,61,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(31,78,121,0.3);
   }
   .header-inner {
     max-width: 1200px; margin: 0 auto; padding: 0 24px;
@@ -374,7 +374,6 @@ ${renderHeader()}
 
 <div class="bukken-hero">
   <div class="hero-band" style="background:${typeInfo.bg};color:${typeInfo.accent};">
-    <div class="hero-emoji">${typeInfo.emoji}</div>
     <div class="hero-type">${esc(typeInfo.label)}</div>
     <div class="hero-price">${esc(price)}</div>
     <div class="hero-address" style="color:rgba(255,255,255,0.85);">${esc(shortAddr)}</div>
@@ -403,7 +402,7 @@ ${bikoText && bikoText !== '－' ? `<div class="spec-section">
 
 <div class="cta-block">
   <h2>この物件についてお問い合わせ</h2>
-  <p>ご見学のご予約・詳細のご確認など、お気軽にご連絡ください。<br>TEL：0299-35-2123（10:00〜18:00 / 日曜・祝日休み）</p>
+  <p>ご見学のご予約・詳細のご確認など、お気軽にご連絡ください。<br>TEL：0299-35-2123（10:00〜17:00 / 日曜・祝日休み）</p>
   <div class="cta-buttons">
     <a href="tel:0299-35-2123" class="btn-primary">電話で問い合わせ 0299-35-2123</a>
     <a href="/#contact" class="btn-secondary">フォームで問い合わせ</a>
@@ -465,7 +464,6 @@ function buildIndexPage(items) {
       const shortAddr = getShortAddress(spec);
       const area = spec['土地面積'] || spec['建物面積'] || '';
       return `  <a href="/bukken/${athome_id}/" class="bukken-card" style="background:${typeInfo.bg};color:${typeInfo.accent};">
-    <div class="card-emoji">${typeInfo.emoji}</div>
     <div class="card-type">${esc(typeInfo.label)}</div>
     <div class="card-price">${esc(price)}</div>
     <div class="card-addr" style="color:rgba(255,255,255,0.8);">${esc(shortAddr)}</div>
@@ -515,15 +513,15 @@ ${cards}
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #b8960c; --gold-light: #d4af37; --dark: #1a1a1a; --white: #ffffff; --off-white: #f8f6f2; --text: #333333; --muted: #777777; --border: #e0d8c8;
+    --gold: #1f4e79; --gold-light: #9cc3e8; --dark: #1b2a3d; --white: #ffffff; --off-white: #f4f6f8; --text: #333333; --muted: #777777; --border: #dce3ea;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
 
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(26,26,26,0.96); backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(184,150,12,0.3);
+    background: rgba(27,42,61,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(31,78,121,0.3);
   }
   .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
   .logo { display: flex; flex-direction: column; line-height: 1.2; }
@@ -599,7 +597,7 @@ ${groupHtml}
 
 <div class="cta-block">
   <h2>物件についてのお問い合わせ</h2>
-  <p>掲載物件の詳細確認・現地案内のご予約はお気軽に。<br>TEL：0299-35-2123（10:00〜18:00 / 日曜・祝日休み）</p>
+  <p>掲載物件の詳細確認・現地案内のご予約はお気軽に。<br>TEL：0299-35-2123（10:00〜17:00 / 日曜・祝日休み）</p>
   <div class="cta-buttons">
     <a href="tel:0299-35-2123" class="btn-primary">電話で問い合わせ 0299-35-2123</a>
     <a href="/#contact" class="btn-secondary">フォームで問い合わせ</a>
@@ -683,7 +681,7 @@ function injectAreaPage(htmlPath, cityItems) {
     const price = spec['価格'] || '';
     const shortAddr = getShortAddress(spec);
     return `  <div class="related-card" style="background:${typeInfo.bg};border:none;">
-    <a href="/bukken/${athome_id}/" style="color:${typeInfo.accent};">${typeInfo.emoji} ${esc(shortAddr)} ${esc(typeInfo.label)}</a>
+    <a href="/bukken/${athome_id}/" style="color:${typeInfo.accent};">${esc(shortAddr)} ${esc(typeInfo.label)}</a>
     <div class="desc" style="color:rgba(255,255,255,0.7);">${esc(price)}</div>
   </div>`;
   }).join('\n');
