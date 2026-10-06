@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 5町ハブページ(土浦/つくば/かすみがうら/笠間/鉾田)に町ごとのFAQ(可視)+FAQPage(JSON-LD)を冪等挿入。
+// 5町ハブページ(土浦/つくば/かすみがうら/笠間/鉾田)に町ごとのFAQ(可視)を冪等挿入(FAQPage JSON-LDは2026-10-07に廃止)。
 // 既にFAQPageがある(石岡/小美玉/茨城/baikyaku等)ページは対象外。再実行しても二重挿入しない。
 const fs = require('fs');
 const path = require('path');
@@ -68,19 +68,6 @@ ${blocks}
 `;
 }
 
-function faqJsonLd(items) {
-  const main = items.map(([q, a]) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  }));
-  const obj = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: main };
-  return `
-<script type="application/ld+json">
-${JSON.stringify(obj, null, 2)}
-</script>
-`;
-}
 
 let changed = 0, skipped = 0;
 for (const [town, items] of Object.entries(FAQ)) {
@@ -103,10 +90,10 @@ for (const [town, items] of Object.entries(FAQ)) {
     console.log(`SKIP(挿入位置不明): ${town}`); continue;
   }
   // FAQPage を </body> の直前に
-  html = html.replace('</body>', faqJsonLd(items) + '</body>');
+  // FAQPage JSON-LD は挿入しない(2026-10-07: GoogleがFAQリッチリザルトを終了済み。HTML本文との二重管理が事実不整合の源になった)
 
   fs.writeFileSync(file, html);
-  console.log(`OK: ${town} (FAQ ${items.length}問 + FAQPage)`);
+  console.log(`OK: ${town} (FAQ ${items.length}問)`);
   changed++;
 }
 console.log(`\n--- 完了: 変更${changed}件 / スキップ${skipped}件 ---`);

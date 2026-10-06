@@ -13,6 +13,13 @@ const ROOT = path.resolve(__dirname, '..');
 const DATA_FILE = path.join(__dirname, 'athome-details.json');
 const SITEMAP = path.join(ROOT, 'sitemap.xml');
 const LASTMOD = '2026-10-07';
+// 掲載内容の確認日: athome-listings.json の scraped_at を唯一の正とする（ページごとに手で書かない）
+const CONFIRMED = (() => {
+  const l = JSON.parse(fs.readFileSync(path.join(__dirname, 'athome-listings.json'), 'utf8'));
+  const m = String(l.scraped_at || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) throw new Error('athome-listings.json の scraped_at が日付形式ではありません');
+  return `${m[1]}年${Number(m[2])}月${Number(m[3])}日`;
+})();
 
 // URLからathome_idとカテゴリを取得
 function parseUrl(url) {
@@ -285,10 +292,12 @@ function buildDetailPage(item, athome_id) {
     }
   }
   for (const key of Object.keys(spec)) {
-    if (!shownKeys.has(key) && key !== '備考') {
+    // 次回更新予定日はathome側が管理する値で、静的ページに載せると過ぎた日付が残るため載せない
+    if (!shownKeys.has(key) && key !== '備考' && key !== '次回更新予定日') {
       specRows.push(`<tr><th>${esc(key)}</th><td>${esc(spec[key])}</td></tr>`);
     }
   }
+  specRows.push(`<tr><th>情報確認日</th><td>${CONFIRMED}</td></tr>`);
   // 取引態様を追加
   specRows.push(`<tr><th>取引態様</th><td>${torihikiTaiyo !== null ? esc(torihikiTaiyo) : '－'}</td></tr>`);
 
@@ -383,7 +392,7 @@ ${renderHeader()}
 <main class="bukken-main">
 
 <div class="notice-box">
-  情報は掲載時点のものです。最新の状況はお問い合わせください。最終確認日: 2026-06-13
+  情報は掲載時点のものです。最新の状況はお問い合わせください。確認日: ${CONFIRMED}
 </div>
 
 <div class="spec-section">
@@ -588,7 +597,7 @@ ${renderHeader()}
 
 <div class="page-hero">
   <h1>販売中の物件一覧</h1>
-  <p>茨城県内の土地・中古一戸建て・売店舗 計${total}件。市町別に掲載しています。</p>
+  <p>茨城県内の土地・中古一戸建て・売店舗 計${total}件。市町別に掲載しています。掲載内容は${CONFIRMED}に確認した情報です。成約・変更の可能性があるため、最新の状況はお問い合わせください。</p>
 </div>
 
 <main class="bukken-index-main">
