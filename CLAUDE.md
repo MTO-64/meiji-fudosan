@@ -46,7 +46,7 @@ robots.txt      # クローラー設定
 - **実測(Lighthouse mobile・2026-10-07)**: トップ/石岡/会社概要/物件個別 すべて Accessibility・Best Practices・SEO・Agentic Browsing = 100。`chrome-devtools` MCPの `lighthouse_audit` で測る（パフォーマンス/CWVは別: `performance_start_trace`・**未測定**）。
 - **やらない**（ChatGPT・Google公式。ブログ由来は仮説扱い）: llms.txt / AI専用schema / FAQ大量設置 / meta descriptionの文字数合わせ(Googleに固定文字数の規則は無い・Search ConsoleでCTR異常が出たページだけ直す) / 地域×ニーズの新規ページ量産(Search Consoleで需要を見るまで止める＝doorway/scaled content化のリスク) / JSON-LDにページ上に無い事実を書く / sameAsの追加(アットホーム・GBPの営業時間が直るまで)。
 - **次の最優先は計測**: **Search Console の実データ（過去16か月の ページ×クエリ別 表示・クリック・CTR・順位／インデックス状況／URL検査でGoogleが選んだcanonical）を owner が書き出す**。私はSearch Consoleに入れない。GA4(gtag G-7YHR1QE05T)でChatGPT流入は `utm_source=chatgpt.com` で見える。
-- **P0（SEO施策の前提）**: アットホーム(営業時間16:00・定休に土曜の誤り)・Googleビジネスプロフィール(未確認)・茨城県宅建業者名簿(免許番号の表記が資料間で食い違い)・自社サイトの会社情報を**1つの事実に揃える**。
+- **P0（SEO施策の前提）**: アットホーム(営業時間16:00・定休に土曜の誤り)・Googleビジネスプロフィール(未確認)・自社サイトの会社情報を**1つの事実に揃える**。免許番号「茨城県知事免許(3)第6811号」は県の公表資料(令和7年2月28日付・免許年月日 令和4年2月17日)・アットホーム・自社サイトの3つで一致済み＝確認不要(10/7 ownerの指摘。ChatGPTが言った『県の別ページは(6)表記』は私が未確認のまま宿題にしてしまった誤り。次回更新2027年2月で番号が変わったら直す)。
 - AEOの検証は「GSC＋GA4のChatGPT流入＋ChatGPT/Perplexity/Google AIモードに定点質問して引用元を記録」。業者独自の「AEOスコア」はKPIにしない。
 - `ibaraki/business-land` はcanonicalで `ishioka/business-land` に統合（旧URLは200で残す）。完全廃止したい場合のみ301が適切だが、GitHub Pagesはサーバー側301が出せない。
 - sitemapの `lastmod` は `node scripts/build-sitemap-lastmod.js`（build-bukken.jsの後に実行）。ページのファイルを最後に変えたコミットの日付。共通CSSだけの変更は反映されない。
