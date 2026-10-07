@@ -148,57 +148,49 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  /* ===== HERO ===== */
+  .nav-tel { font-weight: 700; letter-spacing: 1px; color: #ffffff !important; white-space: nowrap; }
+  @media (max-width: 1100px) { .nav-tel { display: none; } }
+  /* ===== HERO（写真が無い間は、本物の情報を前面に出す明るい2カラム） ===== */
   .hero {
-    height: 100vh;
-    min-height: 600px;
     position: relative;
-    display: flex;
+    padding: 132px 24px 80px;
+    background: linear-gradient(180deg, var(--off-white) 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: var(--dark);
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(135deg, #1b2a3d 0%, #2b3f58 100%);
-  }
-  .hero-content {
-    position: relative;
-    text-align: center;
-    padding: 0 24px;
   }
   .hero-tag {
     display: inline-block;
-    font-size: 11px;
-    letter-spacing: 5px;
-    color: var(--gold-light);
-    border: 1px solid rgba(156,195,232,0.4);
-    padding: 6px 20px;
-    margin-bottom: 28px;
-    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    border-left: 3px solid var(--gold);
+    padding: 2px 0 2px 12px;
+    margin-bottom: 24px;
+    font-weight: 500;
   }
   .hero h1 {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(32px, 6vw, 60px);
-    color: var(--white);
-    line-height: 1.4;
+    font-size: clamp(28px, 3.5vw, 44px);
     font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 4px;
+    line-height: 1.45;
+    color: var(--dark);
+    margin-bottom: 24px;
   }
-  .hero h1 span { color: var(--gold-light); }
+  .hero h1 span { color: var(--gold); }
   .hero p {
-    font-size: clamp(13px, 2vw, 16px);
-    color: rgba(255,255,255,0.7);
-    line-height: 1.9;
-    margin-bottom: 40px;
-    font-weight: 300;
-    letter-spacing: 1px;
+    font-size: 15px;
+    color: #4a5563;
+    line-height: 2;
+    margin-bottom: 32px;
   }
-  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn-primary {
     background: var(--gold);
     color: var(--white);
@@ -210,7 +202,7 @@
     transition: all 0.2s;
     display: inline-block;
   }
-  .btn-primary:hover { background: var(--gold-light); color: var(--dark); }
+  .btn-primary:hover { background: var(--dark); color: var(--white); }
   .btn-outline {
     border: 1px solid rgba(255,255,255,0.5);
     color: var(--white);
@@ -223,31 +215,42 @@
     display: inline-block;
   }
   .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: rgba(255,255,255,0.4);
-    font-size: 10px;
-    letter-spacing: 3px;
-    animation: bounce 2s infinite;
+  .hero .btn-outline { border: 1px solid var(--gold); color: var(--gold); font-weight: 500; }
+  .hero .btn-outline:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+  .hero-chips { margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-chips a {
+    font-size: 13px;
+    color: var(--dark);
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s;
   }
-  .hero-scroll::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(156,195,232,0.6), transparent);
+  .hero-chips a:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--gold);
+    padding: 32px 32px 28px;
+    box-shadow: 0 10px 30px rgba(27,42,61,0.08);
   }
-  @keyframes bounce {
-    0%,100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
+  .hero-card-head { display: flex; align-items: baseline; gap: 10px; color: var(--dark); }
+  .hero-card-label { font-size: 13px; letter-spacing: 2px; color: #4a5563; }
+  .hero-card-head strong { font-family: 'Noto Serif JP', serif; font-size: 52px; line-height: 1; color: var(--gold); font-weight: 700; }
+  .hero-card-sub { font-size: 13px; color: #4a5563; margin: 8px 0 14px; line-height: 1.7; }
+  .hero-card-link { font-size: 14px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .hero-card-link:hover { text-decoration: underline; }
+  .hero-card hr { border: 0; border-top: 1px solid var(--border); margin: 22px 0 18px; }
+  .hero-card dl { display: grid; grid-template-columns: 5.5em 1fr; gap: 10px 12px; font-size: 14px; color: var(--text); line-height: 1.7; }
+  .hero-card dt { color: #6b7686; font-size: 12px; letter-spacing: 1px; padding-top: 2px; }
+  .hero-card dd { margin: 0; }
+  .hero-card .hero-tel { font-size: 22px; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: 1px; }
+  @media (max-width: 900px) {
+    .hero { padding: 112px 20px 56px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .hero-card { padding: 26px 22px 22px; }
   }
 
   /* ===== SECTION BASE ===== */
@@ -284,59 +287,6 @@
     font-weight: 300;
   }
 
-  /* ===== HERO SLIDER ===== */
-  .hero-slides {
-    position: absolute;
-    inset: 0;
-  }
-  .hero-slide {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.2s ease;
-    transform: scale(1.05);
-    animation: none;
-  }
-  .hero-slide.active {
-    opacity: 1;
-    animation: heroZoom 8s ease forwards;
-  }
-  @keyframes heroZoom {
-    from { transform: scale(1.05); }
-    to   { transform: scale(1.0); }
-  }
-  .hero-slide::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(10,10,15,0.75) 0%, rgba(10,10,15,0.4) 100%);
-  }
-  .hero-dots { display: none; }
-  .hero-dots-unused {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 2;
-  }
-  .hero-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  .hero-dot.active {
-    background: var(--gold-light);
-    width: 24px;
-    border-radius: 3px;
-  }
-
   /* ===== STATS ===== */
   .stats {
     background: var(--dark);
@@ -366,7 +316,7 @@
   .stat-num span { font-size: 20px; }
   .stat-label {
     font-size: 12px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.62);
     letter-spacing: 2px;
     font-weight: 300;
   }
@@ -1339,6 +1289,7 @@
       <a href="/ishioka/business-land/">事業用地</a>
       <a href="#about">会社案内</a>
       <a href="#access">アクセス</a>
+      <a href="tel:0299-35-2123" class="nav-tel">0299-35-2123</a>
       <a href="#contact" class="nav-cta">お問い合わせ</a>
     </nav>
     <div class="hamburger" onclick="toggleMenu()">
@@ -1359,41 +1310,43 @@
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:none"></div>
-    <div class="hero-slide" style="background-image:none"></div>
-    <div class="hero-slide" style="background-image:none"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-tag">茨城県石岡市の不動産会社</div>
-    <h1>石岡市の不動産売買・賃貸なら<br><span>株式会社明治不動産</span></h1>
-    <p>石岡市を中心に、小美玉市・土浦市など周辺地域の土地、中古住宅、空き家、事業用地を取り扱っています。<br>売却や査定、相続した不動産のご相談も承ります。</p>
-    <div class="hero-btns">
-      <a href="#properties" class="btn-primary">物件を探す</a>
-      <a href="#sell" class="btn-outline">売却・無料相談</a>
+  <div class="hero-inner">
+    <div class="hero-main">
+      <div class="hero-tag">茨城県石岡市の不動産会社</div>
+      <h1>石岡市の不動産売買・賃貸なら<br><span>株式会社明治不動産</span></h1>
+      <p>石岡市を中心に、小美玉市・土浦市など周辺地域の土地、中古住宅、空き家、事業用地を取り扱っています。売却や査定、相続した不動産のご相談も承ります。</p>
+      <div class="hero-btns">
+        <a href="#properties" class="btn-primary">物件を探す</a>
+        <a href="#sell" class="btn-outline">売却・無料相談</a>
+      </div>
+      <div class="hero-chips">
+        <a href="/ishioka/business-land/">事業用地</a>
+        <a href="/ishioka/land/">売地・住宅用地</a>
+        <a href="/ishioka/used-house/">中古住宅</a>
+        <a href="/ishioka/akiya/">空き家</a>
+        <a href="/baikyaku/">売却・査定</a>
+      </div>
     </div>
-    <div class="hero-chips" style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-      <a href="/ishioka/business-land/" style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.88);border:1px solid rgba(156,195,232,0.45);padding:7px 14px;border-radius:20px;text-decoration:none;transition:all 0.2s;">事業用地</a>
-      <a href="/ishioka/land/" style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.88);border:1px solid rgba(156,195,232,0.45);padding:7px 14px;border-radius:20px;text-decoration:none;transition:all 0.2s;">売地・住宅用地</a>
-      <a href="/ishioka/used-house/" style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.88);border:1px solid rgba(156,195,232,0.45);padding:7px 14px;border-radius:20px;text-decoration:none;transition:all 0.2s;">中古住宅</a>
-      <a href="/ishioka/akiya/" style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.88);border:1px solid rgba(156,195,232,0.45);padding:7px 14px;border-radius:20px;text-decoration:none;transition:all 0.2s;">空き家</a>
-      <a href="/baikyaku/" style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,0.88);border:1px solid rgba(156,195,232,0.45);padding:7px 14px;border-radius:20px;text-decoration:none;transition:all 0.2s;">売却・査定</a>
-    </div>
+    <aside class="hero-card" aria-label="販売中の物件と店舗情報">
+      <div class="hero-card-head"><span class="hero-card-label">販売中の物件</span><!-- HERO-COUNT:START --><strong>14</strong>件<!-- HERO-COUNT:END --></div>
+      <div class="hero-card-sub"><!-- HERO-SUB:START -->土地11・中古戸建1・売店舗2（2026年10月7日確認）<!-- HERO-SUB:END --></div>
+      <a href="/bukken/" class="hero-card-link">物件一覧を見る →</a>
+      <hr>
+      <dl>
+        <dt>店舗</dt><dd>石岡駅 徒歩1分<br>石岡市国府1丁目2-2</dd>
+        <dt>営業時間</dt><dd>10:00〜17:00（日曜・祝日休み）</dd>
+        <dt>電話</dt><dd><a class="hero-tel" href="tel:0299-35-2123">0299-35-2123</a></dd>
+      </dl>
+    </aside>
   </div>
-  <div class="hero-dots">
-    <div class="hero-dot active" onclick="goSlide(0)"></div>
-    <div class="hero-dot" onclick="goSlide(1)"></div>
-    <div class="hero-dot" onclick="goSlide(2)"></div>
-  </div>
-  <div class="hero-scroll">下へ</div>
 </section>
 
 <!-- STATS -->
 <div class="stats">
   <div class="stats-inner">
     <div class="stat-item">
-      <div class="stat-num">20<span>年以上</span></div>
-      <div class="stat-label">会社設立から</div>
+      <div class="stat-num">1<span>分</span></div>
+      <div class="stat-label">石岡駅から徒歩</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">7<span>市町</span></div>
@@ -2220,21 +2173,6 @@ function submitForm(e) {
     });
 }
 
-// ヒーロースライダー
-let currentSlide = 0;
-const slides = document.querySelectorAll('.hero-slide');
-const dots = document.querySelectorAll('.hero-dot');
-function goSlide(n) {
-  slides[currentSlide].classList.remove('active');
-  dots[currentSlide].classList.remove('active');
-  currentSlide = n;
-  slides[currentSlide].classList.add('active');
-  dots[currentSlide].classList.add('active');
-}
-setInterval(() => {
-  goSlide((currentSlide + 1) % slides.length);
-}, 5000);
-
 // ヘッダーの背景を強調（スクロール時）
 window.addEventListener('scroll', () => {
   const header = document.querySelector('header');
@@ -2284,16 +2222,13 @@ const statObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const nums = entry.target.querySelectorAll('.stat-num');
-      const data = [
-        { val: 20, suffix: '+' },
-        { val: 7, suffix: '' },
-        { val: 24, suffix: '' },
-        { val: 0, suffix: '' },
-      ];
-      nums.forEach((num, i) => {
+      // 目標値はHTMLの数字から読む(JSに別の値を持たせると、HTMLを直してもカウンターが古い値のままになる)
+      nums.forEach((num) => {
         const span = num.querySelector('span');
         const spanText = span ? span.outerHTML : '';
-        countUp({ set textContent(v) { num.innerHTML = v + spanText; } }, data[i].val, data[i].suffix);
+        const target = parseInt(num.firstChild.textContent, 10);
+        if (Number.isNaN(target)) return;
+        countUp({ set textContent(v) { num.innerHTML = v + spanText; } }, target, '');
       });
       statObserver.unobserve(entry.target);
     }

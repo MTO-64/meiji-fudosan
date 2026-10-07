@@ -733,6 +733,14 @@ ${cards}
 
 // メイン処理
 function main() {
+  // 書き込みの途中で失敗して中途半端な状態を残さないよう、前提(トップのマーカー)を最初に検証する
+  {
+    const top = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf-8');
+    for (const m of ['HERO-COUNT', 'HERO-SUB']) {
+      if (!top.includes(`<!-- ${m}:START -->`) || !top.includes(`<!-- ${m}:END -->`)) throw new Error(`index.html に ${m} マーカーがありません（何も書き換えていません）`);
+    }
+  }
+
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
 
   const items = [];
@@ -801,7 +809,7 @@ function main() {
   const topIndexPath = path.join(ROOT, 'index.html');
   let topHtml = fs.readFileSync(topIndexPath, 'utf-8');
   const bukkenLink = '<a href="/bukken/" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:var(--gold-light);font-size:13px;padding:12px 28px;">掲載物件をすべて見る → /bukken/</a>';
-  if (!topHtml.includes('/bukken/')) {
+  if (!topHtml.includes('掲載物件をすべて見る')) {
     // properties-more の閉じdivの前に挿入
     topHtml = topHtml.replace(
       '<a href="#contact" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:var(--muted);font-size:13px;padding:12px 28px;">物件について直接相談する</a>',
@@ -811,6 +819,23 @@ function main() {
     console.log('  Updated: index.html (added /bukken/ link)');
   } else {
     console.log('  index.html: /bukken/ link already present');
+  }
+
+  // トップのヒーローカードの物件数(掲載データを唯一の正とする。手で書かない)
+  {
+    const details = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')).filter(d => d.ok !== false);
+    const by = { tochi: 0, kodate: 0, buy_store: 0 };
+    for (const d of details) { const c = parseUrl(d.url); if (c && c.category in by) by[c.category]++; }
+    const total = by.tochi + by.kodate + by.buy_store;
+    if (total !== details.length) throw new Error(`物件数の内訳が合いません: ${total} != ${details.length}`);
+    const parts = [by.tochi && `土地${by.tochi}`, by.kodate && `中古戸建${by.kodate}`, by.buy_store && `売店舗${by.buy_store}`].filter(Boolean).join('・');
+    let top = fs.readFileSync(topIndexPath, 'utf-8');
+    const re1 = /<!-- HERO-COUNT:START -->[\s\S]*?<!-- HERO-COUNT:END -->/, re2 = /<!-- HERO-SUB:START -->[\s\S]*?<!-- HERO-SUB:END -->/;
+    if (!re1.test(top) || !re2.test(top)) throw new Error('index.html にヒーローの物件数マーカーがありません');
+    top = top.replace(re1, `<!-- HERO-COUNT:START --><strong>${total}</strong>件<!-- HERO-COUNT:END -->`)
+             .replace(re2, `<!-- HERO-SUB:START -->${parts}（${CONFIRMED}確認）<!-- HERO-SUB:END -->`);
+    fs.writeFileSync(topIndexPath, top, 'utf-8');
+    console.log(`  Updated: index.html (販売中 ${total}件: ${parts})`);
   }
 
   console.log('\nDone.');
