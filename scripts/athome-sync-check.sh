@@ -44,7 +44,9 @@ if [ ! -f "$LISTINGS_JSON" ]; then
 fi
 
 # 1. athome から現掲載IDを取得（headful Playwright）。出力は "category:ID" の各行。
-FETCH_OUT="$(cd "$PROJECT_DIR" && "$NODE_BIN" scripts/athome-fetch-ids.js 2>>"$LOG_FILE")"
+# 既定は Safari 経由(Playwright版は athome の bot 判定で0件になる=2026-10-07 実測)。ATHOME_FETCHER=athome-fetch-ids.js で旧版に戻せる。
+FETCHER="${ATHOME_FETCHER:-athome-fetch-ids-safari.js}"
+FETCH_OUT="$(cd "$PROJECT_DIR" && "$NODE_BIN" "scripts/$FETCHER" 2>>"$LOG_FILE")"
 FETCH_RC=$?
 if [ "$FETCH_RC" -ne 0 ]; then
   log "ERROR: fetch failed (rc=$FETCH_RC). Marking FAIL (取得不能 — 成約と誤判定しない)."
