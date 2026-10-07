@@ -46,7 +46,7 @@
     --white: #ffffff;
     --off-white: #f4f6f8;
     --text: #333333;
-    --muted: #777777;
+    --muted: #5f6670;
     --border: #dce3ea;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -609,9 +609,9 @@
     flex-shrink: 0;
   }
   .contact-item-body { }
-  .contact-item-label { font-size: 11px; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; font-weight: 300; }
+  .contact-item-label { font-size: 11px; letter-spacing: 2px; color: var(--gold-light); margin-bottom: 4px; font-weight: 300; }
   .contact-item-val { font-size: 15px; color: var(--white); font-weight: 400; }
-  .contact-item-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; font-weight: 300; }
+  .contact-item-note { font-size: 12px; color: rgba(255,255,255,0.68); margin-top: 2px; font-weight: 300; }
 
   .contact-form { }
   .form-group { margin-bottom: 20px; }
@@ -658,7 +658,7 @@
   .form-submit:hover { background: var(--gold-light); color: var(--dark); }
   .form-note {
     font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.62);
     margin-top: 12px;
     line-height: 1.7;
     font-weight: 300;
@@ -682,7 +682,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
     margin-bottom: 24px;
   }
-  .footer-logo-en { font-size: 10px; letter-spacing: 4px; color: var(--gold); font-weight: 300; margin-bottom: 6px; }
+  .footer-logo-en { font-size: 10px; letter-spacing: 4px; color: var(--gold-light); font-weight: 300; margin-bottom: 6px; }
   .footer-logo-ja {
     font-family: 'Noto Serif JP', serif;
     font-size: 18px;
@@ -691,11 +691,11 @@
     letter-spacing: 2px;
     margin-bottom: 16px;
   }
-  .footer-about { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.9; font-weight: 300; }
+  .footer-about { font-size: 12px; color: rgba(255,255,255,0.68); line-height: 1.9; font-weight: 300; }
   .footer-col h4 {
     font-size: 12px;
     letter-spacing: 2px;
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: 20px;
     font-weight: 500;
   }
@@ -715,10 +715,10 @@
     flex-wrap: wrap;
     gap: 12px;
   }
-  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; font-weight: 300; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.62); letter-spacing: 1px; font-weight: 300; }
   .footer-links { display: flex; gap: 20px; }
-  .footer-links a { font-size: 11px; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 1px; }
-  .footer-links a:hover { color: var(--gold); }
+  .footer-links a { font-size: 11px; color: rgba(255,255,255,0.62); text-decoration: none; letter-spacing: 1px; }
+  .footer-links a:hover { color: var(--gold-light); }
 
   /* ===== SELL SECTION ===== */
   .sell { background: var(--dark); }
@@ -980,10 +980,10 @@
   .prop-modal-map-btn:hover { background: var(--gold-light); color: var(--dark); }
   .prop-modal-athome-btn {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 22px; background: #ff6600; color: #fff;
+    padding: 13px 22px; background: #b34700; color: #fff;
     text-decoration: none; font-size: 13px; letter-spacing: 1px; font-weight: 500; transition: background 0.2s;
   }
-  .prop-modal-athome-btn:hover { background: #e05500; }
+  .prop-modal-athome-btn:hover { background: #8f3a00; }
   .prop-modal-contact-btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 13px 22px; background: transparent; border: 1px solid var(--border);
@@ -1074,7 +1074,7 @@
   }
   .athome-banner-left { display: flex; align-items: center; gap: 16px; }
   .athome-logo-badge {
-    background: #ff6600;
+    background: #b34700;
     color: var(--white);
     font-size: 12px;
     font-weight: 700;
@@ -1085,7 +1085,7 @@
   .athome-banner-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; font-weight: 300; }
   .athome-banner-text strong { color: var(--white); }
   .athome-btn {
-    background: #ff6600;
+    background: #b34700;
     color: var(--white);
     padding: 12px 24px;
     text-decoration: none;
@@ -1099,7 +1099,7 @@
     gap: 8px;
     flex-shrink: 0;
   }
-  .athome-btn:hover { background: #e05500; color: var(--white); }
+  .athome-btn:hover { background: #8f3a00; color: var(--white); }
   .property-athome-link {
     display: block;
     margin-top: 10px;
@@ -1107,14 +1107,14 @@
     background: rgba(255,102,0,0.08);
     border: 1px solid rgba(255,102,0,0.35);
     font-size: 12px;
-    color: #cc5200;
+    color: #9a3c00;
     text-decoration: none;
     letter-spacing: 1px;
     transition: all 0.2s;
     text-align: center;
     font-weight: 500;
   }
-  .property-athome-link:hover { background: #ff6600; color: var(--white); border-color: #ff6600; }
+  .property-athome-link:hover { background: #b34700; color: var(--white); border-color: #b34700; }
 
   /* ===== PROPERTY ACCESS TOGGLE ===== */
   .property-access-toggle {
@@ -1287,7 +1287,7 @@
       <a href="/baikyaku/">売却・査定</a>
       <a href="/sozoku/">相続・空き家</a>
       <a href="/ishioka/business-land/">事業用地</a>
-      <a href="#about">会社案内</a>
+      <a href="/company/">会社案内</a>
       <a href="#access">アクセス</a>
       <a href="tel:0299-35-2123" class="nav-tel">0299-35-2123</a>
       <a href="#contact" class="nav-cta">お問い合わせ</a>
@@ -1303,11 +1303,12 @@
   <a href="/baikyaku/" onclick="toggleMenu()">売却・査定</a>
   <a href="/sozoku/" onclick="toggleMenu()">相続・空き家</a>
   <a href="/ishioka/business-land/" onclick="toggleMenu()">事業用地</a>
-  <a href="#about" onclick="toggleMenu()">会社案内</a>
+  <a href="/company/" onclick="toggleMenu()">会社案内</a>
   <a href="#access" onclick="toggleMenu()">アクセス</a>
   <a href="#contact" onclick="toggleMenu()">お問い合わせ</a>
 </div>
 
+<main id="main">
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-inner">
@@ -1370,63 +1371,63 @@
       <div class="section-tag" style="font-size:12px;letter-spacing:4px;color:#1f4e79;font-weight:600;margin-bottom:12px;">対応エリア</div>
       <h2 class="section-title" style="font-family:'Noto Serif JP',serif;font-size:32px;font-weight:700;color:#1a1a1a;letter-spacing:2px;margin-bottom:16px;">石岡市・茨城県の不動産</h2>
       <div class="section-line" style="width:48px;height:2px;background:#1f4e79;margin:0 auto 16px;"></div>
-      <p class="section-sub" style="color:#777;max-width:680px;margin:0 auto;">エリア・物件種別ごとに専門ページをご用意しています。お探しのテーマからご覧ください。</p>
+      <p class="section-sub" style="color:#5f6670;max-width:680px;margin:0 auto;">エリア・物件種別ごとに専門ページをご用意しています。お探しのテーマからご覧ください。</p>
     </div>
     <div class="lp-areas-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
 
       <a href="/ishioka/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">石岡市の不動産</div>
-        <div style="font-size:13px;color:#777;">石岡市内の物件を総合的に。空き家・中古住宅・土地・事業用地まで。</div>
+        <div style="font-size:13px;color:#5f6670;">石岡市内の物件を総合的に。空き家・中古住宅・土地・事業用地まで。</div>
       </a>
 
       <a href="/ishioka/used-house/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">石岡市の中古住宅・戸建て</div>
-        <div style="font-size:13px;color:#777;">築浅から築古まで、リフォーム済み・現状渡しを幅広く。</div>
+        <div style="font-size:13px;color:#5f6670;">築浅から築古まで、リフォーム済み・現状渡しを幅広く。</div>
       </a>
 
       <a href="/ishioka/land/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">石岡市の土地</div>
-        <div style="font-size:13px;color:#777;">住宅用地・農地・分譲地・別荘地・事業用地。</div>
+        <div style="font-size:13px;color:#5f6670;">住宅用地・農地・分譲地・別荘地・事業用地。</div>
       </a>
 
       <a href="/ishioka/akiya/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">石岡市の空き家</div>
-        <div style="font-size:13px;color:#777;">空き家バンク掲載・未掲載問わず売買・活用相談。</div>
+        <div style="font-size:13px;color:#5f6670;">空き家バンク掲載・未掲載問わず売買・活用相談。</div>
       </a>
 
       <a href="/ishioka/business-land/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">石岡市の事業用地</div>
-        <div style="font-size:13px;color:#777;">常磐道IC・国道6号沿いの工場・倉庫・物流・店舗用地。</div>
+        <div style="font-size:13px;color:#5f6670;">常磐道IC・国道6号沿いの工場・倉庫・物流・店舗用地。</div>
       </a>
 
       <a href="/omitama/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">小美玉市の不動産</div>
-        <div style="font-size:13px;color:#777;">茨城空港エリア、子育て環境良好な小美玉市の物件総合。</div>
+        <div style="font-size:13px;color:#5f6670;">茨城空港エリア、子育て環境良好な小美玉市の物件総合。</div>
       </a>
 
       <a href="/omitama/used-house/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">小美玉市の中古住宅</div>
-        <div style="font-size:13px;color:#777;">羽鳥駅徒歩圏・常磐道アクセス良好な中古戸建て。</div>
+        <div style="font-size:13px;color:#5f6670;">羽鳥駅徒歩圏・常磐道アクセス良好な中古戸建て。</div>
       </a>
 
       <a href="/omitama/land/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">小美玉市の土地</div>
-        <div style="font-size:13px;color:#777;">住宅用地・農地・別荘地（霞ヶ浦周辺）・事業用地。</div>
+        <div style="font-size:13px;color:#5f6670;">住宅用地・農地・別荘地（霞ヶ浦周辺）・事業用地。</div>
       </a>
 
       <a href="/ibaraki/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">茨城県の不動産</div>
-        <div style="font-size:13px;color:#777;">石岡・小美玉・土浦を中心とする周辺7市町の物件を扱う総合窓口。広域エリア対応。</div>
+        <div style="font-size:13px;color:#5f6670;">石岡・小美玉・土浦を中心とする周辺7市町の物件を扱う総合窓口。広域エリア対応。</div>
       </a>
 
       <a href="/ibaraki/land/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">茨城県の土地</div>
-        <div style="font-size:13px;color:#777;">対応エリアの住宅用地・農地・別荘地・事業用地。</div>
+        <div style="font-size:13px;color:#5f6670;">対応エリアの住宅用地・農地・別荘地・事業用地。</div>
       </a>
 
       <a href="/ishioka/business-land/" class="lp-area-card" style="display:block;background:#fff;border:1px solid #e0d8c8;border-left:4px solid #1f4e79;padding:20px 24px;border-radius:2px;text-decoration:none;color:#1a1a1a;transition:all 0.2s;">
         <div style="font-family:'Noto Serif JP',serif;font-size:18px;font-weight:700;margin-bottom:6px;">茨城県の事業用地</div>
-        <div style="font-size:13px;color:#777;">常磐道・圏央道・北関東道沿線の工場・倉庫・物流・店舗用地。</div>
+        <div style="font-size:13px;color:#5f6670;">常磐道・圏央道・北関東道沿線の工場・倉庫・物流・店舗用地。</div>
       </a>
 
     </div>
@@ -1493,7 +1494,7 @@
       <a href="https://www.athome.co.jp/ahch/meijihudousan.html" target="_blank" rel="noopener" class="athome-btn" style="font-size:14px;padding:14px 32px;">
         アットホームで全ての掲載物件を見る →
       </a>
-      <a href="/bukken/" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:var(--gold-light);font-size:13px;padding:12px 28px;">掲載物件をすべて見る →</a>
+      <a href="/bukken/" class="btn-outline" style="border-color:var(--gold);color:var(--gold);font-size:13px;padding:12px 28px;">掲載物件をすべて見る →</a>
       <a href="#contact" class="btn-outline" style="border-color:rgba(255,255,255,0.2);color:var(--muted);font-size:13px;padding:12px 28px;">物件について直接相談する</a>
     </div>
   </div>
@@ -1587,7 +1588,7 @@
     </div>
     <div style="background:var(--dark);padding:40px;margin-bottom:32px;display:flex;align-items:center;gap:32px;border-left:4px solid var(--gold);">
       <div>
-        <div style="font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;">本店</div>
+        <div style="font-size:11px;letter-spacing:3px;color:var(--gold-light);margin-bottom:8px;">本店</div>
         <div style="font-size:20px;font-weight:700;color:var(--white);font-family:'Noto Serif JP',serif;margin-bottom:4px;">石岡店（本店）</div>
         <div style="font-size:14px;color:rgba(255,255,255,0.5);">〒315-0014 茨城県石岡市国府1丁目2-2 ／ JR石岡駅より徒歩1分</div>
       </div>
@@ -1689,6 +1690,7 @@
         <td data-label="所属団体">（公社）茨城県宅地建物取引業協会会員<br>（公社）首都圏不動産公正取引協議会加盟<br>（公社）全国宅地建物取引業保証協会</td>
       </tr>
     </table>
+      <p style="margin-top:20px;text-align:right;"><a href="/company/" style="color:var(--gold);font-weight:700;text-decoration:none;">会社概要の詳細（免許・所属団体・対応エリア）→</a></p>
   </div>
 </section>
 
@@ -1739,7 +1741,7 @@
 
     </div>
     <div class="access-map">
-      <iframe
+      <iframe title="株式会社明治不動産の所在地（Google マップ）"
         src="https://maps.google.com/maps?q=茨城県石岡市国府1丁目2-2&amp;z=16&amp;output=embed"
         loading="lazy"
         allowfullscreen
@@ -1833,7 +1835,7 @@
           </div>
           <div class="form-group">
             <label class="form-label">お問い合わせ種別<span>*</span></label>
-            <select name="type" class="form-select" required>
+            <select name="type" class="form-select" required aria-label="お問い合わせ種別">
               <option value="" disabled selected>選択してください</option>
               <option>物件購入について</option>
               <option>物件売却について</option>
@@ -1862,6 +1864,8 @@
 </div>
 
 <!-- FOOTER -->
+</main>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -1876,7 +1880,7 @@
           <li><a href="#services">サービス</a></li>
           <li><a href="#properties">物件一覧</a></li>
           <li><a href="#about">会社について</a></li>
-          <li><a href="#company">会社概要</a></li>
+          <li><a href="/company/">会社概要</a></li>
           <li><a href="#access">アクセス</a></li>
           <li><a href="#contact">お問い合わせ</a></li>
         </ul>
