@@ -7,7 +7,9 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
-const data = JSON.parse(fs.readFileSync(path.join(__dirname, 'jisseki.json'), 'utf8'));
+// jisseki.json は公開しない(GitHub Pagesはリポジトリの全ファイルを配信するため .gitignore 済み・ローカルにだけ置く)。無ければ0件扱い。
+const DATA = path.join(__dirname, 'jisseki.json');
+const data = fs.existsSync(DATA) ? JSON.parse(fs.readFileSync(DATA, 'utf8')) : { cases: [] };
 const cases = (data.cases || []).filter(c => c.confirmed === true);
 const OUT_DIR = path.join(ROOT, 'jisseki');
 const SITEMAP = path.join(ROOT, 'sitemap.xml');

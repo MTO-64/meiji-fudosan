@@ -35,3 +35,6 @@ logs/
 # Claude Code project-local config (machine-dependent paths)
 .claude/
 .athome-profile
+
+# 実績の下書き(公開しない。Pagesは全ファイルを配信する)
+scripts/jisseki.json
