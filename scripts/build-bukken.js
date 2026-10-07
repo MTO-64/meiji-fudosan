@@ -198,6 +198,10 @@ function renderDetailCSS() {
   .spec-table th { width: 36%; padding: 10px 12px; background: var(--off-white); color: var(--muted); font-weight: 500; text-align: left; vertical-align: top; }
   .spec-table td { padding: 10px 12px; color: var(--text); vertical-align: top; line-height: 1.6; }
 
+  .chk-note { font-size: 13px; color: var(--muted); line-height: 1.8; margin: 0 0 12px; }
+  .chk-list { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.9; }
+  .chk-list li { margin-bottom: 12px; }
+  .chk-src { font-size: 12px; color: var(--muted); }
   .biko-box { background: var(--off-white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; font-size: 14px; line-height: 1.8; color: var(--text); }
 
   .notice-box { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 12px 16px; font-size: 12px; color: #92400e; margin-bottom: 32px; }
@@ -302,6 +306,8 @@ function buildDetailPage(item, athome_id) {
   specRows.push(`<tr><th>取引態様</th><td>${torihikiTaiyo !== null ? esc(torihikiTaiyo) : '－'}</td></tr>`);
 
   const bikoText = spec['備考'];
+  const areaSqm = parseFloat(String(spec['土地面積'] || '').replace(/,/g, '')) || 0;
+  const checklistHtml = buildChecklist(spec, city, areaSqm);
   const hasAtHome = item.url && item.url.includes('athome.co.jp');
 
   // ld+json RealEstateListing
@@ -408,6 +414,8 @@ ${bikoText && bikoText !== '－' ? `<div class="spec-section">
 <h2>備考</h2>
 <div class="biko-box">${esc(bikoText)}</div>
 </div>` : ''}
+
+${checklistHtml}
 
 <div class="cta-block">
   <h2>この物件についてお問い合わせ</h2>
@@ -732,6 +740,60 @@ ${cards}
 }
 
 // メイン処理
+
+// ===== この物件の確認ポイント（物件の項目 × 各市の公式情報）=====
+// 各市の公式ページを 2026-10-07 に読んで確認した値だけを持つ。確認していない市・項目は持たない(=その文は出さない)。
+// 射程外: 物件の個別事情(接道・境界・地盤など)は扱わない。ここは「項目から言える一般的な手続きの案内」だけ。
+const OFFICIAL_CHECKED = '2026年10月7日';
+const CITY_INFO = {
+  '石岡市': {
+    nogyo: { who: '石岡市農業委員会事務局（八郷総合支所3階）', tel: '0299-43-1111（代表）', url: 'https://www.city.ishioka.lg.jp/shigoto_sangyo_machi/nogyoiinkai/nouchi_todoke/page000648.html', label: '石岡市「農地法許可申請について」' },
+    kaihatsu: { who: '石岡市 建築住宅指導課', tel: '0299-23-5526（直通）', url: 'https://www.city.ishioka.lg.jp/kurashi_tetsuzuki/sumai/tochi/tochi_horitsu/page000506.html', label: '石岡市「開発許可等について」',
+      rule: { shigaika: 1000, chosei: 'all', hisenbiki: 3000 } },
+    hazard: { who: '石岡市 防災危機管理課', tel: '0299-23-7284（直通）', url: 'https://www.city.ishioka.lg.jp/bosai_portal/saigainisonaete/page004871.html', label: '石岡市「石岡市防災ハザードマップ」' },
+    akiya: { who: '石岡市 生活環境課', tel: '0299-23-7301（直通）', url: 'https://www.city.ishioka.lg.jp/kurashi_tetsuzuki/sumai/akiyabank/page005154.html', label: '石岡市「空家・空地バンク制度について」' },
+  },
+  '土浦市': { nogyo: { who: '土浦市農業委員会事務局 農地係', tel: '029-826-1111（代表）内線2721・2722', url: 'https://www.city.tsuchiura.lg.jp/kurashi-tetsuzuki/downloads-kurashi/page003262.html', label: '土浦市「農業委員会関係の主な申請等の概要」' } },
+  'かすみがうら市': {
+    nogyo: { who: 'かすみがうら市農業委員会事務局（霞ヶ浦庁舎）', tel: '029-897-1111（代表）', url: 'https://www.city.kasumigaura.lg.jp/page/page000016.html', label: 'かすみがうら市「農地法に係る申請手続き関係」' },
+    kaihatsu: { who: 'かすみがうら市 都市整備課 開発担当（霞ヶ浦庁舎）', tel: '029-897-1111（代表）', url: 'https://www.city.kasumigaura.lg.jp/page/page000951.html', label: 'かすみがうら市「都市計画法に基づく開発許可」', rule: { shigaika: 1000, chosei: 'all', gaiku: 10000 } },
+  },
+  '笠間市': { nogyo: { who: '笠間市農業委員会事務局', tel: '0296-77-1101', url: 'https://www.city.kasama.lg.jp/page/page001360.html', label: '笠間市「農地の転用」' } },
+};
+function buildChecklist(spec, city, areaSqm) {
+  const info = CITY_INFO[city] || {};
+  const items = [];
+  const chi = spec['地目'] || '', toshi = spec['都市計画'] || '';
+  const li = (text, src) => `<li>${text}${src ? `<br><span class="chk-src">出典：<a href="${src.url}" target="_blank" rel="noopener">${esc(src.label)}</a></span>` : ''}</li>`;
+  // 農地: 地目が畑・田
+  // 市の公式情報(info.nogyo)を確認していない市では、一般論も出さない(未確認の案内を出さない)
+  if (info.nogyo && /(^|・)(畑|田)(・|$)/.test(chi)) {
+    const n = info.nogyo;
+    const kubun = /市街化区域/.test(toshi) ? '市街化区域では農地法第4条または第5条の「届出」' : (/調整区域|非線引/.test(toshi) ? 'この区域では農地法第4条または第5条の「許可申請」' : '農地法第4条または第5条の「許可申請または届出」（区域によって異なります）');
+    items.push(li(`登記簿の地目が「${esc(chi)}」です。宅地などにするために売買・転用する場合は、${kubun}が必要です。${n ? `窓口：${esc(n.who)}　電話 ${esc(n.tel)}` : '窓口は市の農業委員会です。'}`, n));
+  }
+  // 開発許可
+  const k = info.kaihatsu;
+  if (k) {
+    if (/調整区域/.test(toshi) && k.rule.chosei === 'all') items.push(li(`都市計画は「市街化調整区域」です。市のページでは、市街化調整区域は開発行為がすべて開発許可の対象とされています。建築や用途変更の前に窓口で確認してください。窓口：${esc(k.who)}　電話 ${esc(k.tel)}`, k));
+    else if (/非線引/.test(toshi) && k.rule.hisenbiki && areaSqm >= k.rule.hisenbiki) items.push(li(`都市計画は「非線引区域」で、土地面積が${areaSqm.toLocaleString()}㎡あります。市のページでは、非線引都市計画区域は${k.rule.hisenbiki.toLocaleString()}㎡以上の開発が開発許可の対象とされています。窓口：${esc(k.who)}　電話 ${esc(k.tel)}`, k));
+    else if (/区域外/.test(toshi) && k.rule.gaiku && areaSqm >= k.rule.gaiku) items.push(li(`都市計画は「都市計画区域外」で、土地面積が${areaSqm.toLocaleString()}㎡あります。市のページでは、都市計画区域外は${k.rule.gaiku.toLocaleString()}㎡以上の開発が開発許可の対象とされています。窓口：${esc(k.who)}　電話 ${esc(k.tel)}`, k));
+    else if (/市街化区域/.test(toshi) && k.rule.shigaika && areaSqm >= k.rule.shigaika) items.push(li(`都市計画は「市街化区域」で、土地面積が${areaSqm.toLocaleString()}㎡あります。市のページでは、市街化区域は${k.rule.shigaika.toLocaleString()}㎡以上の開発が開発許可の対象とされています。窓口：${esc(k.who)}　電話 ${esc(k.tel)}`, k));
+  }
+  // 空家
+  if (/空家|空き家/.test(spec['現況'] || '') && info.akiya) items.push(li(`現況は「空家」です。市には空家・空地バンク制度があります。窓口：${esc(info.akiya.who)}　電話 ${esc(info.akiya.tel)}`, info.akiya));
+  // ハザード
+  if (info.hazard) items.push(li(`石岡市は洪水・土砂災害のハザードマップを公開しています。購入前に、この所在地が浸水想定区域・土砂災害警戒区域に入っていないかを確認してください。窓口：${esc(info.hazard.who)}　電話 ${esc(info.hazard.tel)}`, info.hazard));
+  if (!items.length) return '';
+  return `<div class="spec-section">
+<h2>この物件を検討するときの確認ポイント</h2>
+<p class="chk-note">物件の項目（地目・都市計画区域・現況・面積）から言える手続きを、各市の公式ページに基づいて整理しました（公式ページの確認日：${OFFICIAL_CHECKED}）。個別の事情により異なるため、手続きの前に必ず窓口でご確認ください。</p>
+<ul class="chk-list">
+${items.join('\n')}
+</ul>
+</div>`;
+}
+
 function main() {
   // 書き込みの途中で失敗して中途半端な状態を残さないよう、前提(トップのマーカー)を最初に検証する
   {
