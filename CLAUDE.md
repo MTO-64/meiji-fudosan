@@ -31,6 +31,7 @@ robots.txt      # クローラー設定
 ## 物件・実績の運用（2026-10-07 整備）
 - **物件の鮮度**: `scripts/athome-sync-check.sh` が毎日7:30にlaunchd(`com.mto.meiji-athome-sync`)で走り、athome自社掲載のIDをSafari経由で取得して `scripts/athome-listings.json` と突き合わせる。**差分があると `~/.claude/logs/meiji-athome-sync.FAIL` が立ち通知される**（成約=サイトに載っているのにathomeに無い／新規=athomeにあるのにサイトに無い）。
   - 検知だけで自動修正はしない。差分が出たら: Safariで該当物件の詳細を取り直し→ `scripts/athome-details.json` と `athome-listings.json`（`scraped_at` も）を更新 → `node scripts/build-bukken.js` → push。成約済みの `/bukken/<id>/` は消す（生成器は消さない）。
+  - **FAIL(取得不能)の典型原因=athomeのbot確認画面(タイトル「【アットホーム】認証中」)**。2026-10-11 実測: 待っても2分以上抜けない。待ち時間を延ばしても直らない(試して戻した)＝回避せず、owner が Safari で一度 athome を開いて確認を通すか、翌日の再実行を待つ。成約と誤判定しないfail-closedは正しく動いている。
   - 射程外: 価格・面積などの**内容の変化は検知しない**（IDの増減だけ）。Playwright版(`athome-fetch-ids.js`)はathomeのbot判定で0件になるため使わない。
   - 取得は一覧4ページ・1日1回、取得するのはIDのみ。athome公開の利用条件(消費者向けページ・2026-10-07確認)に自動アクセスを禁じる文言は無いが、複製・転載には事前の許諾が必要とある。**加盟店契約でどうなっているかは未確認**＝ownerがathomeに確認すること。launchdはログイン中のMacが起きている時だけ動く（電源OFF・ログアウト中は次回まで飛ぶ）。初回はSafariのAutomation許可ダイアログが出ることがある。
 - **取り扱い実績**: `scripts/jisseki.json`（ローカルのみ・.gitignore済み。Pagesは全ファイルを配信するため公開しない）の `confirmed:true` の事例だけが `node scripts/build-jisseki.js` で `/jisseki/` に出る。0件ならページは作られない。**架空の事例は書かない**。成約・取り下げの事実と、売主買主が特定されない表現かをownerが確認してから `confirmed` を true にする。
