@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-10-07",
+  "scraped_at": "2026-11-04",
   "source": "athome shop 062449",
   "listings": [
     {
@@ -61,26 +61,6 @@
       "use": "住宅用地",
       "athome_url": "https://www.athome.co.jp/tochi/6981787271/",
       "raw": "土地 土浦市 田中町（土浦駅） 住宅用地 498万円 坪単価 4.45万円 権利 所有権 土地面積 370.00m² (111.92坪) 最適用途 住宅用地 私道負担面積 － 建ぺい率/容積率 －/－ 所在地 土浦市田中町 交通 ＪＲ常磐線 「土浦」駅 徒歩30分"
-    },
-    {
-      "athome_id": "6984173107",
-      "category": "tochi",
-      "deal": "sale",
-      "title": "土地 石岡市 鹿の子２丁目（石岡駅） 住宅用地",
-      "price_man": 580,
-      "price_text": "580万円",
-      "address": "石岡市鹿の子２丁目",
-      "city": "石岡市",
-      "access": "ＪＲ常磐線 「石岡」駅 徒歩3000ｍ",
-      "land_area_sqm": 487.0,
-      "building_area_sqm": null,
-      "madori": null,
-      "tsubo_tanka": "3.94万円",
-      "kenpei_yoseki": "60%/150%",
-      "rights": "所有権",
-      "use": "住宅用地",
-      "athome_url": "https://www.athome.co.jp/tochi/6984173107/",
-      "raw": "土地 石岡市 鹿の子２丁目（石岡駅） 住宅用地 580万円 坪単価 3.94万円 権利 所有権 土地面積 487.00m² (147.31坪) 最適用途 住宅用地 私道負担面積 － 建ぺい率/容積率 60%/150% 所在地 石岡市鹿の子２丁目 交通 ＪＲ常磐線 「石岡」駅 徒歩3000ｍ"
     },
     {
       "athome_id": "6981585775",
@@ -463,29 +443,6 @@
       "raw": "石岡/ＪＲ常磐線 徒歩1分 石岡市国府１丁目 15万円 － 2ヶ月 1ヶ月 1ヶ月 61.56m² 18.62坪 0.8056万円 1968年12月 （築57年7ヶ月） 石岡駅目の前です"
     },
     {
-      "athome_id": "rent_office_001",
-      "category": "rent_office",
-      "deal": "rent",
-      "title": "貸店舗・事務所 石岡市 国府１丁目(石岡駅) (1階)",
-      "price_man": 4.4,
-      "price_text": "4.4万円",
-      "address": "石岡市国府１丁目",
-      "city": "石岡市",
-      "access": "石岡/ＪＲ常磐線 徒歩4分",
-      "land_area_sqm": null,
-      "building_area_sqm": 22.15,
-      "madori": null,
-      "tsubo_tanka": "0.6567万円",
-      "kenpei_yoseki": null,
-      "rights": null,
-      "use": "貸店舗・事務所",
-      "shikikin": "1ヶ月",
-      "reikin": "1ヶ月",
-      "athome_url": "https://www.athome.co.jp/rent_store/6990621732/",
-      "raw": "石岡/ＪＲ常磐線 徒歩4分 石岡市国府１丁目 4.4万円 － 1ヶ月 なし 1ヶ月 22.15m² 6.70坪 0.6567万円 1977年7月 （築49年） １階駅近物件",
-      "note": "貸事務所ページにも同一物件ID 6990621732 が掲載（店舗兼事務所物件）"
-    },
-    {
       "athome_id": "rent_office_002",
       "category": "rent_office",
       "deal": "rent",
@@ -576,26 +533,6 @@
       "athome_url": "https://www.athome.co.jp/rent_store/6972552280/",
       "raw": "石岡/ＪＲ常磐線 徒歩1分 石岡市国府１丁目 15万円 － 2ヶ月 1ヶ月 1ヶ月 61.56m² 18.62坪 0.8056万円 1968年12月 （築57年7ヶ月） 石岡駅目の前です",
       "note": "貸事務所ページにも同一物件ID 6972552280 が掲載"
-    },
-    {
-      "athome_id": "6988835117",
-      "category": "kodate",
-      "deal": "sale",
-      "title": "中古一戸建て 石岡市 根当（石岡駅） 2階建 ６ＬＤＫ",
-      "price_man": 500,
-      "price_text": "500万円",
-      "address": "石岡市根当",
-      "city": "石岡市",
-      "access": "ＪＲ常磐線 「石岡」駅 徒歩4200ｍ",
-      "land_area_sqm": 1142.98,
-      "building_area_sqm": 156.25,
-      "madori": "６ＬＤＫ",
-      "tsubo_tanka": null,
-      "kenpei_yoseki": "60%/200%",
-      "rights": "所有権",
-      "use": "中古一戸建て",
-      "athome_url": "https://www.athome.co.jp/kodate/6988835117/",
-      "raw": "中古一戸建て 石岡市 根当（石岡駅） 2階建 ６ＬＤＫ 500万円 土地面積 1,142.98m² 建物面積 156.25m² 築1974年6月"
     },
     {
       "athome_id": "6991875028",

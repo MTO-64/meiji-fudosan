@@ -12,273 +12,138 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>販売中の物件一覧（土地・中古戸建・店舗）｜株式会社明治不動産</title>
-<meta name="description" content="茨城県石岡市・小美玉市・かすみがうら市・土浦市・笠間市で販売中の物件14件。土地・中古一戸建て・売店舗を掲載。株式会社明治不動産 TEL：0299-35-2123">
+<meta name="description" content="茨城県石岡市・小美玉市・かすみがうら市・土浦市・笠間市で販売中の物件12件。土地・中古一戸建て・売店舗を掲載。株式会社明治不動産 TEL：0299-35-2123">
 <meta name="robots" content="index, follow">
 <meta name="author" content="株式会社明治不動産">
 <link rel="canonical" href="https://meijifudosan.com/bukken/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meijifudosan.com/bukken/">
 <meta property="og:title" content="販売中の物件一覧（土地・中古戸建・店舗）｜株式会社明治不動産">
-<meta property="og:description" content="茨城県内の販売中物件14件を掲載。株式会社明治不動産 TEL：0299-35-2123">
+<meta property="og:description" content="茨城県内の販売中物件12件を掲載。株式会社明治不動産 TEL：0299-35-2123">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="株式会社明治不動産">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="販売中の物件一覧（土地・中古戸建・店舗）｜株式会社明治不動産">
-<meta name="twitter:description" content="茨城県内の販売中物件14件を掲載。株式会社明治不動産">
+<meta name="twitter:description" content="茨城県内の販売中物件12件を掲載。株式会社明治不動産">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --gold: #1f4e79; --gold-light: #9cc3e8; --dark: #1b2a3d; --white: #ffffff; --off-white: #f4f6f8; --text: #333333; --muted: #5f6670; --border: #dce3ea;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&amp;family=BIZ+UDPGothic:wght@400;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&amp;family=BIZ+UDPGothic:wght@400;700&amp;display=swap"></noscript>
 
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(27,42,61,0.96); backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(31,78,121,0.3);
-  }
-  .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { display: flex; flex-direction: column; line-height: 1.2; }
-  .logo a { text-decoration: none; }
-  .logo-en { font-size: 10px; letter-spacing: 4px; color: var(--gold-light); font-weight: 300; }
-  .logo-ja { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--white); letter-spacing: 2px; }
-  nav { display: flex; gap: 32px; }
-  nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; letter-spacing: 1px; transition: color 0.2s; }
-  nav a:hover { color: var(--gold-light); }
-  nav .nav-cta { background: var(--gold); color: var(--white); padding: 8px 20px; border-radius: 4px; }
+<link rel="stylesheet" href="/a/site.css">
+<link rel="stylesheet" href="/a/inner.css">
+<script>document.documentElement.classList.add('js');try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches,d=document.documentElement,h=location.pathname==='/'&&!sessionStorage.getItem('meiji-seen'),t=sessionStorage.getItem('meiji-tr');if(!r&&(h||t)){d.classList.add('cover');d.dataset.cover=h?'intro':'tr'}sessionStorage.removeItem('meiji-tr');sessionStorage.setItem('meiji-seen','1')}catch(e){}</script>
 
-  .breadcrumb { padding: 88px 24px 8px; max-width: 1200px; margin: 0 auto; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--gold); }
-  .breadcrumb-sep { color: var(--border); }
-
-  .page-hero { max-width: 1200px; margin: 0 auto; padding: 24px 24px 32px; }
-  .page-hero h1 { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
-  .page-hero p { color: var(--muted); font-size: 14px; }
-
-  .bukken-index-main { max-width: 1200px; margin: 0 auto; padding: 0 24px 64px; }
-
-  .city-group { margin-bottom: 48px; }
-  .city-group h2 { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 600; color: var(--dark); border-left: 3px solid var(--gold); padding-left: 12px; margin-bottom: 20px; }
-
-  .bukken-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .bukken-card { display: block; text-decoration: none; border-radius: 10px; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; }
-  .bukken-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-  .card-emoji { font-size: 32px; line-height: 1; margin-bottom: 8px; }
-  .card-type { font-size: 11px; letter-spacing: 2px; opacity: 0.75; margin-bottom: 4px; }
-  .card-price { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .card-addr { font-size: 13px; margin-bottom: 4px; }
-  .card-area { margin-top: 4px; }
-
-  .cta-block { background: var(--dark); color: var(--white); border-radius: 12px; padding: 40px; text-align: center; margin-bottom: 40px; }
-  .cta-block h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; margin-bottom: 12px; }
-  .cta-block p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 24px; line-height: 1.7; }
-  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary { background: var(--gold); color: var(--white); padding: 14px 32px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: 500; }
-  .btn-secondary { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 14px 32px; border-radius: 4px; text-decoration: none; font-size: 14px; }
-
-  footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 48px 24px 24px; }
-  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .footer-inner h3 { font-family: 'Noto Serif JP', serif; font-size: 14px; color: var(--white); margin-bottom: 12px; }
-  .footer-inner p { font-size: 12px; line-height: 1.8; }
-  .footer-inner ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .footer-inner ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 12px; }
-  .footer-inner ul li a:hover { color: var(--gold-light); }
-  .footer-bottom { text-align: center; font-size: 11px; color: rgba(255,255,255,0.62); padding-top: 20px; max-width: 1200px; margin: 0 auto; }
-
-  @media (max-width: 900px) { .bukken-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .bukken-grid { grid-template-columns: 1fr; } nav { display: none; } .footer-inner { grid-template-columns: 1fr; } }
-</style>
+<meta name="theme-color" content="#17252c">
 </head>
-<body>
-
-<header>
-  <div class="header-inner">
-    <div class="logo">
-      <a href="/">
-        <span class="logo-en">MEIJI REAL ESTATE</span>
-        <span class="logo-ja">株式会社明治不動産</span>
-      </a>
-    </div>
-    <nav>
-      <a href="/">トップ</a>
-      <a href="/ishioka/">石岡市</a>
-      <a href="/omitama/">小美玉市</a>
-      <a href="/bukken/">物件一覧</a>
-      <a href="/baikyaku/">売却・査定</a>
-      <a href="/#contact" class="nav-cta">無料相談</a>
-    </nav>
-  </div>
+<body class="scene">
+<div class="curtain" aria-hidden="true"><span><i>明</i><i>治</i><i>不</i><i>動</i><i>産</i></span></div>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-head">
+  <a class="brand" href="/">株式会社明治不動産</a>
+  <nav class="site-nav" aria-label="主なページ"><a href="/baikyaku/">売りたい</a><a href="/bukken/" aria-current="page">探したい</a><a href="/ibaraki/">地域</a><a href="/company/">会社案内</a></nav>
+  <a class="head-tel" href="tel:0299-35-2123">0299-35-2123</a>
+  <a class="head-cta" href="/contact/">相談する</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">メニュー</button>
 </header>
-
-<nav class="breadcrumb" aria-label="パンくずリスト">
-  <a href="/">トップ</a>
-  <span class="breadcrumb-sep">›</span>
-  <span>販売中の物件一覧</span>
-</nav>
-
-<div class="page-hero">
-  <h1>販売中の物件一覧</h1>
-  <p>茨城県内の土地・中古一戸建て・売店舗 計14件。市町別に掲載しています。掲載内容は2026年10月7日に確認した情報です。成約・変更の可能性があるため、最新の状況はお問い合わせください。</p>
+<div class="menu on-blue" id="menu" hidden>
+  <button class="menu-close" type="button">閉じる</button>
+  <a href="/baikyaku/">売りたい</a><a href="/bukken/">探したい</a><a href="/sozoku/">相続の相談</a><a href="/ibaraki/">地域</a><a href="/sora/">空から見る石岡</a><a href="/company/">会社案内</a><a href="/contact/">相談する</a>
+  <div class="sub"><a href="tel:0299-35-2123">電話 0299-35-2123</a></div>
 </div>
-
-<main class="bukken-index-main">
-
-<section class="city-group">
-<h2>石岡市</h2>
-<div class="bukken-grid">
-  <a href="/bukken/6991875028/" class="bukken-card" style="background:#3c2005;color:#f6ad55;">
-    <div class="card-type">売店舗</div>
-    <div class="card-price">400万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市国府１丁目</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">115.11m²</div>
-  </a>
-  <a href="/bukken/6988835117/" class="bukken-card" style="background:#1a202c;color:#f6e05e;">
-    <div class="card-type">中古戸建て</div>
-    <div class="card-price">500万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市根当</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">1,142.98m²（公簿）</div>
-  </a>
-  <a href="/bukken/6984173107/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">580万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市鹿の子２丁目</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">487.00m²（公簿）</div>
-  </a>
-  <a href="/bukken/6981585775/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">580万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市若松３丁目</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">531.05m²（公簿）</div>
-  </a>
-  <a href="/bukken/6989586224/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">600万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市杉の井</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">503.04m²（公簿）</div>
-  </a>
-  <a href="/bukken/6980188052/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">650万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市石岡</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">333.00m²（公簿）</div>
-  </a>
-  <a href="/bukken/6983664674/" class="bukken-card" style="background:#3c2005;color:#f6ad55;">
-    <div class="card-type">売店舗</div>
-    <div class="card-price">3,500万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市南台２丁目</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">1,158.84m²（公簿）</div>
-  </a>
-  <a href="/bukken/6964992076/" class="bukken-card" style="background:#2d3748;color:#fc8181;">
-    <div class="card-type">売土地（工場用地）</div>
-    <div class="card-price">12,500万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">石岡市山崎</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">14,534.00m²（公簿）</div>
-  </a>
-</div>
-</section>
-<section class="city-group">
-<h2>小美玉市</h2>
-<div class="bukken-grid">
-  <a href="/bukken/6987617901/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">80万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">小美玉市上玉里</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">172.00m²（公簿）</div>
-  </a>
-  <a href="/bukken/6989588083/" class="bukken-card" style="background:#1a365d;color:#63b3ed;">
-    <div class="card-type">売土地（事業用地）</div>
-    <div class="card-price">13,800万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">小美玉市山野</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">5,469.00m²（公簿）</div>
-  </a>
-  <a href="/bukken/6988834346/" class="bukken-card" style="background:#1a365d;color:#63b3ed;">
-    <div class="card-type">売土地（事業用地）</div>
-    <div class="card-price">15,000万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">小美玉市山野</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">11,148.00m²（公簿）</div>
-  </a>
-</div>
-</section>
-<section class="city-group">
-<h2>かすみがうら市</h2>
-<div class="bukken-grid">
-  <a href="/bukken/6981093188/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">50万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">かすみがうら市中志筑</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">631.00m²（公簿）</div>
-  </a>
-</div>
-</section>
-<section class="city-group">
-<h2>土浦市</h2>
-<div class="bukken-grid">
-  <a href="/bukken/6981787271/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">498万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">土浦市田中町</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">370.00m²（公簿）</div>
-  </a>
-</div>
-</section>
-<section class="city-group">
-<h2>笠間市</h2>
-<div class="bukken-grid">
-  <a href="/bukken/6987457536/" class="bukken-card" style="background:#1c4532;color:#68d391;">
-    <div class="card-type">売土地</div>
-    <div class="card-price">1,000万円</div>
-    <div class="card-addr" style="color:rgba(255,255,255,0.8);">笠間市小原</div>
-    <div class="card-area" style="color:rgba(255,255,255,0.6);font-size:12px;">1,692.55m²（公簿）</div>
-  </a>
-</div>
-</section>
-
-
-<div class="cta-block">
-  <h2>物件についてのお問い合わせ</h2>
-  <p>掲載物件の詳細確認・現地案内のご予約はお気軽に。<br>TEL：0299-35-2123（10:00〜17:00 / 日曜・祝日休み）</p>
-  <div class="cta-buttons">
-    <a href="tel:0299-35-2123" class="btn-primary">電話で問い合わせ 0299-35-2123</a>
-    <a href="/#contact" class="btn-secondary">フォームで問い合わせ</a>
-  </div>
-</div>
-
+<main id="main"><header class="ph"><img src="/a/s/keys.webp" srcset="/a/s/keys-1200.webp 1200w, /a/s/keys.webp 2400w" sizes="100vw" alt="" fetchpriority="high"><div class="ph-in"><h1>販売中の<wbr>物件一覧</h1><p>茨城県内の土地・中古一戸建て・売店舗 計12件。市町別に掲載しています。掲載内容は2026年11月4日に確認した情報です。成約・変更の可能性があるため、最新の状況はお問い合わせください。</p></div></header>
+<nav class="crumb after" aria-label="パンくずリスト"><a href="/">トップ</a><span aria-hidden="true">/</span><span>物件一覧</span></nav>
+<nav class="tabs" aria-label="売買と賃貸"><a href="#sale" aria-current="true">売買</a><a href="#rent">賃貸</a></nav>
+<div class="filters"><div class="f-row" data-filter="kind" role="group" aria-label="種類"><span>種類</span><button type="button" aria-pressed="true">すべて</button><button type="button" aria-pressed="false">土地</button><button type="button" aria-pressed="false">事業用地</button><button type="button" aria-pressed="false">中古住宅</button><button type="button" aria-pressed="false">店舗</button></div><div class="f-row" data-filter="city" role="group" aria-label="場所"><span>場所</span><button type="button" aria-pressed="true">すべて</button><button type="button" aria-pressed="false">かすみがうら市</button><button type="button" aria-pressed="false">小美玉市</button><button type="button" aria-pressed="false">石岡市</button><button type="button" aria-pressed="false">笠間市</button><button type="button" aria-pressed="false">土浦市</button></div><div class="f-row" data-filter="price" role="group" aria-label="価格"><span>価格</span><button type="button" aria-pressed="true">すべて</button><button type="button" aria-pressed="false">500万円未満</button><button type="button" aria-pressed="false">500〜1,000万円未満</button><button type="button" aria-pressed="false">1,000万円以上</button></div></div>
+<section class="chapter" id="sale" style="padding-top:32px"><p class="t-m"><span id="count">12件</span></p><p class="note">掲載情報の確認日 2026年11月4日。最新の状況はお問い合わせください。</p>
+<div class="mt2"><div class="catalog-head" aria-hidden="true"><span>所在地</span><span>種別</span><span>価格</span><span>面積</span><span>交通</span></div><div data-catalog><a class="cat-row" href="/bukken/6991875028/" data-kind="店舗" data-city="石岡市" data-man="400">
+    <span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span>
+    <span class="cat-kind">売店舗（建物一部）</span>
+    <span class="cat-price">400万円</span>
+    <span class="cat-area">115.11m²</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩1分</span>
+  </a><a class="cat-row" href="/bukken/6981585775/" data-kind="土地" data-city="石岡市" data-man="580">
+    <span class="cat-addr"><span class="city">石岡市</span><b>若松3丁目</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">580万円</span>
+    <span class="cat-area">531.05m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩26分</span>
+  </a><a class="cat-row" href="/bukken/6989586224/" data-kind="土地" data-city="石岡市" data-man="600">
+    <span class="cat-addr"><span class="city">石岡市</span><b>杉の井</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">600万円</span>
+    <span class="cat-area">503.04m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩12分</span>
+  </a><a class="cat-row" href="/bukken/6980188052/" data-kind="土地" data-city="石岡市" data-man="650">
+    <span class="cat-addr"><span class="city">石岡市</span><b>石岡</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">650万円</span>
+    <span class="cat-area">333.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩21分</span>
+  </a><a class="cat-row" href="/bukken/6983664674/" data-kind="店舗" data-city="石岡市" data-man="3500">
+    <span class="cat-addr"><span class="city">石岡市</span><b>南台2丁目</b></span>
+    <span class="cat-kind">売店舗</span>
+    <span class="cat-price">3,500万円</span>
+    <span class="cat-area">1,158.84m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩25分</span>
+  </a><a class="cat-row" href="/bukken/6964992076/" data-kind="事業用地" data-city="石岡市" data-man="12500">
+    <span class="cat-addr"><span class="city">石岡市</span><b>山崎</b></span>
+    <span class="cat-kind">工場用地</span>
+    <span class="cat-price">12,500万円</span>
+    <span class="cat-area">14,534.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩7500m</span>
+  </a><a class="cat-row" href="/bukken/6981093188/" data-kind="土地" data-city="かすみがうら市" data-man="50">
+    <span class="cat-addr"><span class="city">かすみがうら市</span><b>中志筑</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">50万円</span>
+    <span class="cat-area">631.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 【バス】15分 中志筑 停歩5分</span>
+  </a><a class="cat-row" href="/bukken/6987617901/" data-kind="土地" data-city="小美玉市" data-man="80">
+    <span class="cat-addr"><span class="city">小美玉市</span><b>上玉里</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">80万円</span>
+    <span class="cat-area">172.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩6000m [バス利用可] バス 20分 新木ノ内 停歩10分</span>
+  </a><a class="cat-row" href="/bukken/6981787271/" data-kind="土地" data-city="土浦市" data-man="498">
+    <span class="cat-addr"><span class="city">土浦市</span><b>田中町</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">498万円</span>
+    <span class="cat-area">370.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 土浦駅 徒歩30分</span>
+  </a><a class="cat-row" href="/bukken/6987457536/" data-kind="土地" data-city="笠間市" data-man="1000">
+    <span class="cat-addr"><span class="city">笠間市</span><b>小原</b></span>
+    <span class="cat-kind">住宅用地</span>
+    <span class="cat-price">1,000万円</span>
+    <span class="cat-area">1,692.55m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 友部駅 徒歩28分</span>
+  </a><a class="cat-row" href="/bukken/6989588083/" data-kind="事業用地" data-city="小美玉市" data-man="13800">
+    <span class="cat-addr"><span class="city">小美玉市</span><b>山野</b></span>
+    <span class="cat-kind">事業用地</span>
+    <span class="cat-price">13,800万円</span>
+    <span class="cat-area">5,469.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩14500m [バス利用可] バス 30分 空のえきそ・ら・ら 停歩2分</span>
+  </a><a class="cat-row" href="/bukken/6988834346/" data-kind="事業用地" data-city="小美玉市" data-man="15000">
+    <span class="cat-addr"><span class="city">小美玉市</span><b>山野</b></span>
+    <span class="cat-kind">事業用地</span>
+    <span class="cat-price">15,000万円</span>
+    <span class="cat-area">11,148.00m²（公簿）</span>
+    <span class="cat-acc">JR常磐線 / 石岡駅 徒歩14500m [バス利用可] バス 30分 空のえきそ・ら・ら 停歩2分</span>
+  </a></div><div class="catalog-empty" id="empty" hidden><p class="t-m">この条件の物件は今ありません。</p><p class="mt1">条件を変えるか、お電話ください。<a href="tel:0299-35-2123">0299-35-2123</a></p></div></div></section>
+<section class="chapter on-pale" id="rent"><div class="chapter-head split"><h2 class="t-l">賃貸の<wbr>物件</h2><p class="note">詳細はアットホームの掲載ページでご覧いただけます。</p></div><div class="catalog-head" aria-hidden="true"><span>所在地</span><span>種別</span><span>価格</span><span>面積</span><span>交通</span></div><div><a class="cat-row" href="https://www.athome.co.jp/ahch/meijihudousan.html" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>東大橋</b></span><span class="cat-kind">ワンルーム</span><span class="cat-price">3.5万円/月</span><span class="cat-area">17.35m²</span><span class="cat-acc">JR常磐線 「石岡」駅 徒歩2300m [バス利用可] バス ウェルサイト石岡 停歩12分</span></a><a class="cat-row" href="https://www.athome.co.jp/ahch/meijihudousan.html" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>府中4丁目</b></span><span class="cat-kind">2DK</span><span class="cat-price">3.5万円/月</span><span class="cat-area">40.99m²</span><span class="cat-acc">JR常磐線 「石岡」駅 徒歩13分</span></a><a class="cat-row" href="https://www.athome.co.jp/ahch/meijihudousan.html" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>若松3丁目</b></span><span class="cat-kind">3DK</span><span class="cat-price">3.5万円/月</span><span class="cat-area">43m²</span><span class="cat-acc">JR常磐線 「石岡」駅 徒歩29分</span></a><a class="cat-row" href="https://www.athome.co.jp/ahch/meijihudousan.html" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>東大橋</b></span><span class="cat-kind">2DK</span><span class="cat-price">3.5万円/月</span><span class="cat-area">34.7m²</span><span class="cat-acc">JR常磐線 「石岡」駅 徒歩2300m [バス利用可] バス ウェルサイト石岡 停歩12分</span></a><a class="cat-row" href="https://www.athome.co.jp/ahch/meijihudousan.html" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>石岡</b></span><span class="cat-kind">3LDK</span><span class="cat-price">4万円/月</span><span class="cat-area">54.54m²</span><span class="cat-acc">JR常磐線 「石岡」駅 徒歩13分</span></a><a class="cat-row" href="https://www.athome.co.jp/ahch/meijihudousan.html" rel="noopener"><span class="cat-addr"><span class="city">行方市</span><b>芹沢</b></span><span class="cat-kind">3DK</span><span class="cat-price">5.3万円/月</span><span class="cat-area">51.34m²</span><span class="cat-acc">JR常磐線 「石岡」駅 徒歩23000m [バス利用可] バス 40分 玉造中山 停歩2分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6990794692/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">5.5万円/月</span><span class="cat-area">50.69m²</span><span class="cat-acc">石岡/JR常磐線 徒歩4分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6990624509/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">7.7万円/月</span><span class="cat-area">127.17m²</span><span class="cat-acc">石岡/JR常磐線 徒歩4分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6972552560/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">15万円/月</span><span class="cat-area">61.56m²</span><span class="cat-acc">石岡/JR常磐線 徒歩1分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6972552280/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">15万円/月</span><span class="cat-area">61.56m²</span><span class="cat-acc">石岡/JR常磐線 徒歩1分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6990794692/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">5.5万円/月</span><span class="cat-area">50.69m²</span><span class="cat-acc">石岡/JR常磐線 徒歩4分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6990624509/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">7.7万円/月</span><span class="cat-area">127.17m²</span><span class="cat-acc">石岡/JR常磐線 徒歩4分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6972552560/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">15万円/月</span><span class="cat-area">61.56m²</span><span class="cat-acc">石岡/JR常磐線 徒歩1分</span></a><a class="cat-row" href="https://www.athome.co.jp/rent_store/6972552280/" rel="noopener"><span class="cat-addr"><span class="city">石岡市</span><b>国府1丁目</b></span><span class="cat-kind"></span><span class="cat-price">15万円/月</span><span class="cat-area">61.56m²</span><span class="cat-acc">石岡/JR常磐線 徒歩1分</span></a></div></section>
+<section class="ask-bar on-deep"><div><h2 class="t-l">物件についての<br>お問い<wbr>合わせ</h2><p class="mt1 measure">掲載物件の詳細確認、現地案内のご予約はお気軽に。掲載していない条件でも、お探しの内容をうかがいます。</p></div><div><a class="ask-go" href="/contact/?type=find">フォームで相談する</a></div></section>
 </main>
-
-<footer>
-  <div class="footer-inner">
-    <div>
-      <h3>株式会社明治不動産</h3>
-      <p>〒315-0014<br>茨城県石岡市国府1丁目2-2<br>TEL：0299-35-2123<br>営業時間：10:00〜17:00（日曜・祝日休み）</p>
-    </div>
-    <div>
-      <h3>エリア</h3>
-      <ul>
-        <li><a href="/ishioka/">石岡市</a></li>
-        <li><a href="/omitama/">小美玉市</a></li>
-        <li><a href="/kasumigaura/">かすみがうら市</a></li>
-        <li><a href="/tsuchiura/">土浦市</a></li>
-        <li><a href="/kasama/">笠間市</a></li>
-        <li><a href="/ibaraki/">対応エリア</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>物件</h3>
-      <ul>
-        <li><a href="/bukken/">販売中の物件一覧</a></li>
-        <li><a href="/baikyaku/">不動産売却・無料査定</a></li>
-        <li><a href="/ishioka/akiya/">空き家</a></li>
-        <li><a href="/ishioka/business-land/">事業用地</a></li>
-      </ul>
-    </div>
+<footer class="site-foot">
+  <p class="small">お電話がいちばん早いです。10:00〜17:00、日曜と祝日は休みです。</p>
+  <a class="foot-tel" href="tel:0299-35-2123">0299-35-2123</a>
+  <div class="foot-grid">
+    <address><p class="foot-name">株式会社明治不動産</p>〒315-0014 茨城県石岡市国府1丁目2-2<br>JR常磐線 石岡駅 西口から徒歩1分<br>FAX 0299-24-2102<br>茨城県知事免許(3) 第6811号</address>
+    <ul><li><a href="/baikyaku/">売却と査定</a></li><li><a href="/sozoku/">相続の相談</a></li><li><a href="/ishioka/akiya/">空き家の相談</a></li><li><a href="/ishioka/before-selling/">売る前の確認</a></li></ul>
+    <ul><li><a href="/bukken/">販売中の物件</a></li><li><a href="/ishioka/land/">石岡市の土地</a></li><li><a href="/ishioka/used-house/">石岡市の中古住宅</a></li><li><a href="/ibaraki/business-land/">茨城県の事業用地</a></li></ul>
+    <ul><li><a href="/company/">会社案内</a></li><li><a href="/contact/">お問い合わせ</a></li><li><a href="/ibaraki/">対応エリア</a></li><li><a href="/sora/">空から見る石岡</a></li><li><a href="/policy/">サイトポリシー</a></li></ul>
   </div>
-  <div class="footer-bottom">© 株式会社明治不動産 / 茨城県知事免許(3) 第6811号</div>
+  <nav class="foot-area" aria-label="地域と種類から探す"><a href="/ishioka/">石岡市</a><a href="/ishioka/land/">石岡市の土地</a><a href="/ishioka/used-house/">石岡市の中古住宅</a><a href="/ishioka/akiya/">石岡市の空き家</a><a href="/ishioka/business-land/">石岡市の事業用地</a><a href="/omitama/">小美玉市</a><a href="/omitama/land/">小美玉市の土地</a><a href="/omitama/used-house/">小美玉市の中古住宅</a><a href="/kasumigaura/">かすみがうら市</a><a href="/tsuchiura/">土浦市</a><a href="/tsukuba/">つくば市</a><a href="/kasama/">笠間市</a><a href="/hokota/">鉾田市</a><a href="/ibaraki/">茨城県</a><a href="/ibaraki/land/">茨城県の土地</a><a href="/ibaraki/business-land/">茨城県の事業用地</a></nav>
 </footer>
-
+<div class="bar"><a href="tel:0299-35-2123">電話する</a><a href="/contact/">相談を送る</a></div>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -289,6 +154,11 @@
   ]
 }
 </script>
+<script src="/a/site.js" defer></script>
+<script src="/a/gsap.min.js" defer></script>
+<script src="/a/ScrollTrigger.min.js" defer></script>
+<script src="/a/lenis.min.js" defer></script>
+<script src="/a/motion.js" defer></script>
 
 </body>
 </html>

@@ -32,10 +32,10 @@ jobs:
           SITE_HEALTH_SCOPE: repo
         run: node scripts/site-health.test.mjs
 
-      - name: index.html / admin.html 構文チェック (Node tokenizer 経由ではなく単純 grep でタグ閉じだけ)
+      - name: index.html 構文チェック (Node tokenizer 経由ではなく単純 grep でタグ閉じだけ)
         run: |
           # GitHub Pages 配信前の最低限のサニティ。詳細な lint は別ジョブに切り出す前提。
-          for f in index.html admin.html; do
+          for f in index.html; do
             if [[ ! -f "$f" ]]; then
               echo "ERROR: $f が見つかりません" >&2
               exit 1

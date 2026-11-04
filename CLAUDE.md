@@ -5,13 +5,17 @@
 ## スタック
 - 静的HTML / CSS / JavaScript（フレームワークなし）
 
-## ファイル構成
+## ファイル構成(2026-11 刷新・公開後の正)
 ```
-index.html      # メインページ
-admin.html      # 管理ページ
-sitemap.xml     # サイトマップ
-robots.txt      # クローラー設定
+content/        # 旧形式の正本HTML。build-bukken.js の出力先。手で新デザイン側を直さない
+src-site/       # 新デザインの生成器 build.mjs、CSS/JS、check.mjs、rebuild.test.mjs
+a/              # 公開する画像とライブラリ。a/s=情景、a/sora=地理院の空中写真
+直下の各ページ   # build.mjs の生成物。直接編集しない(次のビルドで消える)
+docs/specs/site-renewal.md  # 統合の仕様
 ```
+**更新手順**: `node scripts/build-bukken.js`(物件が変わった時) → 成約分は `content/bukken/<id>/` を消す → `node src-site/build.mjs` → `node scripts/build-sitemap-lastmod.js` → `node src-site/check.mjs` → `SITE_HEALTH_SCOPE=repo node scripts/site-health.test.mjs` → `node src-site/rebuild.test.mjs`。
+**試作確認**: `PREVIEW=1 OUT=<別の場所> node src-site/build.mjs`(計測タグを入れない)。localhostで本番ビルドを開くと本番のGA4へ記録される。
+**画面に出さないもの**: 出典・注記。写真の権利台帳は `src-site/PHOTOS.md`。実在の物件・事務所に見えるAI写真を置かない。
 
 ## 注意
 - Google Search Console認証済み（google58922da62ae13e77.html）

@@ -9,7 +9,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..');
+// 2026-11 刷新: 旧形式の正本は content/ に置き、新デザインは src-site/build.mjs が生成する
+const ROOT = path.join(path.resolve(__dirname, '..'), 'content');
 const DATA_FILE = path.join(__dirname, 'athome-details.json');
 const SITEMAP = path.join(ROOT, 'sitemap.xml');
 const LASTMOD = '2026-10-07';

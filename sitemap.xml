@@ -133,12 +133,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meijifudosan.com/bukken/6984173107/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://meijifudosan.com/bukken/6981585775/</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -187,12 +181,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://meijifudosan.com/bukken/6988835117/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://meijifudosan.com/bukken/6991875028/</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -214,4 +202,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url><loc>https://meijifudosan.com/contact/</loc></url>
+  <url><loc>https://meijifudosan.com/sora/</loc></url>
 </urlset>

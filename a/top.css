@@ -1,0 +1,139 @@
+/* トップの場面。1画面ごとに演出する。動きを減らす設定の人には静止した読み物になる。 */
+:root{--night:#17252c;--sage:#7f9186;--clay:#a98a70;--mist:#e7ebea;--paper:#fff}
+body.home{background:var(--night);color:#fff;transition:none}
+.home h2{font-family:var(--d)}
+:root{--d:'Shippori Mincho B1',serif}
+/* 1 楕円の窓 */
+.s-open{position:relative;height:280vh;background:var(--mist)}
+.s-open .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.s-open .win{position:absolute;inset:0;clip-path:ellipse(19% 34% at 50% 50%);will-change:clip-path}
+.s-open .win img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);will-change:transform;background:var(--night)}
+.s-open .say{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,48px);color:var(--night);font:500 clamp(52px,11vw,190px)/1 var(--d);letter-spacing:.02em;pointer-events:none;white-space:nowrap}
+.s-open .say b{font-weight:500;will-change:transform,color}
+.s-open .under{position:absolute;left:0;right:0;bottom:clamp(92px,17vh,180px);text-align:center;color:#fff;font:500 clamp(20px,2vw,30px)/1.5 var(--d);text-shadow:0 1px 16px rgba(0,0,0,.5)}
+.s-open h1{position:absolute;left:var(--g);top:calc(var(--head-h) + 8px);font:400 15px/1.6 var(--b);color:var(--night);z-index:3}
+.s-open .entry{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;z-index:4}
+.entry a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:clamp(14px,1.9vw,26px) var(--g);text-decoration:none;background:#fff;color:var(--night);font:500 clamp(25px,3.2vw,52px)/1.1 var(--d);transition:background .3s,color .3s}
+.entry a+a{background:var(--night);color:#fff}
+.entry a small{font:400 15px/1.4 var(--b);display:none}
+.entry a:hover{background:var(--blue);color:#fff}
+/* 2 流れる写真と大きな言葉 */
+.s-word{position:relative;background:var(--night);color:#fff;height:320vh}
+.s-word .pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center}
+.s-word .big{position:relative;z-index:2;padding:0 var(--g);font:500 clamp(40px,7.2vw,124px)/1.3 var(--d);letter-spacing:.01em;mix-blend-mode:normal}
+.s-word .big span{display:block}.s-word .big i{font-style:normal;opacity:.14;transition:opacity .25s linear}.s-word .big i.on{opacity:1}
+.floaters img{position:absolute;object-fit:cover;z-index:1;will-change:transform;background:#23343c}
+.fl1{width:clamp(130px,17vw,300px);aspect-ratio:3/4;right:7%;top:112%}.fl2{width:clamp(150px,21vw,370px);aspect-ratio:4/3;left:5%;top:140%}.fl3{width:clamp(120px,15vw,250px);aspect-ratio:3/4;right:31%;top:175%}.fl4{width:clamp(150px,22vw,380px);aspect-ratio:4/3;right:4%;top:215%}.fl5{width:clamp(110px,14vw,240px);aspect-ratio:3/4;left:27%;top:250%}
+.s-word .sub{position:absolute;left:var(--g);bottom:clamp(20px,5vh,56px);max-width:32em;font-size:17px;line-height:1.8;z-index:2}
+/* 3 悩みで写真が替わる */
+.s-worry{background:var(--mist);color:var(--night);display:grid}
+.s-worry .pics{position:relative;overflow:hidden;min-height:60vh;background:var(--night)}
+.s-worry .pics img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 0 100% 0);transform:scale(1.08);transition:clip-path .75s cubic-bezier(.76,0,.24,1),transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.s-worry .pics img.on{clip-path:inset(0);transform:scale(1);z-index:2}
+.s-worry .pics img.was{clip-path:inset(0);z-index:1}
+.s-worry .rows{padding:clamp(40px,7vw,110px) var(--g)}
+.s-worry h2{font:500 clamp(38px,5.6vw,92px)/1.2 var(--d);margin-bottom:clamp(24px,4vw,56px)}
+.worries a{display:block;min-height:76px;padding:20px 0;border-top:1px solid rgba(23,37,44,.28);text-decoration:none;font:500 clamp(21px,2.1vw,32px)/1.4 var(--d);transition:padding .35s var(--ease),color .2s}
+.worries li:last-child a{border-bottom:1px solid rgba(23,37,44,.28)}
+.worries a.on,.worries a:hover{padding-left:18px;color:#185a86}
+.worries a b{font-weight:500;display:block}.worries a span{display:block;font:400 15px/1.5 var(--b);color:var(--mid);opacity:0;max-height:0;overflow:hidden;transition:opacity .3s,max-height .35s}.worries a.on span{opacity:1;max-height:3em;margin-top:4px}
+/* 4 物件を横へ送る */
+.s-side{position:relative;background:var(--sage);color:var(--night);overflow:hidden}
+.side-track{display:flex;align-items:stretch;height:100vh;height:100svh;width:max-content;will-change:transform}
+.s-side.free .side-track{height:auto;overflow-x:auto;width:auto;max-width:100%;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.side-title{flex:none;width:min(88vw,720px);padding:calc(var(--head-h) + 24px) var(--g) 40px;display:flex;flex-direction:column;justify-content:space-between}
+.side-title h2{font:500 clamp(46px,8vw,132px)/1.1 var(--d)}
+.lotc{flex:none;width:min(86vw,520px);margin:calc(var(--head-h) + 8px) 0 28px 16px;background:#fff;color:var(--night);padding:clamp(20px,2.4vw,36px);display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;scroll-snap-align:start;min-height:70vh;transition:background .3s,color .3s}
+.lotc:hover{background:var(--night);color:#fff}
+.lotc .ct{font-size:15px;line-height:1.5}.lotc h3{font:500 clamp(46px,6vw,96px)/1.1 var(--d);margin-top:6px}
+.lotc .pr{font:500 clamp(28px,3vw,44px)/1.2 var(--d)}.lotc dl{margin-top:12px}.lotc dl div{display:grid;grid-template-columns:4.6em 1fr;gap:8px;padding:7px 0;border-top:1px solid currentColor;font-size:15px;line-height:1.55}.lotc dd{margin:0}
+.lotp{flex:none;width:min(86vw,560px);margin:calc(var(--head-h) + 8px) 0 28px 16px;position:relative;overflow:hidden;scroll-snap-align:start}
+.lotp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.2);will-change:transform}
+.lotp small{position:absolute;left:12px;bottom:10px;color:#fff;font-size:14px;text-shadow:0 1px 8px rgba(0,0,0,.75)}
+.lote{flex:none;width:min(86vw,520px);margin:calc(var(--head-h) + 8px) 16px 28px;display:flex;align-items:center;justify-content:center;background:var(--night);color:#fff;text-decoration:none;font:500 clamp(30px,3.6vw,56px)/1.3 var(--d);padding:24px;text-align:center;scroll-snap-align:start}.lote:hover{background:var(--blue)}
+/* 5 流れ */
+.s-flow{position:relative;background:var(--mist);color:var(--night);padding:clamp(70px,10vw,160px) var(--g)}
+.s-flow h2{font:500 clamp(38px,5.6vw,92px)/1.2 var(--d)}
+.track{position:relative;margin-top:clamp(36px,5vw,72px);padding-left:clamp(44px,8vw,140px)}
+.track::before,.track .fill{content:'';position:absolute;left:clamp(14px,3vw,52px);top:0;bottom:0;width:2px;background:rgba(23,37,44,.2)}
+.track .fill{background:var(--blue);transform:scaleY(0);transform-origin:top;will-change:transform}
+.track li{position:relative;padding:clamp(22px,3.4vw,50px) 0;list-style:none;counter-increment:st}.track{counter-reset:st}
+.track li::before{content:counter(st);position:absolute;left:calc(-1*clamp(30px,5vw,88px) - 6px);top:clamp(18px,3vw,44px);font:500 clamp(30px,3vw,46px)/1 var(--d);background:var(--mist);padding:4px 0}
+.track b{display:block;font:500 clamp(30px,4.2vw,66px)/1.25 var(--d)}.track span{display:block;font-size:18px;max-width:34em;margin-top:6px}
+/* 7 地域の列。背景は国土地理院の衛星写真で、行に合わせて替わる */
+.s-area{position:relative;display:grid;background:var(--night);color:#fff}
+.area-bg,.area-in{grid-area:1/1;min-width:0}
+.area-bg{position:sticky;top:0;height:100vh;height:100svh;align-self:start;overflow:hidden}
+.area-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.area-bg img.on{opacity:1}
+.area-bg::after{content:'';position:absolute;inset:0;background:rgba(23,37,44,.5)}
+.area-in{position:relative;z-index:2;padding:clamp(70px,10vw,150px) var(--g)}
+.area-in>p{max-width:36em;margin-top:18px;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.s-area h2{font:500 clamp(38px,5.6vw,92px)/1.2 var(--d);text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.area-rows{margin-top:clamp(30px,5vw,70px)}
+.area-rows a{display:grid;grid-template-columns:1fr;gap:2px;padding:clamp(16px,2vw,26px) 0;border-top:1px solid rgba(255,255,255,.4);text-decoration:none;transition:padding .35s var(--ease)}
+.area-rows a.on,.area-rows a:hover,.area-rows a:focus-visible{padding-left:20px}
+.area-rows b{font:500 clamp(30px,5vw,84px)/1.15 var(--d);text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.area-rows span{font-size:16px;line-height:1.6;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.minor{background:#fff;color:var(--ink)}
+.minor .related-card a{color:var(--ink)}
+/* 8 締め */
+.s-end{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;color:#fff;background:var(--night)}
+.s-end img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.s-end .in{position:relative;padding:var(--g);text-shadow:0 2px 22px rgba(0,0,0,.45)}
+.s-end h2{font:500 clamp(38px,6.4vw,108px)/1.2 var(--d)}
+body.home .site-foot{margin-top:0}
+.mask{display:block;overflow:hidden}.mask>span{display:block;will-change:transform}
+
+@media(min-width:1000px){
+  .entry a small{display:inline}
+  .s-worry{grid-template-columns:1fr 1fr;align-items:start}.s-worry .pics{position:sticky;top:0;height:100vh;min-height:0}
+  .track li{width:min(66vw,960px)}
+  .area-rows a{grid-template-columns:7fr 5fr;align-items:baseline;column-gap:40px}
+}
+@media(max-width:999px){
+  .s-open{height:220vh}.s-open .win{clip-path:ellipse(36% 22% at 50% 44%)}
+  .s-open .say{font-size:clamp(40px,14vw,82px);align-items:center;flex-direction:column;justify-content:center;gap:48vh;padding-bottom:12vh}
+  .s-worry .pics{position:sticky;top:0;height:42vh;min-height:0;z-index:2}
+}
+@media(prefers-reduced-motion:reduce){
+  .s-open,.s-word{height:auto}.s-open .pin,.s-word .pin{position:relative;height:auto;min-height:90vh}.s-open .win{clip-path:none;position:relative;height:70vh}.s-open .say{position:relative;color:var(--night);padding:24px var(--g)}.s-open .entry{position:relative}
+  .s-word .pin{display:block;padding:80px 0}.s-word .big i{opacity:1}.floaters{display:none}
+  .side-track{height:auto;overflow-x:auto;width:auto}.track .fill{transform:none}
+}
+.flow-grid{display:grid;gap:32px}
+.flow-pic{display:none}
+.co-pic{overflow:hidden;margin-bottom:32px;aspect-ratio:4/3;background:var(--night)}
+.co-pic img{width:100%;height:100%;object-fit:cover}
+.s-word .sub{max-width:44em;text-wrap:pretty}
+.s-end .ask-go{background:#fff;color:var(--night)}
+@media(min-width:1000px){
+  .flow-grid{grid-template-columns:7fr 5fr;align-items:start}
+  .flow-pic{display:block;position:sticky;top:12vh;height:76vh;overflow:hidden;clip-path:ellipse(46% 50% at 50% 50%);background:var(--night)}
+  .flow-pic img{width:100%;height:100%;object-fit:cover}
+  .track li{width:auto}
+  .faq-two{display:grid;grid-template-columns:4fr 8fr;gap:48px;align-items:start}
+  .faq-two h2{position:sticky;top:96px}
+}
+@media(max-width:999px){.s-open .entry{bottom:var(--bar-h,56px)}.s-open .under{bottom:calc(var(--bar-h,56px) + 92px)}}
+.lotc h3{word-break:normal}
+@media(min-width:1000px){
+  .s-worry h2{font-size:clamp(36px,4vw,68px)}
+  .company-grid .t-l{font-size:clamp(34px,3.4vw,56px)}
+  .faq-two .t-l{word-break:keep-all}
+}
+@media(prefers-reduced-motion:reduce){.area-bg img,.area-rows a{transition:none}}
+.area-bg::after{background:rgba(23,37,44,.42)}
+@media(min-width:1000px){.area-bg::after{background:rgba(23,37,44,.3)}}
+.area-rows span{font-size:17px}
+/* 締めの文字は駅の写真の空に置く */
+.s-end{justify-content:flex-start}
+.s-end .in{padding-top:clamp(56px,9vh,110px)}
+.s-end img{object-position:50% 100%}
+@media(max-width:999px){.s-end img{object-position:40% 100%}}
+@media(min-width:1000px){.s-end .in{align-self:flex-end;width:44%;padding-right:var(--g)}}
+@media(min-width:1000px){
+  .s-end .in{width:auto;padding-top:clamp(84px,11vh,104px)}
+  .s-end h2{font-size:clamp(36px,3.8vw,60px);white-space:nowrap}
+  .s-end .ask-go{min-height:56px}
+}

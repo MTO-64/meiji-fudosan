@@ -1,0 +1,48 @@
+/* 空から見るページ。写真はすべて国土地理院の実写。 */
+.dive{height:560vh;position:relative;background:var(--night)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--night)}
+#c{position:absolute;inset:0;width:100%;height:100%;display:block}
+.place{position:absolute;transform:translate(-50%,-100%);color:#fff;font:500 clamp(16px,1.5vw,22px)/1.2 var(--d);text-shadow:0 1px 10px rgba(0,0,0,.9);padding-bottom:22px;white-space:nowrap;pointer-events:none;transition:opacity .3s}
+.place::after{content:'';position:absolute;left:50%;bottom:0;height:18px;width:1px;background:#fff}
+.shop-mark{position:absolute;width:26px;height:26px;margin:-13px;border:3px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.4);opacity:0;transition:opacity .3s}
+.line{position:absolute;left:var(--g);bottom:clamp(96px,16vh,170px);max-width:min(88vw,17em);color:#fff;font:500 clamp(36px,6vw,96px)/1.24 var(--d);text-shadow:0 2px 22px rgba(0,0,0,.75);opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s}
+.line.on{opacity:1;transform:none}
+.line small{display:block;font:400 clamp(16px,1.3vw,20px)/1.7 var(--b);margin-bottom:8px}
+.line h1{font:inherit;display:inline}
+.scale{position:absolute;right:var(--g);bottom:clamp(96px,16vh,170px);color:#fff;font-size:15px;text-align:right;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.scale i{display:block;height:4px;background:#fff;margin:6px 0 0 auto}
+.time{height:420vh;position:relative;background:var(--night)}
+.time .stage{touch-action:pan-y}
+.lay{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+#l2{filter:saturate(.72) contrast(.9) brightness(1.1)}
+#l1{filter:grayscale(1) contrast(1.05)}
+.edge{position:absolute;top:0;bottom:0;width:2px;background:#fff;z-index:3}
+.yr{position:absolute;z-index:4;bottom:clamp(76px,10vh,96px);transform:translateX(-100%);padding-right:18px;color:#fff;font:500 clamp(40px,7vw,116px)/1 var(--d);white-space:nowrap;text-shadow:0 2px 26px rgba(0,0,0,.85)}
+.yr.next{transform:none;padding:0 0 0 18px}
+.handle{position:absolute;top:50%;width:76px;height:48px;margin:-24px -38px;border:2px solid #fff;background:rgba(23,37,44,.6);z-index:5;cursor:ew-resize;color:#fff;font-size:15px;touch-action:none}
+.time-head{position:absolute;z-index:4;left:var(--g);top:calc(var(--head-h) + 12px);color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.95)}
+.time-head h2{font:500 clamp(32px,4.6vw,76px)/1.25 var(--d)}
+.time-head p{margin-top:8px;font-size:17px;line-height:1.7}
+.s-wall{position:relative;background:var(--night);color:#fff}
+.wall-bg{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;overflow:hidden}
+.wall-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s}
+.wall-bg img.on{opacity:1}
+.wall-bg::after{content:'';position:absolute;inset:0;background:rgba(23,37,44,.42)}
+.wall{position:relative;z-index:2;padding:clamp(80px,10vw,140px) var(--g)}
+.wall h2{font:500 clamp(34px,5vw,84px)/1.2 var(--d)}
+.wall>p{max-width:34em;margin:16px 0 clamp(28px,4vw,56px);text-shadow:0 1px 10px rgba(0,0,0,.8)}
+.nm{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .4em;padding:.04em 0;color:#fff;text-decoration:none;opacity:.55;transition:opacity .2s,padding .35s var(--ease);font:500 clamp(42px,8vw,132px)/1.14 var(--d);text-shadow:0 2px 20px rgba(0,0,0,.55)}
+.nm.on,.nm:hover,.nm:focus-visible{opacity:1;padding-left:.2em}
+.nm small{font:400 clamp(15px,1.25vw,19px)/1.5 var(--b);text-shadow:0 1px 8px #000}
+.s-sora-end{background:var(--mist);color:var(--night);padding:clamp(70px,10vw,150px) var(--g)}
+.s-sora-end h2{font:500 clamp(36px,5.6vw,92px)/1.2 var(--d)}
+.s-sora-end p{max-width:34em;margin:20px 0 28px}
+.s-sora-end .ask-go{background:var(--night);color:#fff}
+/* 写真を文字の後ろに敷く。負のマージンだと親の外へはみ出すので重ねて置く */
+.s-wall{display:grid}
+.wall-bg,.wall{grid-area:1/1;min-width:0}
+.wall-bg{margin-bottom:0;align-self:start}
+.dive .stage::after{content:'';position:absolute;left:0;right:0;bottom:0;height:60%;background:rgba(23,37,44,.42);mask-image:linear-gradient(transparent,#000);-webkit-mask-image:linear-gradient(transparent,#000);pointer-events:none}
+.line,.scale{z-index:2}
+.line{word-break:keep-all;overflow-wrap:anywhere}
+@media(max-width:999px){.nm{opacity:.78}}
