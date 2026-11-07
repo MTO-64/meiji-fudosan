@@ -182,11 +182,6 @@ function buildTop() {
   <p class="under">石岡駅から徒歩1分です。</p>
   <div class="entry"><a href="/baikyaku/">売りたい<small>相続した土地、空き家、査定のご相談</small></a><a href="/bukken/">探したい<small>土地、中古住宅、事業用地を販売中</small></a></div>
 </div></section>
-<section class="s-word"><div class="pin">
-  <div class="floaters" aria-hidden="true">${[['fl1', 'keys'], ['fl2', 'engawa'], ['fl3', 'hands'], ['fl4', 'grain'], ['fl5', 'town']].map(([c, id]) => `<img class="${c}" src="/a/s/${id}.webp" alt="" loading="lazy">`).join('')}</div>
-  <h2 class="big"><span>売るかどうかは、</span><span>あとで決めて</span><span>かまいません。</span></h2>
-  <p class="sub">査定と相談は無料です。秘密は厳守します。しつこい営業はいたしません。</p>
-</div></section>
 <section class="s-worry">
   <div class="pics" aria-hidden="true">${worries.map((w, i) => `<img class="${i ? '' : 'on'}" src="/a/s/${w[3]}.webp" alt="" loading="lazy">`).join('')}</div>
   <div class="rows"><h2>こんな時に、<br>ご相談ください。</h2><p class="measure" style="margin-bottom:32px">茨城県内の不動産売却は、石岡で長く営業してきた明治不動産にご相談ください。</p>

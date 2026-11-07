@@ -74,11 +74,6 @@
   }
   gsap.registerPlugin(ScrollTrigger);
 
-  // 文字を1字ずつに分ける(本文はHTMLのまま残すため実行時に行う)
-  document.querySelectorAll('.s-word .big span').forEach(function (line) {
-    line.innerHTML = Array.from(line.textContent).map(function (c) { return '<i>' + c + '</i>'; }).join('');
-  });
-
   var isWide = matchMedia('(min-width: 1000px)').matches;
 
   // 1: 楕円の窓が全画面へ開き、言葉が左右へ割れる
@@ -90,20 +85,6 @@
     .to('.s-open .say', { opacity: 0, duration: 0.25 }, 0.72)
     .to('.s-open h1', { color: '#ffffff', duration: 0.2 }, 0.3)
     .fromTo('.s-open .under', { opacity: 0 }, { opacity: 1, duration: 0.22, immediateRender: true }, 0.78);
-
-  // 2: 文字が読むほどに灯り、写真が前を流れる
-  var chars = [].slice.call(document.querySelectorAll('.s-word .big i'));
-  gsap.timeline({ scrollTrigger: {
-    trigger: '.s-word', start: 'top top', end: 'bottom bottom', scrub: 0.5,
-    onUpdate: function (st) {
-      var n = Math.floor(Math.min(1, st.progress * 1.5) * chars.length);
-      chars.forEach(function (c, i) { c.classList.toggle('on', i < n); });
-    } } })
-    .to('.fl1', { y: () => -innerHeight * 2.0, ease: 'none', duration: 1 }, 0)
-    .to('.fl2', { y: () => -innerHeight * 2.6, ease: 'none', duration: 1 }, 0)
-    .to('.fl3', { y: () => -innerHeight * 3.2, ease: 'none', duration: 1 }, 0)
-    .to('.fl4', { y: () => -innerHeight * 3.4, ease: 'none', duration: 1 }, 0)
-    .to('.fl5', { y: () => -innerHeight * 4.0, ease: 'none', duration: 1 }, 0);
 
   // 3: スクロールでも悩みが順に替わる
   worryLinks.forEach(function (a, i) {
