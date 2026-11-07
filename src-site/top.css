@@ -92,8 +92,10 @@ body.home .site-foot{margin-top:0}
   .area-rows a{grid-template-columns:7fr 5fr;align-items:baseline;column-gap:40px}
 }
 @media(max-width:999px){
-  .s-open{height:220vh}.s-open .win{clip-path:ellipse(36% 22% at 50% 44%)}
-  .s-open .say{font-size:clamp(40px,14vw,82px);align-items:center;flex-direction:column;justify-content:center;gap:48vh;padding-bottom:12vh}
+  .s-open{height:220vh}.s-open .win{clip-path:ellipse(36% 19% at 50% 50%)}
+  .s-open .say{font-size:clamp(40px,14vw,82px);display:block;padding:0}
+  /* 2語は見出し(h1)の下と入口ボタンの上に固定する。中央寄せ+gapだと画面の高さ次第でh1やボタンに重なった(2026-11-08 実測) */
+  .s-open .say b{position:absolute;left:0;right:0;text-align:center}.s-open .say b:first-child{top:calc(var(--head-h) + 68px)}.s-open .say b:last-child{bottom:calc(var(--bar-h,56px) + 66px)}
   .s-worry .pics{position:sticky;top:0;height:42vh;min-height:0;z-index:2}
 }
 @media(prefers-reduced-motion:reduce){
@@ -141,3 +143,5 @@ body.home .site-foot{margin-top:0}
 .area-more{list-style:none;margin:clamp(20px,3vw,36px) 0 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.4);display:flex;flex-wrap:wrap;gap:6px 22px}
 .area-more a{color:#fff;font-size:15px;line-height:1.7;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.5);text-shadow:0 1px 8px rgba(0,0,0,.9)}
 .area-more a:hover,.area-more a:focus-visible{text-decoration-color:#fff}
+/* 動きを減らす設定のスマホ: 重ねずに縦へ並べる(2026-11-08 実測で語・一文・入口が重なっていた) */
+@media(max-width:999px) and (prefers-reduced-motion:reduce){.s-open .pin .say b{position:static;display:block}.s-open .pin .win{overflow:hidden}.s-open .pin .say{position:relative;inset:auto;padding:24px var(--g) 8px;text-align:center}.s-open .pin .under{position:relative;bottom:auto;color:var(--night);text-shadow:none;padding:8px var(--g) 24px}.s-open .pin .entry{bottom:auto}}
