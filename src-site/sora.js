@@ -66,18 +66,20 @@
   }
   function onDive() {
     var r = dive.getBoundingClientRect(), span = dive.offsetHeight - stage.offsetHeight;
-    target = Math.min(1, Math.max(0, -r.top / span));
+    // 配置が決まる前(span=0)に呼ばれると 0/0=NaN になり、以後 cur が NaN のまま何も描かれなくなる(Safariで実際に起きた)
+    target = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
     var idx = target < 0.24 ? 0 : target < 0.5 ? 1 : target < 0.78 ? 2 : 3;
     lines.forEach(function (l, i) { l.classList.toggle('on', i === idx); });
   }
   addEventListener('scroll', onDive, { passive: true });
-  addEventListener('resize', function () { lastP = -1; draw(true); });
+  addEventListener('resize', function () { lastP = -1; onDive(); wake(); draw(true); });
+  addEventListener('load', function () { onDive(); wake(); });
   onDive();
   // 動きを減らす設定では、なめらかに追わずスクロール位置へ直接合わせる
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var running = false;
   function tick() {
-    cur = reduce ? target : cur + (target - cur) * 0.12;
+    cur = reduce || !isFinite(cur) ? target : cur + (target - cur) * 0.12;
     if (Math.abs(target - cur) < 0.0002) cur = target;
     draw();
     if (cur !== target) requestAnimationFrame(tick); else running = false;
@@ -109,7 +111,7 @@
   }
   function onTime() {
     var r = time.getBoundingClientRect(), span = time.offsetHeight - tStage.offsetHeight;
-    timeP = Math.min(1, Math.max(0, -r.top / span));
+    timeP = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
     if (Math.abs(scrollY - lastScroll) > 4) manual = null;
     lastScroll = scrollY;
     paint(timeP);
