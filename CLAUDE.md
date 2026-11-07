@@ -18,6 +18,8 @@ docs/specs/site-renewal.md  # 統合の仕様
 **画面に出さないもの**: 出典・注記。写真の権利台帳は `src-site/PHOTOS.md`。実在の物件・事務所に見えるAI写真を置かない。
 
 ## 注意
+- **動き・canvasはSafariで先頭から見る（2026-11-08）**: /sora/ の降下canvasが Safari だけで11/4から空だった(配置前の0/0でNaN固定・Chromeでは再現しない)。割り算の分母は必ずガード。Safariはlenisでスクロール位置を復元するので scrollTo が効かない。
+- **画像は実寸で書き出す**: 元画像(~/Desktop/PJ/明治不動産/HP大改修/画像/*.png)は1086〜1672px。2400wへの引き伸ばしは重いだけ。`img-widths.json`=実寸、srcsetは `-800` と原寸の2つ。
 - Google Search Console認証済み（google58922da62ae13e77.html）
 - シンプルな静的サイト。余計なフレームワーク不要
 
