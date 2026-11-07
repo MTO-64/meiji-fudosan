@@ -131,9 +131,9 @@ function write(rel, html) {
   // 実寸を記録した画像だけ srcset を付ける。全面の写真以外はスマホ全幅、PCは半分で足りる
   const withSet = html.replace(/<img([^>]*?) src="\/a\/s\/([a-z-]+)\.webp"([^>]*)>/g, (m, pre, n, post) => {
     const w = WIDTHS[n];
-    if (!w || w <= 1200) return m;
+    if (!w || w <= 800) return m;
     const full = /fetchpriority/.test(pre + post) || /station-front/.test(n);
-    return `<img${pre} src="/a/s/${n}.webp" srcset="/a/s/${n}-1200.webp 1200w, /a/s/${n}.webp ${w}w" sizes="${full ? '100vw' : '(max-width:999px) 100vw, 50vw'}"${post}>`;
+    return `<img${pre} src="/a/s/${n}.webp" srcset="/a/s/${n}-800.webp 800w, /a/s/${n}.webp ${w}w" sizes="${full ? '100vw' : '(max-width:999px) 100vw, 50vw'}"${post}>`;
   });
   const out = withSet.replace(/href="\/#contact"/g, 'href="/contact/"').replace(/<(h[12])((?:[^>"']|"[^"]*"|'[^']*')*)>([\s\S]*?)<\/\1>/g, (m, t, attrs, inner) => `<${t}${attrs}>${phrase(inner)}</${t}>`);
   writeFileSync(file, out);
