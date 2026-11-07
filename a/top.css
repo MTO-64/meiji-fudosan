@@ -137,3 +137,7 @@ body.home .site-foot{margin-top:0}
   .s-end h2{font-size:clamp(36px,3.8vw,60px);white-space:nowrap}
   .s-end .ask-go{min-height:56px}
 }
+/* 種別・他市への小さな文字リンク(2026-11-08 owner「全部出さなくていい・長い」) */
+.area-more{list-style:none;margin:clamp(20px,3vw,36px) 0 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.4);display:flex;flex-wrap:wrap;gap:6px 22px}
+.area-more a{color:#fff;font-size:15px;line-height:1.7;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.5);text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.area-more a:hover,.area-more a:focus-visible{text-decoration-color:#fff}

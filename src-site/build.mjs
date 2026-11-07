@@ -173,6 +173,8 @@ function buildTop() {
   const lotPic = (id, alt) => `<figure class="lotp">${scene(id, alt, 'loading="lazy"')}</figure>`;
   const flow = [['無料相談、査定', 'お電話、メール、ご来店でご相談ください。'], ['媒介契約', '売却条件を確認し、契約を締結します。'], ['販売活動', 'ポータルサイトへの掲載や、お問い合わせのお客様へのご紹介で買主を募集します。'], ['売買契約', '条件交渉、契約書作成、重要事項説明を行います。'], ['引渡し、完了', '決済と登記手続きを経て売却完了です。']];
   const areas = [['/ishioka/', '石岡市の不動産', '石岡市内の物件を総合的に。空き家、中古住宅、土地、事業用地まで。', 'a-ishioka'], ['/ishioka/used-house/', '石岡市の中古住宅、戸建て', '築浅から築古まで、リフォーム済み、現状渡しを幅広く。', 'a-ishioka'], ['/ishioka/land/', '石岡市の土地', '住宅用地、農地、分譲地、別荘地、事業用地。', 'a-ishioka'], ['/ishioka/akiya/', '石岡市の空き家', '空き家バンク掲載、未掲載を問わず売買、活用のご相談。', 'a-ishioka'], ['/ishioka/business-land/', '石岡市の事業用地', '常磐道IC、国道6号沿いの工場、倉庫、物流、店舗用地。', 'a-ishioka'], ['/omitama/', '小美玉市の不動産', '茨城空港エリア、小美玉市の物件総合。', 'a-omitama'], ['/omitama/used-house/', '小美玉市の中古住宅', '羽鳥駅徒歩圏、常磐道アクセスのよい中古戸建て。', 'a-omitama'], ['/omitama/land/', '小美玉市の土地', '住宅用地、農地、霞ヶ浦周辺の別荘地、事業用地。', 'a-omitama'], ['/ibaraki/', '茨城県の不動産', '石岡、小美玉、土浦を中心とする周辺7市町の総合窓口。広域エリア対応。', 'd1'], ['/ibaraki/land/', '茨城県の土地', '対応エリアの住宅用地、農地、別荘地、事業用地。', 'd1'], ['/ibaraki/business-land/', '茨城県の事業用地', '常磐道、圏央道、北関東道沿線の工場、倉庫、物流、店舗用地。', 'd1'], ['/baikyaku/', '売却、無料査定', '売却の流れと、ご相談の例。', 'a-d3'], ['/tsuchiura/', '土浦市', '土浦市の土地、中古住宅、売却。', 'a-tsuchiura'], ['/tsukuba/', 'つくば市', 'つくば市の土地、中古住宅、売却。', 'a-tsukuba'], ['/kasumigaura/', 'かすみがうら市', 'かすみがうら市の土地、中古住宅、売却。', 'a-kasumigaura'], ['/kasama/', '笠間市', '笠間市の土地、中古住宅、売却。', 'a-kasama'], ['/hokota/', '鉾田市', '鉾田市の土地、中古住宅、売却。', 'a-hokota']];
+  // 大きく出すのは市と県の入口だけ。種別・他市のページは小さな文字リンクで残す(内部リンクは減らさない)
+  const MAIN_AREAS = ['/ishioka/', '/omitama/', '/ibaraki/'];
   const faqs = [['売却査定や相談は無料ですか？', 'はい。売却査定、ご相談はすべて無料です。石岡市をはじめ周辺7市町の物件が対象で、無理な営業は行いません。まずはお電話(0299-35-2123)かお問い合わせフォームからご相談ください。'], ['対応エリアはどこまでですか？', '石岡市を中心に、小美玉市、かすみがうら市、土浦市、つくば市、笠間市、鉾田市の周辺7市町に対応しています。2000年設立で、各エリアの相場を踏まえてご相談に応じます。'], ['空き家や相続した不動産の相談もできますか？', 'はい。空き家、相続物件、実家じまいなどのご相談も承っています。「何から始めればよいかわからない」という段階からでも、売却、活用、解体まで含めて進め方をご相談します。'], ['来店せずに電話やメールだけでも相談できますか？', 'はい。お電話(0299-35-2123、10:00〜17:00、日曜祝日休み)、メール、お問い合わせフォームでのご相談が可能です。遠方の方や売却をご検討中の方も、まずはお問い合わせください。']];
   const body = `<main id="main">
 <section class="s-open"><div class="pin">
@@ -189,7 +191,7 @@ function buildTop() {
 </section>
 <section class="s-side"><div class="side-track">
   <div class="side-title"><h2>販売中の物件</h2><p>全${items.length}件のうち5件。掲載情報の確認日 ${confirmed}</p></div>
-  ${lotCard(picks[0])}${lotPic('keys', '机の上の鍵と紙')}${lotCard(picks[1])}${lotCard(picks[2])}${lotPic('hands', '土を両手で持つ様子')}${lotCard(picks[3])}${lotPic('grain', '古い板の木目')}${lotCard(picks[4])}
+  ${picks.slice(0, 5).map(lotCard).join('')}
   <a class="lote" href="/bukken/">販売中の物件を<wbr>すべて見る</a>
 </div></section>
 <section class="s-flow"><h2>売却の流れ</h2><p class="measure" style="margin-top:16px">ご相談から引渡しまで、担当者が一貫して対応します。</p>
@@ -198,7 +200,8 @@ function buildTop() {
 <section class="s-area">
   <div class="area-bg" aria-hidden="true">${[...new Set(areas.map((x) => x[3]))].map((pic, i) => `<img alt="" data-pic="${pic}" data-src="/a/sora/${pic}.webp">`).join('')}</div>
   <div class="area-in"><h2>石岡市、茨城県の不動産</h2><p>エリア・物件種別ごとに専門ページをご用意しています。お探しのテーマからご覧ください。石岡市国府に本社を置く株式会社明治不動産は、石岡市を中心に、小美玉、かすみがうら、土浦、つくば、笠間、鉾田を含む周辺7市町の不動産売買、賃貸を取り扱っています。空き家、中古住宅、土地、事業用地のご相談に対応します。</p>
-  <div class="area-rows">${areas.map(([u, t, d, pic]) => `<a href="${u}" data-pic="${pic}"><b>${t.replace('、', '、<wbr>')}</b><span>${d}</span></a>`).join('')}<a href="/sora/" data-pic="a-d3"><b>空から見る石岡</b><span>上空から店の真上まで降りる。同じ場所の60年。物件のある町。</span></a></div></div>
+  <div class="area-rows">${areas.filter((x) => MAIN_AREAS.includes(x[0])).map(([u, t, d, pic]) => `<a href="${u}" data-pic="${pic}"><b>${t.replace('、', '、<wbr>')}</b><span>${d}</span></a>`).join('')}<a href="/sora/" data-pic="a-d3"><b>空から見る石岡</b><span>上空から店の真上まで降りる。同じ場所の60年。物件のある町。</span></a></div>
+  <ul class="area-more">${areas.filter((x) => !MAIN_AREAS.includes(x[0])).map(([u, t]) => `<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
 </section>
 <section class="minor chapter"><div class="two"><div><h2 class="t-l">サービス内容</h2><p class="mt1 measure">土地・事業用地から住宅の売買・賃貸まで、不動産に関するあらゆるニーズにお応えします。</p></div><div>
 <h3 class="t-s">売買仲介</h3><p class="mt1">マイホームの購入、売却のご相談に対応します。石岡、小美玉を中心に、土地、中古住宅の売買をお手伝いします。</p>
@@ -426,7 +429,9 @@ function verify() {
     const a = facts(show(rel)); const b = facts(readFileSync(file, 'utf8'));
     for (const k of ['title', 'description', 'canonical', 'robots', 'jsonLd']) if (a[k] !== b[k]) problems.push(`${rel}: ${k} が変わった`);
     if (a.h1 && a.h1 !== b.h1) problems.push(`${rel}: h1「${a.h1.slice(0, 26)}」→「${b.h1.slice(0, 26)}」`);
-    if (b.text < a.text * 0.85) problems.push(`${rel}: 本文 ${a.text}→${b.text}字`);
+    // ownerの指示で意図して削った頁だけ下限を下げる(2026-11-08 トップの地域行の説明文を削除「長いから」)
+    const MIN_RATIO = { 'index.html': 0.78 };
+    if (b.text < a.text * (MIN_RATIO[rel] ?? 0.85)) problems.push(`${rel}: 本文 ${a.text}→${b.text}字`);
     const lost = [...a.links].filter((l) => !b.links.has(l) && !/\.(css|js|png|jpg|xml)$/.test(l));
     if (lost.length) problems.push(`${rel}: 内部リンク消失 ${lost.slice(0, 5).join(' ')}`);
   }
